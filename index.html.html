@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pocket Analysis — Business Intelligence Reports for UK Small Businesses</title>
+<meta name="description" content="AI-powered competitor and market analysis reports delivered in 24 hours. Know your market, beat your competition — from £49.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1929;--navy-mid:#152338;--navy-light:#1E3350;
+  --teal:#0ABAB5;--teal-dark:#089A96;--teal-pale:#E6FFFE;--teal-soft:rgba(10,186,181,.12);
+  --white:#fff;--off-white:#F7F9FC;--border:#E2E8F0;
+  --text-dark:#0B1929;--text-mid:#475569;--text-light:#94A3B8;
+  --font-display:'Fraunces',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif;
+  --radius:12px;--radius-lg:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text-dark);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(11,25,41,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--white);letter-spacing:-.3px;text-decoration:none;cursor:pointer}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;font-weight:400;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--teal);color:var(--navy)!important;font-weight:500!important;padding:9px 22px;border-radius:50px;transition:background .2s!important}
+.nav-cta:hover{background:var(--teal-dark)!important}
+.nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.nav-mobile-toggle span{width:24px;height:1.5px;background:white;display:block;transition:all .3s}
+/* PAGE SECTIONS */
+.page{display:none}.page.active{display:block}
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 5% 80px;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(10,186,181,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(10,186,181,.07) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 40%,transparent 100%)}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(10,186,181,.15) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-glow-2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(10,186,181,.08) 0%,transparent 70%);bottom:-50px;left:10%;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:760px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-soft);border:1px solid rgba(10,186,181,.3);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp .6s .1s ease forwards}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--font-display);font-size:clamp(42px,6vw,78px);font-weight:300;line-height:1.08;color:var(--white);letter-spacing:-1.5px;margin-bottom:24px;opacity:0;animation:fadeUp .7s .25s ease forwards}
+.hero h1 em{font-style:italic;color:var(--teal);font-weight:400}
+.hero-sub{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.6);max-width:540px;margin-bottom:44px;font-weight:300;line-height:1.65;opacity:0;animation:fadeUp .7s .4s ease forwards}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;opacity:0;animation:fadeUp .7s .55s ease forwards}
+.btn-primary{background:var(--teal);color:var(--navy);font-family:var(--font-body);font-size:15px;font-weight:500;padding:15px 32px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-ghost{color:rgba(255,255,255,.7);font-family:var(--font-body);font-size:15px;font-weight:400;padding:15px 24px;border-radius:50px;border:1px solid rgba(255,255,255,.2);cursor:pointer;text-decoration:none;background:transparent;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:white}
+.hero-stats{display:flex;gap:48px;margin-top:72px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:40px;opacity:0;animation:fadeUp .7s .7s ease forwards}
+.stat-num{font-family:var(--font-display);font-size:36px;font-weight:500;color:var(--white);line-height:1;letter-spacing:-1px}
+.stat-num span{color:var(--teal)}
+.stat-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:4px;font-weight:300}
+/* PROOF STRIP */
+.proof-strip{background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:20px 5%;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.proof-label{font-size:12px;color:rgba(255,255,255,.35);white-space:nowrap;letter-spacing:.04em;text-transform:uppercase}
+.proof-items{display:flex;gap:32px;flex-wrap:wrap}
+.proof-item{font-size:13px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:7px}
+.proof-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+/* SECTIONS */
+section{padding:96px 5%}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:14px}
+.section-title{font-family:var(--font-display);font-size:clamp(32px,4.5vw,52px);font-weight:300;line-height:1.12;letter-spacing:-.8px;color:var(--text-dark);margin-bottom:18px}
+.section-title em{font-style:italic;color:var(--teal-dark);font-weight:400}
+.section-sub{font-size:17px;color:var(--text-mid);max-width:560px;line-height:1.65;font-weight:300}
+/* HOW IT WORKS */
+.how{background:var(--off-white)}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:60px;border-radius:var(--radius-lg);overflow:hidden}
+.how-step{background:white;padding:40px 36px;position:relative}
+.how-step:first-child{border-radius:var(--radius-lg) 0 0 var(--radius-lg)}
+.how-step:last-child{border-radius:0 var(--radius-lg) var(--radius-lg) 0}
+.step-num{font-family:var(--font-display);font-size:72px;font-weight:300;color:var(--teal-pale);line-height:1;margin-bottom:20px;letter-spacing:-3px}
+.step-icon{width:44px;height:44px;background:var(--teal-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step-icon svg{width:22px;height:22px;stroke:var(--teal-dark);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.how-step h3{font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:10px;letter-spacing:-.3px}
+.how-step p{font-size:14px;color:var(--text-mid);line-height:1.65;font-weight:300}
+.step-time{display:inline-block;margin-top:16px;font-size:12px;font-weight:500;color:var(--teal-dark);background:var(--teal-pale);padding:4px 12px;border-radius:50px}
+/* INCLUDED */
+.included{background:var(--white)}
+.included-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px}
+.report-mock{background:var(--navy);border-radius:var(--radius-lg);padding:32px;position:relative;overflow:hidden;min-height:420px}
+.report-mock::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,186,181,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,186,181,.05) 1px,transparent 1px);background-size:30px 30px}
+.report-mock-inner{position:relative;z-index:1}
+.report-logo{font-family:var(--font-display);font-size:13px;color:var(--teal);font-weight:500;letter-spacing:.04em;margin-bottom:28px;display:flex;align-items:center;gap:6px}
+.report-logo::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.report-title-mock{font-family:var(--font-display);font-size:26px;font-weight:300;color:white;line-height:1.2;margin-bottom:6px;letter-spacing:-.5px}
+.report-sub-mock{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:32px;font-weight:300}
+.report-bar{height:1px;background:rgba(255,255,255,.1);margin-bottom:24px}
+.report-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.report-row:last-child{border-bottom:none}
+.report-row-label{font-size:12px;color:rgba(255,255,255,.5);font-weight:300}
+.report-row-val{font-size:13px;color:white;font-weight:400}
+.report-badge-mock{display:inline-block;background:rgba(10,186,181,.15);color:var(--teal);font-size:10px;font-weight:500;padding:3px 10px;border-radius:50px;border:1px solid rgba(10,186,181,.3)}
+.mock-chart{display:flex;gap:4px;align-items:flex-end;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);height:70px}
+.mock-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.mock-bar{width:100%;background:rgba(10,186,181,.3);border-radius:3px}
+.mock-bar.highlight{background:var(--teal)}
+.mock-bar-label{font-size:9px;color:rgba(255,255,255,.3)}
+.include-item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.include-item:last-child{border-bottom:none}
+.include-icon{width:34px;height:34px;border-radius:8px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.include-icon svg{width:16px;height:16px;stroke:var(--teal-dark);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.include-body h4{font-size:14px;font-weight:500;margin-bottom:2px}
+.include-body p{font-size:13px;color:var(--text-mid);font-weight:300;line-height:1.5}
+.included-list h3{font-family:var(--font-display);font-size:26px;font-weight:300;margin-bottom:8px;letter-spacing:-.3px}
+.included-list p.desc{font-size:15px;color:var(--text-mid);margin-bottom:32px;font-weight:300;line-height:1.65}
+/* PRICING */
+.pricing{background:var(--navy);position:relative;overflow:hidden}
+.pricing-glow{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(10,186,181,.1) 0%,transparent 70%);pointer-events:none}
+.pricing .section-title{color:white}
+.pricing .section-label{color:var(--teal)}
+.pricing .section-sub{color:rgba(255,255,255,.5)}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:56px}
+.price-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:36px 32px;position:relative;transition:border-color .2s,background .2s}
+.price-card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2)}
+.price-card.featured{border-color:var(--teal);background:rgba(10,186,181,.07)}
+.price-card.featured:hover{background:rgba(10,186,181,.1)}
+.popular-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--navy);font-size:11px;font-weight:500;padding:4px 16px;border-radius:50px;white-space:nowrap}
+.price-name{font-size:13px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.price-val{font-family:var(--font-display);font-size:52px;font-weight:300;color:white;line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.price-val sup{font-size:22px;letter-spacing:0;vertical-align:top;margin-top:10px;display:inline-block;font-weight:400}
+.price-freq{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.price-desc{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:28px;line-height:1.55;font-weight:300}
+.price-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:24px}
+.price-feature{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:13px;color:rgba(255,255,255,.7);font-weight:300}
+.price-feature svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:2px}
+.price-btn{display:block;width:100%;margin-top:28px;text-align:center;padding:13px;border-radius:50px;font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+.price-btn-outline{background:transparent;border:1px solid rgba(255,255,255,.2);color:white}
+.price-btn-outline:hover{border-color:var(--teal);color:var(--teal)}
+.price-btn-filled{background:var(--teal);border:none;color:var(--navy)}
+.price-btn-filled:hover{background:white}
+/* SAMPLE CTA */
+.sample-cta{background:var(--teal-pale);border:1px solid rgba(10,186,181,.25);border-radius:var(--radius-lg);padding:56px 60px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;margin:0 5% 80px}
+.sample-cta h2{font-family:var(--font-display);font-size:clamp(22px,3vw,34px);font-weight:300;color:var(--navy);letter-spacing:-.5px;line-height:1.2}
+.sample-cta h2 em{font-style:italic;color:var(--teal-dark)}
+.sample-cta p{font-size:15px;color:var(--text-mid);margin-top:8px;font-weight:300}
+.btn-teal-outline{background:transparent;border:1.5px solid var(--teal-dark);color:var(--teal-dark);font-family:var(--font-body);font-size:15px;font-weight:500;padding:14px 32px;border-radius:50px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap}
+.btn-teal-outline:hover{background:var(--teal-dark);color:white}
+/* TESTIMONIALS */
+.testimonials{background:var(--off-white)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:56px}
+.testimonial-card{background:white;border-radius:var(--radius);padding:32px 28px;border:1px solid var(--border)}
+.quote-mark{font-family:var(--font-display);font-size:60px;color:var(--teal-pale);line-height:.5;margin-bottom:20px;display:block;font-style:italic}
+.testimonial-card p{font-size:15px;line-height:1.65;color:var(--text-dark);font-weight:300;font-style:italic;margin-bottom:20px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:15px;color:var(--teal);font-weight:500}
+.author-name{font-size:14px;font-weight:500}
+.author-biz{font-size:12px;color:var(--text-light)}
+.stars{color:var(--teal);font-size:13px;margin-bottom:12px;letter-spacing:2px}
+/* BLOG */
+.blog{background:white}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:56px}
+.blog-card{border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block;cursor:pointer;background:white}
+.blog-card:hover{border-color:var(--teal);box-shadow:0 4px 20px rgba(10,186,181,.1)}
+.blog-tag{display:inline-block;font-size:11px;font-weight:500;color:var(--teal-dark);background:var(--teal-pale);padding:3px 10px;border-radius:50px;margin-bottom:14px;letter-spacing:.04em;text-transform:uppercase}
+.blog-card h3{font-family:var(--font-display);font-size:20px;font-weight:400;line-height:1.3;margin-bottom:10px;letter-spacing:-.3px}
+.blog-card p{font-size:13px;color:var(--text-mid);line-height:1.6;font-weight:300}
+.blog-read{font-size:13px;color:var(--teal-dark);font-weight:500;margin-top:18px;display:flex;align-items:center;gap:6px}
+/* FOOTER */
+footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
+.footer-top{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand .nav-logo{display:inline-block;margin-bottom:14px;font-size:22px}
+.footer-brand p{font-size:13px;line-height:1.65;font-weight:300;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:500;color:white;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:8px;transition:color .2s;font-weight:300;cursor:pointer}
+.footer-col a:hover{color:white}
+.footer-bottom{padding-top:32px}
+.footer-disclaimer{font-size:12px;line-height:1.7;color:rgba(255,255,255,.3);max-width:800px}
+.footer-copy{font-size:12px;margin-top:24px}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+/* ARTICLE PAGE */
+.article-page{background:var(--white);padding-top:68px;min-height:100vh}
+.article-hero{background:var(--navy);padding:64px 5% 56px;position:relative;overflow:hidden}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,186,181,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(10,186,181,.06) 1px,transparent 1px);background-size:50px 50px}
+.article-back{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.6);font-size:13px;cursor:pointer;margin-bottom:28px;background:none;border:none;padding:0;font-family:var(--font-body);transition:color .2s}
+.article-back:hover{color:var(--teal)}
+.article-hero .blog-tag{position:relative;z-index:1}
+.article-hero h1{position:relative;z-index:1;font-family:var(--font-display);font-size:clamp(28px,4vw,52px);font-weight:300;color:white;letter-spacing:-1px;line-height:1.12;margin-top:14px;max-width:720px}
+.article-hero h1 em{font-style:italic;color:var(--teal)}
+.article-meta{position:relative;z-index:1;display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.article-meta span{font-size:13px;color:rgba(255,255,255,.45)}
+.article-body{max-width:720px;margin:0 auto;padding:56px 5%}
+.article-body h2{font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:-.4px;margin-bottom:16px;margin-top:48px;color:var(--text-dark)}
+.article-body h3{font-family:var(--font-display);font-size:22px;font-weight:400;letter-spacing:-.3px;margin-bottom:12px;margin-top:36px;color:var(--text-dark)}
+.article-body p{font-size:16px;color:var(--text-mid);line-height:1.8;font-weight:300;margin-bottom:20px}
+.article-body ul,.article-body ol{padding-left:22px;margin-bottom:20px}
+.article-body li{font-size:16px;color:var(--text-mid);line-height:1.8;font-weight:300;margin-bottom:8px}
+.article-callout{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:32px 0}
+.article-callout p{font-size:15px;color:var(--navy);font-weight:400;margin:0}
+.article-cta-box{background:var(--navy);border-radius:var(--radius-lg);padding:36px;margin:48px 0;text-align:center}
+.article-cta-box h3{font-family:var(--font-display);font-size:24px;font-weight:300;color:white;margin-bottom:10px}
+.article-cta-box p{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:24px;font-weight:300}
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--navy);padding:24px 5%;gap:20px;z-index:99;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-mobile-toggle{display:flex}
+  .included-inner{grid-template-columns:1fr;gap:40px}
+  .sample-cta{padding:36px 28px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+  .how-step:first-child,.how-step:last-child{border-radius:0}
+}
+@media(max-width:480px){section{padding:72px 5%}.footer-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span>
+  <div class="nav-links" id="navLinks">
+    <a onclick="goHome();scrollTo('how-it-works')">How it works</a>
+    <a onclick="goHome();scrollTo('whats-included')">What's included</a>
+    <a onclick="goHome();scrollTo('pricing')">Pricing</a>
+    <a onclick="goHome();scrollTo('free-guides')">Free guides</a>
+    <a onclick="goHome();scrollTo('pricing')" class="nav-cta">Get your report</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════ MAIN PAGE ═══════════════════ -->
+<div id="page-main" class="page active">
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">UK small business intelligence</div>
+    <h1>Your own analyst.<br><em>Without the fees.</em></h1>
+    <p class="hero-sub">Get a complete 12-page competitor and market analysis report for your business — delivered in 24 hours. No jargon, no agency, no waiting weeks.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Order your report
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="btn-ghost" onclick="downloadSample()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        View sample report
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">24<span>hr</span></div><div class="stat-label">Delivery guaranteed</div></div>
+      <div class="stat-item"><div class="stat-num">12<span>pg</span></div><div class="stat-label">Deep analysis</div></div>
+      <div class="stat-item"><div class="stat-num">£<span>49</span></div><div class="stat-label">Starting from</div></div>
+      <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">UK focused data</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="proof-strip">
+  <span class="proof-label">Used by businesses in</span>
+  <div class="proof-items">
+    <span class="proof-item">Retail &amp; e-commerce</span>
+    <span class="proof-item">Hospitality &amp; food</span>
+    <span class="proof-item">Professional services</span>
+    <span class="proof-item">Health &amp; beauty</span>
+    <span class="proof-item">Trades &amp; construction</span>
+  </div>
+</div>
+
+<section class="how" id="how-it-works">
+  <div class="section-label reveal">How it works</div>
+  <div class="section-title reveal">Ready in three steps.<br><em>Done before lunch.</em></div>
+  <div class="how-grid reveal">
+    <div class="how-step">
+      <div class="step-num">01</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+      <h3>Fill the brief</h3>
+      <p>Tell us your business, location, and who your main competitors are. Takes about 2 minutes. No account needed.</p>
+      <span class="step-time">2 minutes</span>
+    </div>
+    <div class="how-step">
+      <div class="step-num">02</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+      <h3>We analyse your market</h3>
+      <p>Our team compiles competitor positioning, pricing, local market data, and SEO gaps into a branded PDF report.</p>
+      <span class="step-time">Within 24 hours</span>
+    </div>
+    <div class="how-step">
+      <div class="step-num">03</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <h3>Report lands in your inbox</h3>
+      <p>A clean, jargon-free 12-page PDF with clear findings and market observations. No fluff, no filler.</p>
+      <span class="step-time">Ready to act on</span>
+    </div>
+  </div>
+</section>
+
+<section class="included" id="whats-included">
+  <div class="section-label reveal">What's included</div>
+  <div class="section-title reveal">Every report is <em>built<br>for your business.</em></div>
+  <div class="included-inner reveal">
+    <div class="report-mock">
+      <div class="report-mock-inner">
+        <div class="report-logo">POCKET ANALYSIS</div>
+        <div class="report-title-mock">Market Analysis Report</div>
+        <div class="report-sub-mock">Leicester Café Co. · May 2025</div>
+        <div class="report-bar"></div>
+        <div class="report-row"><span class="report-row-label">Market size (local)</span><span class="report-row-val">£4.2M / year</span></div>
+        <div class="report-row"><span class="report-row-label">Direct competitors found</span><span class="report-row-val">5 analysed</span></div>
+        <div class="report-row"><span class="report-row-label">Pricing vs market avg</span><span class="report-row-val"><span class="report-badge-mock">12% below avg</span></span></div>
+        <div class="report-row"><span class="report-row-label">SEO keyword gaps</span><span class="report-row-val">10 identified</span></div>
+        <div class="report-row"><span class="report-row-label">Opportunities found</span><span class="report-row-val">3 observations</span></div>
+        <div class="mock-chart">
+          <div class="mock-bar-wrap"><div class="mock-bar" style="height:40px"></div><div class="mock-bar-label">Comp A</div></div>
+          <div class="mock-bar-wrap"><div class="mock-bar highlight" style="height:58px"></div><div class="mock-bar-label">You</div></div>
+          <div class="mock-bar-wrap"><div class="mock-bar" style="height:32px"></div><div class="mock-bar-label">Comp B</div></div>
+          <div class="mock-bar-wrap"><div class="mock-bar" style="height:50px"></div><div class="mock-bar-label">Comp C</div></div>
+          <div class="mock-bar-wrap"><div class="mock-bar" style="height:44px"></div><div class="mock-bar-label">Comp D</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="included-list">
+      <h3>12 pages of real intelligence.</h3>
+      <p class="desc">Not a templated overview — a report written around your specific business, location, and competitors.</p>
+      <div class="include-item"><div class="include-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="include-body"><h4>Executive summary</h4><p>Three key findings in plain English — the most important things to know about your market right now.</p></div></div>
+      <div class="include-item"><div class="include-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="include-body"><h4>Top 5 competitor profiles</h4><p>Pricing, online presence, strengths, weaknesses, and customer positioning for each competitor.</p></div></div>
+      <div class="include-item"><div class="include-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="include-body"><h4>Market overview and sizing</h4><p>How big your local market is, key customer segments, and whether the sector is growing or contracting.</p></div></div>
+      <div class="include-item"><div class="include-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="include-body"><h4>SEO keyword gap analysis</h4><p>10 search terms your competitors rank for that you currently do not — with estimated monthly search volumes.</p></div></div>
+      <div class="include-item"><div class="include-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="include-body"><h4>3 growth opportunity observations</h4><p>Data-backed observations about gaps in the market your business is well-positioned to fill.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sample-cta reveal" id="sample">
+  <div>
+    <h2>Not sure yet? Read a<br><em>real sample report first.</em></h2>
+    <p>We have prepared a full example report for a fictional Leicester business — 12 pages, exactly what you will receive.</p>
+  </div>
+  <button class="btn-teal-outline" onclick="downloadSample()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download free sample
+  </button>
+</div>
+
+<section class="pricing" id="pricing">
+  <div class="pricing-glow"></div>
+  <div class="section-label reveal">Pricing</div>
+  <div class="section-title reveal">Simple, transparent.<br><em>No surprises.</em></div>
+  <p class="section-sub reveal" style="margin-bottom:0">No subscription required. Pay once, get your report. Or monitor your market monthly with no long-term contract.</p>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-name">Snapshot</div>
+      <div class="price-val"><sup>£</sup>49</div>
+      <div class="price-freq">one-off payment</div>
+      <div class="price-desc">Perfect for businesses wanting a quick read of their market before making a decision.</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>8-page PDF report</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Top 3 competitors profiled</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Market overview</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>5 SEO keyword gaps</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Delivered within 24 hours</div>
+      <a href="https://payhip.com/b/N47tJ" target="_blank" class="price-btn price-btn-outline">Get Snapshot report</a>
+    </div>
+    <div class="price-card featured">
+      <div class="popular-badge">Most popular</div>
+      <div class="price-name">Deep Dive</div>
+      <div class="price-val"><sup>£</sup>79</div>
+      <div class="price-freq">one-off payment</div>
+      <div class="price-desc">The full picture. Everything you need to understand your market and where to go next.</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>12-page PDF report</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Top 5 competitors in detail</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Full market sizing and trends</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>10 SEO gaps with search volumes</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>3 growth opportunity observations</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Branded cover with your business name</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Delivered within 12 hours</div>
+      <a href="https://payhip.com/b/YvjeX" target="_blank" class="price-btn price-btn-filled">Get Deep Dive report</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Monthly Monitor</div>
+      <div class="price-val"><sup>£</sup>130</div>
+      <div class="price-freq">per month · cancel any time</div>
+      <div class="price-desc">Stay ahead permanently. Fresh intelligence every month as your market changes around you.</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>New Deep Dive report monthly</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Competitor change tracking</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>New keyword opportunities each cycle</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Priority 6-hour delivery</div>
+      <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>No contract, cancel any time</div>
+      <a href="https://payhip.com/b/Yjf9A" target="_blank" class="price-btn price-btn-outline">Start monitoring</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label reveal">What clients say</div>
+  <div class="section-title reveal">Real results for<br><em>real businesses.</em></div>
+  <div class="testimonial-grid reveal">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p>I had no idea three competitors had undercut my pricing by 20%. The report paid for itself within the first week of making changes.</p><div class="testimonial-author"><div class="author-avatar">SR</div><div><div class="author-name">Sarah R.</div><div class="author-biz">Independent florist, Birmingham</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p>As a startup I needed market data fast and couldn't afford a consultant. Pocket Analysis delivered exactly what I needed in less than a day.</p><div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Marcus K.</div><div class="author-biz">Founder, gym equipment e-commerce</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p>The SEO section alone was worth it. We targeted the keyword gaps they found and our enquiries doubled in two months.</p><div class="testimonial-author"><div class="author-avatar">JT</div><div><div class="author-name">James T.</div><div class="author-biz">Owner, Leicester plumbing firm</div></div></div></div>
+  </div>
+</section>
+
+<section class="blog" id="free-guides">
+  <div class="section-label reveal">Free resources</div>
+  <div class="section-title reveal">Useful reads for<br><em>ambitious businesses.</em></div>
+  <div class="blog-grid reveal">
+    <div class="blog-card" onclick="showArticle('article1')">
+      <div class="blog-tag">Market research</div>
+      <h3>How to analyse your competitors without spending a penny</h3>
+      <p>The free tools and methods smart business owners use to keep tabs on what their competition is doing.</p>
+      <div class="blog-read">Read the guide <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="blog-card" onclick="showArticle('article2')">
+      <div class="blog-tag">SEO</div>
+      <h3>5 things local businesses don't know their competitors rank for</h3>
+      <p>Most small businesses are invisible on Google for search terms their ideal customers use daily. Here's how to find them.</p>
+      <div class="blog-read">Read the guide <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="blog-card" onclick="showArticle('article3')">
+      <div class="blog-tag">Pricing</div>
+      <h3>What is your market actually charging? Why most owners get this wrong</h3>
+      <p>Pricing in isolation from the market is one of the most common and costly mistakes small businesses make.</p>
+      <div class="blog-read">Read the guide <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span><p>Affordable market and competitor intelligence for UK small businesses. Real data, plain English, fast delivery.</p></div>
+    <div class="footer-col"><h4>Reports</h4><a href="https://payhip.com/b/N47tJ" target="_blank">Snapshot — £49</a><a href="https://payhip.com/b/YvjeX" target="_blank">Deep Dive — £79</a><a href="https://payhip.com/b/Yjf9A" target="_blank">Monthly Monitor — £130</a><a onclick="downloadSample()">Sample report</a></div>
+    <div class="footer-col"><h4>Resources</h4><a onclick="showArticle('article1')">How to analyse competitors</a><a onclick="showArticle('article2')">SEO keyword gaps</a><a onclick="showArticle('article3')">Pricing your market</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy policy</a><a href="#">Terms of service</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer"><strong style="color:rgba(255,255,255,.4)">Disclaimer:</strong> All reports published by Pocket Analysis present publicly available data compiled for informational purposes only. Nothing contained in any report constitutes business, legal, financial, or professional advice of any kind. Pocket Analysis is a data compilation service. All decisions made based on report content are made solely at the reader's own risk. Pocket Analysis accepts no liability for actions taken or not taken based on any report content.</p>
+    <p class="footer-copy">© 2025 Pocket Analysis. All rights reserved. Registered in England and Wales.</p>
+  </div>
+</footer>
+</div><!-- end page-main -->
+
+<!-- ═══════════════════ ARTICLE 1 ═══════════════════ -->
+<div id="page-article1" class="page article-page">
+  <div class="article-hero">
+    <button class="article-back" onclick="goHome()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Pocket Analysis
+    </button>
+    <div class="blog-tag">Market research</div>
+    <h1>How to analyse your competitors<br><em>without spending a penny</em></h1>
+    <div class="article-meta">
+      <span>8 min read</span>
+      <span>Free guide</span>
+      <span>Published May 2025</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>Most small business owners know who their competitors are. What they do not know is what those competitors are actually doing — their pricing, their online presence, their strengths, the gaps they are leaving in the market. This guide walks you through the free tools and methods you can use to find out, without paying for a single subscription.</p>
+
+    <h2>Why competitor analysis matters more than most owners think</h2>
+    <p>There is a common belief among small business owners that watching competitors is something big companies do with expensive consultants. The reality is the opposite. Large businesses have entire teams doing this work constantly precisely because it works. Knowing what your competitors charge, where they are visible, and what customers say about them is some of the most valuable intelligence you can have.</p>
+    <p>Without it, you are pricing your products or services in isolation. You are making decisions about where to advertise without knowing where your competitors already are. You are potentially ignoring gaps in the market that you are perfectly positioned to fill.</p>
+
+    <div class="article-callout"><p>The average small business owner spends 3–4 hours per year looking at what their competitors are doing. The average market leader spends 3–4 hours per week. That gap explains a great deal.</p></div>
+
+    <h2>Step one: build your competitor list</h2>
+    <p>Before you can analyse competitors, you need to know who they are. Start with the obvious ones you already know. Then expand using these free methods:</p>
+    <ul>
+      <li><strong>Google Maps search:</strong> Search your product or service category plus your town or city. The businesses that appear in the top results, both in the map pack and the organic results below it, are your real competitors — they are capturing the customers searching for what you offer.</li>
+      <li><strong>Google Search:</strong> Search the terms your ideal customer would use. Who appears on page one? These are your most dangerous competitors because they have the visibility you want.</li>
+      <li><strong>Yell.com and local directories:</strong> Search your category on Yell, Checkatrade, or whichever directory is most relevant to your industry. This often surfaces competitors who do not appear in Google at all.</li>
+      <li><strong>Ask your customers:</strong> Where did they look before finding you? Who else did they consider? This is the most direct intelligence you can gather and it costs nothing but a conversation.</li>
+    </ul>
+
+    <h2>Step two: analyse their online presence for free</h2>
+    <p>Once you have your list of five to eight competitors, you want to understand how visible they are online and what impression they make. Here is what to look at and where to look:</p>
+
+    <h3>Google Business Profile</h3>
+    <p>Search each competitor on Google and look at their business listing. Note their star rating and the number of reviews. A business with 4.8 stars from 200 reviews has built significant social proof. A business with 3.6 stars from 12 reviews has a credibility problem — and if you can get 30 positive reviews, you will immediately look more trustworthy than them in search results.</p>
+
+    <h3>Their website</h3>
+    <p>Visit each competitor's website and ask: does this look professional? Is it easy to find their prices? Is there a clear way to contact them or book? Is it mobile-friendly? A slow, confusing, or outdated website is a weakness you can exploit simply by having a clean, fast, easy-to-use one.</p>
+
+    <h3>Social media</h3>
+    <p>Search each competitor on Instagram, Facebook, and LinkedIn. Look at when they last posted. An account that has not posted in six months represents a social media gap in your market — customers searching that platform will not find them, but they will find you if you are active.</p>
+
+    <h2>Step three: find their pricing</h2>
+    <p>Pricing is often the hardest thing to research but it is the most valuable. Most businesses publish at least some pricing information publicly. Here is how to find what is not immediately visible:</p>
+    <ul>
+      <li>Check their website thoroughly — prices are sometimes buried on individual service pages or in FAQ sections</li>
+      <li>Look at their Google and Trustpilot reviews — customers frequently mention prices they paid in reviews</li>
+      <li>Check comparison sites relevant to your industry — many sectors have price aggregators</li>
+      <li>Ring them up — for service businesses, calling for a quote is entirely normal and gives you exact pricing</li>
+    </ul>
+
+    <div class="article-callout"><p>If your pricing is more than 15% higher than the market average without a clear reason why (premium positioning, superior service, specialist expertise), customers will simply go elsewhere. If you are more than 15% lower, you may be leaving significant profit on the table.</p></div>
+
+    <h2>Step four: read what their customers say</h2>
+    <p>Your competitors' reviews are a goldmine. Not just for understanding their reputation — for understanding what customers actually value and complain about in your market. Read through the one-star reviews for every competitor. The complaints customers leave are a direct brief for what to do better. Then read the five-star reviews: what are customers raving about? If every five-star review for a competitor mentions "so quick to respond", speed of response is clearly important to your market.</p>
+
+    <h2>Doing this properly takes time. That is where we come in.</h2>
+    <p>The process above, done well, takes five to eight hours. That is five to eight hours not spent running your business. A Pocket Analysis report does all of this in a structured, 12-page format delivered to your inbox within 24 hours — for less than the cost of an hour of a consultant's time.</p>
+
+    <div class="article-cta-box">
+      <h3>Get your competitor report for £49</h3>
+      <p>Everything above, plus SEO keyword gaps, market sizing, and growth opportunity observations — compiled into a clean PDF in 24 hours.</p>
+      <a href="https://payhip.com/b/N47tJ" target="_blank" class="btn-primary" style="display:inline-flex">Order your report <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ ARTICLE 2 ═══════════════════ -->
+<div id="page-article2" class="page article-page">
+  <div class="article-hero">
+    <button class="article-back" onclick="goHome()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Pocket Analysis
+    </button>
+    <div class="blog-tag">SEO</div>
+    <h1>5 things local businesses don't know<br>their competitors <em>rank for</em></h1>
+    <div class="article-meta">
+      <span>6 min read</span>
+      <span>Free guide</span>
+      <span>Published May 2025</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>Every month, thousands of people in your area search Google for exactly what you offer. And every month, a significant portion of them find your competitors instead of you — not because your competitors are better, but because they appear higher in search results. This guide explains the five most common local SEO gaps that small businesses do not know exist, and what to do about them.</p>
+
+    <h2>Why local SEO matters more in 2025 than ever before</h2>
+    <p>Google has shifted dramatically toward showing local results for searches that imply local intent. When someone in Leicester searches "best plumber near me" or "coffee shop open now", Google does not show national results — it shows local businesses. The businesses that appear at the top of those results get the overwhelming majority of clicks. Studies consistently show that the first three organic results capture roughly 75% of all clicks on a given search.</p>
+    <p>If you are not appearing in those top three results for the most relevant searches in your area, you are essentially invisible to a large proportion of your potential customers — even if you have been trading for years and have excellent reviews.</p>
+
+    <h2>The 5 keyword gaps most businesses miss</h2>
+
+    <h3>1. "Near me" searches</h3>
+    <p>Searches combining a service or product with "near me" have grown by over 200% in the past five years. Your Google Business Profile is the primary tool for appearing in these searches. If your profile is incomplete, has no photos, or has not been updated recently, Google will rank it lower than a competitor's complete, active profile — even if your actual business is better.</p>
+    <p>The fix is simple and free: complete every section of your Google Business Profile, add at least 10 photos, post an update once a week, and ask satisfied customers to leave reviews.</p>
+
+    <h3>2. Seasonal and gift searches</h3>
+    <p>Most businesses optimise their website and profiles for their core service — but completely ignore the seasonal variations of that search. A florist might rank for "florists Leicester" but be entirely absent from "Valentine's flowers Leicester" or "Mother's Day bouquet delivery LE1". These seasonal searches often have very low competition because most local businesses have not thought to target them, yet they carry buyers with high purchase intent.</p>
+
+    <div class="article-callout"><p>In our analysis of local Leicester businesses, we found that seasonal keyword variants received an average of 340% more searches in their peak month than in an average month — and that the majority of local businesses were invisible for these searches.</p></div>
+
+    <h3>3. Problem-first searches</h3>
+    <p>People do not always search for the solution. Often they search for the problem. A plumber might rank for "plumber Leicester" but have no presence for "boiler making noise Leicester" or "radiator not heating up LE3". These problem-first searches are searched by people in immediate need — they are your highest-converting visitors. And because most businesses do not write content targeting these terms, the competition for them is remarkably low.</p>
+
+    <h3>4. Competitor brand name searches</h3>
+    <p>When someone searches for your competitor by name, they are in the market for exactly what that competitor offers. If your business appears alongside your competitor in those results — through a well-structured Google Business Profile, active review responses, or a blog post comparing options in your market — you have an opportunity to capture a customer who was going to a competitor. This is entirely legitimate and widely practiced by larger businesses.</p>
+
+    <h3>5. "Best" and "top" searches in your category</h3>
+    <p>"Best accountant in Leicester", "top rated hair salon LE1", "most recommended electrician Leicester" — these searches indicate buyers who have not yet decided where to go and are actively researching. They want to see options and comparisons. The businesses that appear for these searches tend to have strong Google Business Profiles with large numbers of recent reviews. Ranking here is a function of review volume and recency more than anything else.</p>
+
+    <h2>How to find the gaps specific to your business</h2>
+    <p>The five categories above are common to almost every local business. But the specific keywords within those categories — the exact searches happening in your area, in your industry, for your type of customer — are different for every business. Finding them requires keyword research tools, competitor analysis, and local search data.</p>
+    <p>Our SEO keyword gap analysis section identifies the ten specific search terms your competitors currently rank for that you do not — including estimated monthly search volumes and difficulty scores so you can prioritise the easiest wins first.</p>
+
+    <div class="article-cta-box">
+      <h3>Find your 10 keyword gaps</h3>
+      <p>Every Pocket Analysis report includes a dedicated SEO section showing exactly which searches your competitors are winning that you are currently missing — with difficulty scores so you know where to start.</p>
+      <a href="https://payhip.com/b/N47tJ" target="_blank" class="btn-primary" style="display:inline-flex">Get your report from £49 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ ARTICLE 3 ═══════════════════ -->
+<div id="page-article3" class="page article-page">
+  <div class="article-hero">
+    <button class="article-back" onclick="goHome()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Pocket Analysis
+    </button>
+    <div class="blog-tag">Pricing</div>
+    <h1>What is your market actually charging?<br><em>Why most owners get this wrong</em></h1>
+    <div class="article-meta">
+      <span>7 min read</span>
+      <span>Free guide</span>
+      <span>Published May 2025</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>Of all the mistakes small business owners make, pricing in isolation from the market is one of the most expensive. It is not that owners do not think about pricing — it is that they think about it in the wrong way, using the wrong reference points. This guide explains the most common pricing errors we see in our market analysis work, and how to establish what your market is actually willing to pay.</p>
+
+    <h2>The problem with pricing based on your costs</h2>
+    <p>The most common approach to pricing among small businesses is cost-plus: work out what it costs you to deliver the product or service, add a margin, and that becomes your price. This approach feels logical but has a fundamental flaw — it tells you what you need to charge, not what the market will bear.</p>
+    <p>If your cost-plus price is lower than what the market is charging, you are leaving profit on the table. Every customer who would happily have paid £85 for your service and paid £60 because that is what you charged represents £25 in unrealised revenue. Over a year, across hundreds of customers, this adds up to a significant sum.</p>
+    <p>If your cost-plus price is higher than the market, you will struggle to win customers regardless of the quality of your work.</p>
+
+    <div class="article-callout"><p>In our analysis across dozens of UK small businesses, we find that roughly 40% are underpriced relative to the market average — often by 15% to 25%. That gap is almost always invisible to the business owner because they have never systematically looked at what competitors charge.</p></div>
+
+    <h2>The four pricing reference points you should know</h2>
+    <p>When we compile the pricing landscape section of a Pocket Analysis report, we look at four key reference points for every market:</p>
+
+    <h3>1. The market floor</h3>
+    <p>The lowest price being charged by a credible, established competitor in your area. This is the minimum you need to know about — not because you should match it, but because pricing below it sends a signal of low quality that can actually reduce conversions. Customers who see a price significantly below market average often wonder why.</p>
+
+    <h3>2. The market average</h3>
+    <p>The midpoint price across your direct competitors. This is your most important reference point. Pricing within 10% above or below this figure means you are competing on factors other than price — service quality, speed, reputation, specialisation. Pricing more than 20% above it requires a clear and visible reason why you are worth the premium.</p>
+
+    <h3>3. The premium tier</h3>
+    <p>What the highest-charging established competitor charges, and what justifies that premium in the eyes of their customers. Understanding the premium tier tells you how much headroom exists in your market and what positioning you would need to occupy that space.</p>
+
+    <h3>4. The value gap</h3>
+    <p>The difference between what the cheapest and most expensive credible competitors charge. A wide value gap — say, the cheapest charges £30 and the most expensive charges £120 — suggests a market with diverse customer segments. A narrow gap suggests a commoditised market where price is a primary decision factor.</p>
+
+    <h2>Why owners systematically underestimate what the market charges</h2>
+    <p>There are three reasons most business owners have an inaccurate picture of market pricing. The first is that they know what they charge and assume their competitors are similar without actually checking. The second is that they see competitor prices quoted in online directories or on websites and assume those are the real prices — but many businesses list entry-level prices and charge more in practice. The third is that they base their understanding on the competitors they know about, which are often not the most relevant ones.</p>
+
+    <h2>How to research pricing properly</h2>
+    <p>Thorough pricing research involves visiting competitor websites, reading customer reviews (which often include price mentions), requesting quotes as a prospective customer, and cross-referencing with price comparison directories relevant to your sector. It is time-consuming to do properly — but the financial impact of having accurate pricing data is significant enough to make it worthwhile.</p>
+    <p>The pricing landscape section of our reports presents the market's price distribution across all direct competitors, identifies where your business sits within it, and highlights the tier with the highest transaction volume — which is usually the most commercially attractive place to be positioned.</p>
+
+    <div class="article-cta-box">
+      <h3>Find out exactly where you sit in your market</h3>
+      <p>Our pricing landscape analysis shows you the full picture — what every competitor charges, where the volume is, and where the opportunity is. Included in every Deep Dive report.</p>
+      <a href="https://payhip.com/b/YvjeX" target="_blank" class="btn-primary" style="display:inline-flex">Get your Deep Dive for £79 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PDF Download (embedded base64) ──────────────────────────────────────────
+const PDF_B64 = 'JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgOSAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0NvbnRlbnRzIDIwIDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDE5IDAgUiAvUmVzb3VyY2VzIDw8Ci9FeHRHU3RhdGUgPDwKL2dSTHMwIDw8Ci9DQSAuMDcKPj4gL2dSTHMxIDw8Ci9DQSAxCj4+IC9nUkxzMiA8PAovY2EgLjA2Cj4+IC9nUkxzMyA8PAovY2EgLjA0Cj4+IC9nUkxzNCA8PAovY2EgMQo+Pgo+PiAvRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgMjEgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTkgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0NvbnRlbnRzIDIyIDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDE5IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db250ZW50cyAyMyAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCAxOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ29udGVudHMgMjQgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTkgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0Jhc2VGb250IC9aYXBmRGluZ2JhdHMgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMTAgMCBvYmoKPDwKL0NvbnRlbnRzIDI1IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDE5IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iagoxMSAwIG9iago8PAovQ29udGVudHMgMjYgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTkgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjEyIDAgb2JqCjw8Ci9Db250ZW50cyAyNyAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCAxOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKMTMgMCBvYmoKPDwKL0NvbnRlbnRzIDI4IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDE5IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iagoxNCAwIG9iago8PAovQ29udGVudHMgMjkgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTkgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjE1IDAgb2JqCjw8Ci9Db250ZW50cyAzMCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCAxOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKMTYgMCBvYmoKPDwKL0NvbnRlbnRzIDMxIDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDE5IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iagoxNyAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDE5IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKMTggMCBvYmoKPDwKL0F1dGhvciAoUG9ja2V0IEFuYWx5c2lzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwNTI3MjM0NjA1KzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwNTI3MjM0NjA1KzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKE1hcmtldCBhbmQgY29tcGV0aXRvciBpbnRlbGxpZ2VuY2UgcmVwb3J0KSAvVGl0bGUgKFBvY2tldCBBbmFseXNpcyBcMjA0IFNhbXBsZSBNYXJrZXQgUmVwb3J0OiBUaGUgQm90dGxlIFJvb20pIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKMTkgMCBvYmoKPDwKL0NvdW50IDEyIC9LaWRzIFsgNCAwIFIgNSAwIFIgNiAwIFIgNyAwIFIgOCAwIFIgMTAgMCBSIDExIDAgUiAxMiAwIFIgMTMgMCBSIDE0IDAgUiAKICAxNSAwIFIgMTYgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iagoyMCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAxNjk1Cj4+CnN0cmVhbQpHYXUwQ2dNWWIqJjpOLzNiaTxTPFlpOzQkRjp1JWdsPEleWV0tc206PiIpI3EvKSxXTm0lVCFFNl0lWzJYKVdjJFJrJFZBUz0rSD4zS3R1UnBlQ1kjalZIY2olM0ljM1RGQkJeNVFxYig/R0xyWk9eKWtKMjM/VV5TNkkrOGprOXVSKmpdLmU9Qlw6YFEzclNEYCMqOV9XU2xfVTAnJjxxIltrLXMwSjFbKUs3TiddTixcUE5xc18rI1pvTDdXNTBrIW82XSlkXykhNDJVOkIzNlBDJyojZ1lTMlBtIUhKLiMrbUMuMUtvQ2YyIkNjSidoI0NrVEdYdExPbTMyRTtaM1JnOmtUSWZDJDE9WUo7Xz5LcUsyOiMvPzRBVmg2WzFLLDwiN2c6JjV0SF49JG9hNU9CckFWPEM7J2lqQVpSISo2cVMrX0U8XEgmUHJlLDdfZ0AkKjxDQCIsL2gvJ09BJGY4NXBoPDAjZUA4UTYxLzw3NmplYlZkT0N1JVo6QV5Va1heTSMkKGFjKiw7Ii1pIyo3N0ZXPlpzWTZfbklROC5DXV0rWC9kU1dlUUpeT0pzLVI7RkA8cjgwLjBnZDIjNUtXZVFEV2BSMk1YZTUzK18uVC9YM0M/UzF0U1o4QS4yMD5qUU5tb2JeKUNBQSJVaFVhTTdXNEM8KTw+UjZsOTNkPTcyWDNaVWAqK1ExLyNBbGBPTlhrSTBSLShyTD1fbnFBPysvSnJsNVhOJTUrZCwtRFc2b2JOImVdZkgqVD9jMjVWW2VSLz4+bD4jcV5MNyNDXkclKGQ5JlBEU0ZrazZYQT5obDNcMm9xUztlPDxbWTUsZlVvPWsuN2xBQWtFSXIuK3IuSk1ULGRkKzhkbTkia0tBNk1SQVY7TksnLUFsUkBnRyxTOCs7Qk4tZ15rWDVXYEdBMlMtXz0jaE4xKCJiVypMTz5jQkdJL1pyVEhLZ1sncVdnLV9DRUo/JChecWkpWFUpJykwY0dqbEo7SilXJSYuPG9BOU4tK0dMME5MQl5dc24hMkZOSW5gPCheW1pBS0xBMFFpQm5RIWR1VmhZdE1fL1ZRYGAwdVxzR1ApaD1CaCowYTE2SEJpYjsraShQLF1aNVZAKkZpS05TMSVINSM+aiQ6SGZLSCVWX2ckN2ZLLCgqaC0pZFZqN0NoZWlnWTtBIT4kblBpOUc3P0dMRXRLTEFRcSsoSTFKJHJLdGwwbnIyYCRCJWhwWnRpYzQmTmNMbC1lJyIpNldxR2Fsb29WRCYpI0BTTF9bY25rVE5AOlouQlBmMVdiSzxgXl1EKScsN2BCJmAzXVEpSXBNNTNmNHBwTCRYQmA8M0onKGFwKXEnLkhgc1wpYjZEYk01UHNLYUJaKGtINHVrdWouV3FNJVllT1RfO3I2TnFVT3J0RnRuZDZyOlhhNUwtSE8obkY/J3NJPGdIVyIodWhZYk5uc1JGclwhIzFvYz4kWWI4ZGotWXU3LTwkJW4pLnBgciJnJ2wzPGNVPj1XRG5SVHIwViVXOyVnS1NHVChidFIyUmhDLzNBYCRfKSotdUFZPiZwVmhUTWFCJSouSFpVbl5pQGFDRmFQRUZzWyo7Xm5xQ1k1MW9GOkRLRGVdPDg7RVxfaD0mRTI/dT9EOUFtR1dvY0oiSTMoXlZgRS1HLVA2aVZHZVtZQGVjVipuWCo0PVJMajIxbm9XL1pyJWJxKjBjMXE3TzFXOEBCLGxxYT9jRUh1dFBbb3RIIlMyXzw0MCJJJyJhUjQpPzJvUyxoQjMhS3Qmb1hJPHJTOzYhNTtNLmIpZXM+UiksWFI5SSJxaTlnbSNuW0pOUUFmVUlwRS5yOFFqZGsydF5FYUc2OGxxPC5yNGs0QiwsUklwZF5GLXNRaScuOEAvYlxxLWRrLDVsTSJSVjopVGhYMlpXIV01U08+bW48TFQ4LyUnaiZrS2xHXC1qcTpnOVdeXEJPcCtfYTo7cEooQ2hFP0E/QldKUSZMMGtPPjlnYko5NFU8XiJvPSVBbTE+UlZpN0dnKiNnciRlOWpbYTQubzlsSCpeZFZhNWhuPz1AUmJvWStHbVllNXVEQGNLbEcvJWgpVlddTW5kJT40UWtKMUtQTFpLJ0RBbTlAJnAkNTBzZTw3WDY+cGx0aWBkM1whOiI/dDU1QCs1ZkQuLUxeaDxTTm9PNVRGSVMmL0tPLDwqNWFXYS9dXl0xVDwsbF4sPTVsa1ErIVJjZionW0JTUT0/Zk1WPXFbW3BWX29Nfj5lbmRzdHJlYW0KZW5kb2JqCjIxIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDI0OTYKPj4Kc3RyZWFtCkdhdTBEZ04pJTwmcS9xRWJmYzw4UFdjaWYxJVY+V1I0VkVMYjpDdT5vcC9yLUUoIitEJm0+OXVVVkJTOC9qMnBNL01mInJkM1ZHQDcsUi1zbU4pXyRfK1AyJGI6UjU9WE90azYkNzckJmgoa1w3QXVjPEo+VjEydFB1J0wkUjxQKGlOIWwtOjo6IyxNZllPPVgtdVFDaWJdcSQ6RENoITMuckRcKkQuJ2g7Xz1QZkJAMltDZmYzazA0ZEVxQ1xpKTZqQ0g/QT9eOmJmcSQiT0VtTE91XU46P3VyX2U1SjRUanFlYGxRVmYsP2E1JFheZXMyXDdAQEI2JFtVQ11XJUIkOTBPYk0kLmZON3A1J3I3Q04rclRhPVQtK2VYK2swPC9AI0BhLWtRcCQrQDBjYV0oNUtdQ0lkVEEuQlBFT1pfKFx1dWA7WDtWMi1tJUR0Ly5SRzVNOzQrW2BbW28oRiQnUWwncG0+dGBtbj0qVCpdRkdwPiNPaTVmOT8pQSY1R0ImNnVCcj1hNERmJjRVWTE1cGBUOi9FYEVVMTFBJUVETD8kc1ohO1FjLjBAN1RMb3N1LmJVRiUzKS9MSS5cSk5EbUFETU82WzwhbjwwSSVtI0ZpTlxNSSo8R2phbGZsRkJVcDhFJHQnSUozUydYLjtiIm4qU0ZwPShiL04xR0EyL2w/JD5xJ3JKLU8hb0ZqK2hWKl5WUWMrRyl0LmxKI2tIXSZrPlgxNWtTXUYuKixqT1kxdExbXnA2QUAvWEI9Z047ZV1IIW41cWV1V2ZCVmQ4bl5IQ2ZvdC8tOjhmIlEhNm5lXG49RiZaXCYyJDNKdSEjb1Q9TVFRUl1gY0pZZE9Kcko4Y19YVWhUM1JsanMrOXQna19zJ3JuJVtrbC4wK0lqXVArIyksY3MtYlliXGUiQDtmbWdhNDU8RENhUUhISEIlJSgtLiElKU5SVVZaIkEyaVVwOmBFcFRTPUJYZC5WV3VlYjF1OGVkJV9SQVktZTRlM2BeOmokYUY3aTNjcjhCQXFEI1RBNC1pUkxzPmZpJy1gVypWXTlMWV8wLClWZERndChUazN0ODw8PT1HZU02JV5gYm4tIUhqNVQ2PF09U2VaWWUqPSQ5XW1cNlgrQC5uYk0oXUpUNy51WHBmRVZFWFFlTVMkVG9ILENsRkFSYjBkWikjbVxAVFBJck0xanJeOUcxQUcoUEFaRDRoMkgiVTRnPSg3ST9aRjUzI2w0Km9jPHRfbSZKZz8vOVpJPzZrWyc6bkY8WGwvTSNUOFtZSyhiZkRZVzEwcVt0cj1VNS5mZGxoTSpuOHVeTm01RCZIVSg/VEMnXkhNWU1cPCU1QUstTFo3Il50RGEkKlQnPzFaRTEndFtUKCtrNStUWmI2bHRlUTdmPyhWNVdqRXJIX1k/Z0hUKlgsSWM5I2sqVC8mNSVnSUJcJjZMTDFhT2JfIjY+MlddNyUpKFhgckhmZjNZVWNCPThGRFBeLi82X0w1PEBEW2ljZFkiS2tmbFI5Ym1tTUY8QG5lW09BP3FiSDRmSGNVNG82KVw9Y2wmYlBgdGIjRz1nLHRRNFt1MTo7IWFgOyJlXjs3RlFHSCVaJjJMJTRmUmwnJVNwTydoJnJHIzk0KFZmVGs+KlRsRSpFOjglcmM5RSxoRFNycjZ0LyNIW1lAXmZyXU4mMU9YNXQnN0BNUlI6Q3B0YjkqN2cxcy5wJEAoWG91M2RbW19rSkkoMWshaVJTVCM6RidJMWdqKHNlbXIlIl5cZnF1OT9vKkdSKys6RVxTZjFqZGNYa2MqPW9wWF5EZDNfaHNKSHUoUGZhVS1yRDJkTWBDJjZTWVkjdT5PcF9jXVpvaj1eTldbcCcsXDdqaD44KD1ERXFDPEVfNnU8MlVbMzdCbTdjdWNKYzRMJFxeMm9tR0Q+cTlzTGwyRS0tb11lQ0ddJDM8KVppRUZMXzcxbyM+bUJtNCFDQSNVLFMkb2tgKUFuKSxKcCw8LCdwUWFpQVFYJUk+W05dWUdWV3IvNVNPLlo7YmM+YGdpOD8jbEcjMkBWXUpebERbZSppbEhUVz9YXTRpJlBvVjMjS0hiKCdzS0IkVW46Vl8rSFBFNHUrRWxCUGI8REZmMm5YT2EwK1NtXlkobSxKMzdiKDgsYkg1QlMqMTJFWl9nbU4+aS9vVl8xOEwocVsnck5NOnFrKEpER1BPQEtIM3VPNUJJczhJLzgkLzpURjByUHBtVTZuXz9sSG5IPmAnMS8/NXJgckZyKSkxb1VeZ1ZWSShuMChQQSwzZyo9T0Q+LVc0Vktzb0BLSTF0PmMpIiw1VTQ2amhcYyNnUWsyXWRWR2ImP1tnP1k8ITomKiFySjFARTV1NiMhNmY/bE9FWmcwTyVnImwlUEdJZD8rUGBvJiQmRU5hcSoxM1pkSTZzcSRlUikmRT1cLlQ3WyhXPjcjQTJQMVcnMjclbWRPOlNSKFEnRFVLPSFnSzdoQzwhJTlYK0omLU0mZlxCXmdrL1ombWVgZGU/Wi1BW2UlSmxvJihDbjJcSSUmQkclWD5SdG9ONmpVdEk5OC49LWY5RjZUIkJqKWlgYEEmKXFXJ2pnJCZabVgmZi9saTszQi9iSi8vWiZxYGBPaTpjTClQVCk3TWouTUlWVXVec2ckW21rXjU0IUJUTSpDPm5uUDwjcSsrSFAwSixKaD1XWD5aX3JHN09wJmhyTCVWYzhxI3EpMXRcOV90YV1qMXU/MldKVk9kLmAhR2VUbGhWI2BeJEpbWW5GJkRRYzRZMy1SPUpKXWYlYnI2Ol9BWydlciRUSyRFO0VYWEFaQGVFWzo6LlVaczBeKGY1W2xKS3BrUT1oXmtHNTo6VkVjbystXVhpUEhaRCw2IltbSiMsQnNMS1o+LTIzWktHPiIlQ2BGJjknIkMsa1coTFVqKWszPzE8Q11fImIwdFYhKT4oSW1DI1FROGNET1NlI2tBWmFfR2MlXDlMQSdkW1ErSVc7aUhzZjwrWVVjNT1tUG85Y0ZsZS1PQS03MGdcZmo5YVJNOTlfdHRzMDBpR1lnYzBpWUJSOU9QNU01KVBNdD1ETkcoIk9ab2w7JmZoPGdEal06Vk9jNjsxKistcl1BaVhFYE0/Yj4+PTwwNShWWWs7QUpYRkMrTGRvVUZFTzEqQzMwbCV1bStgNkpNMSc3JTxVaTZcKGEvVyNyNixOMHU+JlI8KjhbK0AocjklJSFzK05SOXEjV0UmSk1mI25vIkYzaEEoWjsvayVVc3RDZ2BBQz0+ZVt1THMsW29tbT8mKDdvUSciZC9ncmBwXDByInREIi9sSitPOE9+PmVuZHN0cmVhbQplbmRvYmoKMjIgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMjM0Mgo+PgpzdHJlYW0KR2F1MTBnTVliOCY7S1pIJ1JTRmk4QEVrLz5lNm8oIydGRSMoL1BfL05DJEpzQ0lxSnMzai9BUCpLbiVQOzNkPUYyP25kLiVzRSwucF0jREwtLTY7ZmFQbFNzYTRMbnFwQUlkTThdP3U3LTRNbk1ILFZEJiRTSUMoZyt0P2omMztSIVNhYUoiazVBYSI2XEVuRClRZkVlUTdIa287aDhgRU4rNVQoMlU+ZEROXzJAUF1vISNnRjVJM0BgWGJ1dGs1LSJ1Oidkam5cUVIlLmRTQCc/MWBwMFpHTzQoUmxeLEBrMCVuNDVNbFlgUj9mLT1RUUBINCVaW088dSVtTihbciozY0BcW1ZTRnI6OV4vbygoJWc3Y18hMilSPU5nS3NXSV1lSm5vc2Ana1EyO1ZaT05yQGopKmQ2aGxXQXJPY005ZlQ1OW9QUm88LzcoQ1pDcW9UaEM5Q09fTjllLWQ7OTd0dFUzVl5yXidtQEZmIm85UzY/NkRNPTtcO0k4PkVeUGQ3cj0xMXJnYVxkQS4oMmE6TFhXPlkiUUJVLXJsNkE2MTwvL1NHWCoqRmJgKUdhLXBmLj0tZypRazdvNzZXT1BXQ1kjcCUkX0ZYSWw6Sm40XyEiMFgzQyMuRkVpcldIVjJELzZcYSVaOi5NZDVkZENlQ2M9RSltKCEsUSRGMzYkRTxIJiEpTT9gYD1NVCx0SEBtSClVY2dFbGBhZU5PRkdSUy9LZDFBKlkoQCh0SktBc2hubl0yZVQiYkdvdHBYXDc3JDxAdWtjOmNCRGNvYTs3TStgNk5URnNURVBiImlxV1koPjwmLEZVS0Uuaiw0aWNhPldmI11RYFhvKERtRSxbXlxSWnQ5VC4sVUtzWFlXM1FSIiRRYFwnU2M0UzZKW2hfbDVncSViQ2UyPmFYSWVxQCZALy5qYDVENldUJyxMUmJbTGdVRyk2WSlTJXJjOzVaQklnWktxRG0palFyI15NX0NpYygraSpfc1VDIVFiSy1Ob09MRz5vIXJWb3E+cComJWdZdEgocmI6I2QxdWpITUdEUUUpXXRcJnE3RC9TQlhMSzImcCZCQ3MwR2YvRDVJSWAmPy5wPzEkT1lDdCRscTxeL0VXWzltZENnOFs8ci4vciI6PiZdKWQjLTkkTkc+PTBHKiszXjI2LD5yQVs2QCYnQ0Q7SyhVJT8paCVVcCFjRSUiMGcnXT1RQ2NPITxCRSdcRzZRKFsmJTNeM3EuOExaJ244TCNXVyxMT2pUKkwzLHI3M1E7OTs4QDMrM2BeWDY8XHBLLl1dXW1xS1MjWDVLcW5GWFkrIzZuQShNZ0ZrIU4tNGM0NUkhaSsjISdFKk45PjUlaj5ScVFbWUI+dVUxQ2NOL1BSLmohRUloTlxPY2JQL1ZoaHAib0tGK0hqTU85VGI5JTNmKiZQUWlqSmlUU3NyVHJrMFAwYzNJYmJHPlY7MWhdKltSPWtiaDMpISJbMFdCN0AxYVtxKU8+VFc0Tl5RWlFGQiE4ZlBfUFxXViNlY1VrWklBcz4wVFdrKmtbX05kLj5eT2onVT9VQzxJNSc/cm89aEIuIWE1aWI2ZmtFN29FYkRVayJmZWZHIzgyR08jITZiK2tBN1BhNnJobzdlRlg2c1xGLTwsWDY2MGNbSTRiRicuTi1oSWBRcD9XYkpRYXRAb3JASVIsUztTXzx1IztgYFc1LTdNRD8+Iz0oXlskT0xFWEknLjBYTkdrKilmbURRRFgsV1ptPkIqRDNWOU9PYCVXb1w4QW9WcGk2W0AzM2Epb2lAVi1IdGdNKjYhRDFtZ2BvMUZga1Q+UlgubkxiQkBiTVg6SlJQWzYyXC1ITi5HWypvTWRvXWIuOyhtJj1vaF0pJzNNSWtkU0ttS2trXVBTVzFZR19TNjtPOXRaOjtRdFc1T0osVUI4XWYkbCxwUjNoSEVJJCVMJjtEa0c3dUFAKDdubjM1Oi8iYVBNaiZEXD9POG9lZjJJMC5MIm9tQm5WQ1ksZT1xaVVRU1FLPmJqYjooOmIzPk5SYVclZSFzQiYhYTpASUtxNGhDKVpRXDYkRmgsLydjYlw+WXJcLFUxUWFXI1RDKGg8JmAwb0FnUG4tKjBRRFg9aVMqS0tNOSE2Ni49NEJgPkJQIW8nLERLayhsXyg+MUxNbWsyND1YUGUtSEpdQVJDcSpxQ1tMIm1XYWQ9Sk8nS1poOWROV1Evb2FsckRuWT1fPj4hMTlqbCRMS2N0NEcicnJKa2Bvc0FeJ0Y1Ky1kNExWXS9OTk4obUUlRTYjbTdQTSViTWIwRTpedDRqNTQwTFpYOmtRYTE+RVs9L3VHOHByS0xaJU9NVj5iNWlPV0A4XFE0XXMpNVlHWTQ0RlhyWFxPRV1MQDlbRC1ARFxzWFFGPUlOWjYnLCdnVCxdKWEoLjIjZFk4N1cvQSE8NTxKNkBPLWtJb2Y/OChhI0gwWl1aRz5LJlNPUkpxT0Y3QyxRMiQ8IVgsOCZMPTY5a1xRMzw4a3NwXU9WNEtdakI9NXE8ZFYsSTFFcDZpXU80dTg4R0xsIzMvW2BOSS0iWzElNlY3T2Y+OGJaZVEpOWtJUE5JXTBOJ3ElSl5ccXFYXjhZRSgmKVpBVWpKbTk2akBeL0BEJS1IUGFNay1jQ21TJUlabVpsMitnPGdkLDhyTyYudXBMUFJBTUpKRHVAbSIlYGxIPD5dNG1NYnUrNDZGay9ValQ3ckhdZU1QdDM8ZFBvY0JOcDNqXjwyM3BnZ01oLFFlckMoJVBvSmpzUGYkcnQwWSNEVy5mUGsnb289UkQnM3ItYkBySj1dOTQyM1NNQU02YFxec2UkPWBFVFclUlZxUT0zQSpoXkUpUFtyb0JUIyQnUVdSRStUVExPL2svSzdwZ2hzNU9YT2ZcOEokZk5ORjNeVmlCO0IxQUw1dDQxbllsMG1nUmFALTI4amgvWCU2K3RgU1YsdFNIdGUmSCFiVCE+PXRWLEFTdU9xVlZccldmI1RWXyRqKEYoZEdQYHBCKjYjWzs9JExmblZDcV9vcT5dYEsxdS00U1NvKUIoZj9iY2BSTW06Y00tKmhyWiFDQUFFcVZDXzdnXFI2NmljRVVma2cxM01xNWVKfj5lbmRzdHJlYW0KZW5kb2JqCjIzIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDI3MTYKPj4Kc3RyZWFtCkdhdG08PkJBUS8nbjVuXF5ydCM4RzkpcFgiOGg0a1sybVRVZGI8RkJbJCk7cFUqVl5eVzAzQkRwWGYtQTc5Z2ZbRzIsLUlFTklMJVxVSEx0I0UwQWxZaiNmLi0wM1U+cjk3OVAoYW1MQl9CYkNXcTFeR2QtYVx0ZSN0JkNiQ2BzZGw5R2JdQGRdWkdpZlA2aEk4ZFtrSztqODV0JCtFbCkvTilkLkVyQDZWJGNlWV5lOFFjWVNKai5wZy07UnRgLUA4Ii5LbW4rZ0QkQ2QoUmMjXCJlQjBWXCliTThoUzkmLFlwPHVOY0pKS3RvKS8lYFpNWihRcm9naS5JIWdOVnA0LVtmJ1U9Ql8vLDhNYktic1tkTzJdJ1trRFIpZEp1Uz1UX2chMm1AN24uTTtUMDRibT9mMmk7ZilxIVA6aTdyW29PX3FLWHRaLC1qJUFINSkpJjo1XE9udGNbXitoRWMpJlMsL2krS2JcP04tRmo/bXRnM1RKTSdRWE4+TjUvY2RmVWQnQ01lT0lOZWNPPGI0IXRaXFJBQ1slIkpWbDc2S2EwIk1TbSRqLFtqX01pK2VEaTBoaVolTUJxSDs7KDQndSZUJWVFUS5bKFtwLWFJOGIydGNxMFZcMUpSO0lKVUxdcSM7KjFLKWBkWSQwR2omTVhkOjYkPTYmTz0uPkIpdVw9LztVKDhOUGdxZGFwM1NzZkkqUWc/UzVZPGNlbEpeIlg+KksycmsjKUlKcylnXHA8OCJvN3RVJW9SJC9NOGJbNyhQTV5qNzxGOSduakpvQTBZXDVTV1E+RmJEQG0rRzhzKWk/WFAvYj04X0JTcV9yIyRtPV9FOU1scUZCYTtnXms7PDk4bk9NWU01WmAyXGQvcU9YXzRHImAnLTFPQS5gc0ZsLlckT2ZJLkZicVJfXForVkk+JUAydCpabkkyc1hRbGZqZVljcy4yYExEaT5oci81JXBRLDxlXz4sUiwxZypycDNqVmslYm9Jamc1RUQ/Yi1vITMzSFUlaldgUSs6WUFBQl9IPSxeUURUJVFRRmY8PDJQNEsqcWxHZyoyYWZ0JSciNzNZIUBJVUc2RFQzVEBxSkpDSkZrKFtpV0AtUjZMXStzUTdrdU9qU3I+aC42anEvO1duWSo8clJRQlVOJV1JbSRWR2UnKD5jPSpjKVFJcDZccmFqbDIuViphSz9NUERIRjhjSWlSZCcyazYlLGMrInA4bERDUW5VUm90U0liakFBIlMiIklYPDNxc2QkP2goPSZwUV8nUShwIz84XmFwQltFJm8hPyF1SU4hJkcjKzUwOi4pNExUVDFoNE80blkmX1RccVFTX1pvI01qYClENkAnNTRSSzVxUztVZixlLW1ORGJpbGUtaTxCU2cpJzMlUWI/QCxFY2RHXyY7NzJAJF5XQicvNURvImtScFwnZXRPUEQlKTlMW0JjSEJpSztmSkxmRExJTG5TLUdDLHMhVS8wMDlhNFtXZyNaSiN0L0QwJ09lLXFdUCxoaUNqOzRWJ3RhaTFlZSNSNjhWYS11LFImSzwvVTdxTyw8KThQLUooQG8qLzdLRUlHQjMnZVxoWmV1T249YTplPUJPX2ZgVV1kJFNiVjJuLWFzOGM3RykhcyE3UCdJOEw8XCIzbC1cRGNFPTEqQWpDM1Y7Wj4zM3Q8KCRnYyZJUzlBMDxRXjdZOm4xTT8nODlJYEMyM0BRZm5CTk86TyFgYDh1YXJTbFhVUj0iYkVQJipXYz4uRUY3LnMxZmVATUg+Iy9LSGVbK29MYi0zOGtRMjppTWNhZSRLVzZaRSFdOGhJXjUyZjdySVh1LWBASSZzMVY2aFJwPi0vKFBCSSxeLVNha1ZaXU4/LyxhMyM3TnEuL11EVTdWT3NqVCEnKWZabWIyM0tkTmhCUTZnU3QwbVxDNGA9Pk9cTSpFSVo9X0ZGT2dgNm5ndFNbYmtaPGxoQmojSXQlaVgvMiVlLUleb1M/KDImdCxvKE4hSjJlVnBiKStoUXI1YmU8dUtuOkVqU2Y+Jm06ODdmIih1ams/LEQmUWxmRSkzZGdzPzRYJCcmVWNFMDFdXTppV0FKXjlmPEIqWCpqIzxwLXFcOVMiR3BFWU8yaFxqNHJrWmlwVGVVLm8/JVpvXFEpaz9UcWNnQWNlMV9FM04mImQrcnRHImRcIicqNUU5bkVPc3NqMGhEOkUvZWVcbWM/LUdySCdjO109LURDOlg5UCVodVRpV1NmYF1EK086T3RQXUVdLS46KiVzWjRlJW5cQmVYNHBLOkxmUyYvUGkmMk4+TzxPOHBUQiJBJixrOWQ7PDJGZygtNEY+Kic1YCR1N1oudGtDaUBFTT5tZiohRjRqbj8hJSplUSduWU03ZVsqUkorLUllNiNKaFZMLD8oTV1vYGJMRXAmUyVJUk41Nz80K3ItNilRKl9yLTQ6K1gkWD1oXFNFV3UoYipWNGw+IkRYQEpaaXFfdTk9Pz4oKjxiM2ltZVFHNVB0NlsmMy91bT5xMnQkazVHTSlaSW4mVUlrX0UvYGxnbyshTmVcW2pVVFBJcCpOYCtbck5aIzktRyZoOnJCSmRqamk5OS5Wbj1IZzBpMU4qViRiSGZjb2NKQStBNVs5JmkxKXEsaWttUjpEPC4sQjcqVmpgIytNTTxHJVwzK0FZbT8nK0dGTDU1ND1bO2o/MF1KJlxuXy1OVG9pbyZFUVVtYFlSK1dNWENPajc/TXQ0QmJPME9BSCFXRWhQcXErSkllaWNYVnJvW2gqJkJxTjxYKyIvO3A6Z2lnPW4lUk5PcmhHLWQxJixyW2IqcC5XMW5kWmtfPldYWnUnWmNIJC5VZVxkOmoxYmVMMmg8dTdMS1VCOnJaY0ZUXyU6IV5DVlszVGhWanM6UWNuS1dUNTBoUDNrKHE/ZmFdWyROY0wpSmpfLzoiYzY/PzpSJUZvWk9QUzUma3BPU09sL3V0KkJfJVhYN1FWZWE/KEg4U2RyO1tXKW85J1ZbWnMuKSY7TU0tVC9mJlt1OnFFSkZqPUg5cFdRIVpUQjIvZmM1X05lK040KzpBKyxgK0BPanRdcjlQM2c3Q0JeO21MLGcpZmVwZ1QiP3BtSGAwXys/MnJeLEcuMiZbMy1kTzwsRzBeTF0+QzVZcE1WYCdHRDFWMkwxY2wtIyRocTNbWktoWTcuKUJNRUF0ZElGc1lnbUpdV01eaC5VSnIwJ0FWMU1OIytGRmNeQktaPykuaWFQO0c7anNESnJgI3EpXmVeKjpKL0ExKVlvOjlXJDowXTY/TW11QFgqVGlbKlRrbT0hbXNQUVJwV2w6W1ViKFFscWwyLSRqLSpCNm0oMSNxI3JmSSRyMmkscjRNSidgYzwsV2tAUGtodURPJiMtRG4zdD1YIUkrLlZEQmQ5MD8hRHFeLjYlMCxrM2BYVGJwODBaIV4mZ002PXRDYClnQSFQJWNbRj1HODJUQVZFNjYsJTItIyQoSVQscVAqPiQ1anVcVj1YWWZVcjc2NE1aPFRPL0FYISVeWkhLc2VlXkg+PlZBbzZSPUxTMnRuXTdZQVUyTnIiZEokWiokLy9tVjArVEozQHBnaE9xSzk+YUw6Y2BtYWFYPWVZNy02fj5lbmRzdHJlYW0KZW5kb2JqCjI0IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDI0NzAKPj4Kc3RyZWFtCkdhdG4naGMmOSMnJCZvLj03als5T1koSG9JYUAzaU0iY3A1IV1mO1NXazc3Wk9UZkUiUUAraWhHJGpyXV5SaF5uTFo4TS4vWU9aMChKZjZObGRKIVtAUjBJQXE+W0tRXyJlVWxyLnRJN1llMTJmTTFqdCpiYTErUFYtcS4/VG5UPjshNV5RTTxsND5bbFlyaDdKZ2AmTlcnVik2UFFsI15PQlFCOUM6TzlFZjhHNTolRS5hJlUzMHE4K2h1bUdqQyJLSildYlpxcDk/JjktbDg+KWphcWBIYjtHZjtdWGRmX140YGlZWmBGLF0/SmBES2pmYm9kXyhFWHFuTEleUmNXRVlIVWM6MlhGYFZQRyJXdSMqY002ZWdJa1MjKk9kUlE9bTJqMHNFQj9rWWlgNDhgVkZEQkchcDtyal9pND5mRXBNOms5SEs6KVFRMVVWQFJmZ0wqNCRiRVotIzMzPVU7bVQnZ1AxLkVePGolaDxtajNcLU0pXWNCTGY9XVlOSGFecFVbXTRsYjdASFYmIWNnZWJrUGFZW25GP10nXmZVOzJoJjhqTzAzJXAtKjU9Wz5rY2hIJixfLkA8cW5YUDg9dEJlXjJTTDdoTEtYP2dXNyRLNG1rJjRxZiVMdDRAbipzOjVTPik5VDJbSmMsS29zIWNCSHJbTW5mb0JNbSFfZytJJ0hkViYsIT4uNSdgL0grZ0ZPUWRUQ0BwQUcoLV4vXVhcNmhpOFdtRjhgNVZNIiJ1cTdtOTg6OF81UmZwNT9DSnBNOE1tXC4kZm9PPmgpUEtPJkoyLDIzZGhLSSZjX1dJXkE5b0Mia01vKydBVURSaVJwR21gP1RjZkw1NVRmRSpWRExnXigvNVdtKDE6RnUyWl8oYy0xSlpHPFhbaUBeJ2Q6KFpULkEiUyNLRyQzQUIlclZNZHMnMHI2YjFrWXJVOCJCU0VmZVkmO0hjUzkmWGhJNGxTdVBDJDwvNj9sInMqVjFNXlxtTjcxKG9AUiJGSU1qKyY+TltUJy9RQC1XRFYjaEdHPyVDTGZdR2M5cUs3X2E9KWQlLT1DKU5NTyNMQHBZQT0nRUVtWzIrWGU+JjNyNTMjL0RPUlBAMGlSOz4pdEVlU0knKkxaaTFrcjNGJDAsWkYuKVNcZTVQJi1ZViheZ2wzWmxScVlVMCk6SURbbW4oc2IhKGxNVUYyLnBlZz0qJyhwKG9PQkBlUEhgdSQwQ2VKMlhcKHNNPl90UEZrYTJqVjYjRSNgK1ttYEdjVnRWTyoqT0ltJzZOdF5WODVhIWtiUDtZLj10bDVxIXJ0SW5wdGA0XU1XT0FLJUhNMGo3XStQW2g4biIydGdmP1xSZWc7LF9eVzp1YVcuZT9nP18rdDFqTWVkKnA9Jm4yOEhXRF1mcF9sQidBRWpWQ0U2dUs2I1BScDQ1NiI2cDRZM2dFSVhpRl1oazo6WTleTW5eOjo9LSwkJXBRKj1Icm1tPDk1Rz5VbikjZVxcJHAjNT03XmpwMzlWLzNGWSxfPz5lYVo3NU5BIkZgMCcjSyMvXTZcQTtpLi4sL3RnSnJaRnRLbWwxZ0BOZ21VYWpkbGtJTl9LWi1CUEFIckVJNkxNL0oqRV9CJkYjNU0qRjZdRSVzUzE7amhAOmk4SSd1T1dKU0A2dVw/VV5lSXV0LnBBIy9gPkNATEEjcFFYKi89XTRCVm9jXSNwLFRgLnVVPk9FMEhVJ2MqVTwpXzBSVF9VTzlgVVwvYG9EPC9YK2FEcyolLj9YQ3I0QiFEQi5oXmssaHFzP1VkNTJQLzBxbFc8VDNKXlQ6P1ZrUGJyVjxTWF1CQ0tbPU89Z25vPyk6Vjtja25FPnRvUy1YPmZoJTlgNlpaKDFeOTU2Py5DcTV1biUtYWInZiEsZkwnPV9jVEtlKlYsaysiWC0yUFY4Uj47QFgkVEg6KDs9NjQ5SVJfUWlTYVcwRyNmOFM/UmwhYGozPU1QUVlzUicjOW5OOGhzTEVBVUJaPjJaUXFvcWRKXmhpLzpxWE11ISQkXmpAcSdIVHRqW1xuP3JzUnQ3JWtCQWlkUnFfKjpQRWcpXVc+YiMlKT5YVktbRjBRNj9lX1JcNW1ZZCFESzxPN2VdZ11vcGlKVF0vSVFDRzhiPkU7MXBCYzY2XUM2V0suLlwjZGVpNUxvL15BamwmJHEtLlFrLTpabWkjZkNdLCc6a0FeQU8zIz4oRj5YNmhVamgjczRAV1NBP1VrL1QvIVxrMDYjbVZ0ZWhLOzRKQlZvR0Y1NmNOUTlsRTIrcUllNiIsUyhjM2NCa2hFY29fZl4pLV8pVUBXN11ZODpPJVNTajVbYD5WVDRoLyJmIS5YVSZRdCNfYylxUjZOZVddJEElVW07RSMzVlhzQDo7M04lIiJObWU5dHJGJm4/QU4vMDQ9KF1QMGUmTWNYXTFVIW0/dDBqV2dkTk1pNUxWc3E1JVwoXFMjIVMhS1dtLyRCcVpoRW1JJkJRQTpjKy5pOj5DPkE3NWEia1R0QCw3NEdZUEkjY1VbX0NmO29GZmZLSzU6WT5MMWh0XSwxcClfWDctZC1xK180TV5OM3BqO1lhby9ibUomKTJuSyZVMWpAWyIoZmM6cC8+XiQkQkBfWSdCaUdGUWZVXDpldURhP0gtU2R0Jl49bkVgdV4zKC90WCVLNjtma2lFZW9WJCheU0RvUFlpUklIXywuO2AmTCxzaj9VJlI1PCpdMj1eMlU7NkZmPWVtWmw0UiYtV0EnKTRuW00+Ty1kIl8mSUdsSzBBOzQzRDVOTGAsL0krNEomUEEoQjg9PlYsPzlCLCpINkdvJUwjcGBwaShDWGcnWyIsXUxtRjtMJnJTO2wpakxpZVcrRm5hUG5DY0U0WHA3PkVjPUNBM09qJmpkPGFVPDs2RjcoIXApPCM4cUc8XHFJXSV0LnB1OyVIWWRhVislKmRRMCpTNDpbKWhlRWlUMl5ocXIuZUcoImhbPUdca24yW1hNT05lWGFHRWtnLUlKTDgsbytFYnFNOkAybFZpVC5pZixPbzkjJGoiYjg1QzRxNiVBIyNpOyg3JEZbUT5zY3BIV3VTSEIhOjo+InRhSUdZKU1GMWxVZmNiTz4uW1VEMCdGI1EhY1o/b2RFSVFDLEVPdF9cTEhEMzIjMV9QXmFkWSFgK0Q3Q11DLXBqQ1gkV0QxYCgycCIkbyJcRzgsNmxYbWJQWURPNkJiNTJyOXAvUWFjck9RO21qZHNuIW4/OD1TWEskYSg5YUI6NFFhWmwjQkZlU0tiMSRkKXJyW0xtTydofj5lbmRzdHJlYW0KZW5kb2JqCjI1IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDIzOTQKPj4Kc3RyZWFtCkdiITxQRCw4cC0oPD49cTtrLW8+Ry4yXFxHb2pfci11RGcxRSQ4LGU7VyFqTF5xMzEuWzEucTFeXS88P1IwYVJuP0RaKGVXQElPOWp1Z25ZMUkmTEExQXBZQGh0YEghaDJMNClrSlJQS1kpIlUqQlFjZW1mbjxwL0ViVUFBXF1cTVlOMTgkUDdFdEw5S3InZiZWTm1DQUYzVEJnTDRqJjcpLmZgcWwwOjQvUWF1JS9Ra2QvYEZfOD1cSVhVWl9PUydaI0UhVl4+WiJfSz0rY1JUbCxqVDxtUUYoal5FcSFkKFVdJzZPVUhkJDdjW1ZlRVQvP0dpMDFHWzIpKGtGci8xVWhPPl0xUUYzO0lxX1NLNiFOY0tPb2VqU2UmYjFjPFJjY1E8SVxPOl4iakohRSpIaWc/NXQmcVYhOlxhQj9gZUBLXSpqV2coMGIvNyUsRFUjJyZUYW9MKVZ1ODZIPlZbSW0sVVVQbWs4RFUqY18nPTBoa0dTYTZsUyokM0orUk1DVSU+LyZRMyRSUztsNShSVW81IycvY0k9LT1PbnRfZGtBbywzMkUqYCY9NGphW2xcPkhVQyhTL0VdbzBbLVZoMVBYPyU3cyYjMTNFSzhhXlUyZFFJYkBUMGkrYktBVCkrJmtVVFQsJ2Q7SmVyUD1zI1BMPi0lSltCIU9HN0JFOGglcF8vMCZUSCtOJkliYm4wNmRTI0ZjNEhXN1wsTGMkMEtWQldWRyw/PCtZPFQ4ZDxpUzQjUUgiPiFKbShnI1ZsK2xVTylyaWVALG0wb3BTXlxIRllaP1dpTVVJRVZdQGlNI2xYXCFRUG83IVsiMmoqTVVDT20vSVhfY2crW0gqaT1pMG5FUEd1JWEiViwrclJmcUphT09IZjV0QloqKjhLZ1dpTjsmbnJkbkZDMzw1bWxNPmcoZGNZKXFeN2R0WTAsQVpnNTpQP1EvdXRrPkByNTYqWmFRSCxwaSdBQjxYI21CZEVIT2M6cElTT14uJDU+cTVgbC8vIj1sKTlfW3RVbVxYL2JHPmxyO1BbY0FqZDhYJmxQUWRncjB1JDwmNldIZUhdUFw5Y111JlkxX1AiPEdcPS9hYGhmX3NEXFZyLnVHNFYhcm50Tjd0UDVgMEkoMDErdUIjbD1vSVEobEVEWCs5OzsqTi1zUiE3KGReV3UjaVBdcCxROk51S2tHJDIrXVZ1RFNyUTVgJVBkLyk8QWxVTzMiVEdSXmkkLGUyLilIbEp1SkJPO2xHb2VoYlkxKSVJL0M9VERTNGMoYVhTLkZiVitRYUtXLW1uOGMhW0pqLSRYPllCVVxWVyxabHVQQjotMjgpLkVsbzROODlyWychazUpIiIlNU81c3Q7OzIscE4wYkBmIlV0VW8tWVRDKiE+LUJVYVQiYlZyYTxiSDNiW2FvPVRJIVNKPi0qdVdLREFpMk1HajQ8YWUsOUwra0VJMytlcl8hYmtjJWVMKzRTJj5xRCtbTixvRCNESFZeX2dZcFQ4XkA5KXE/U15jOGM5V1psOVlyLENhZ0NKK2RiWUNMXlE4MUdDUGxsMzIvbG9XUUMlJTlpKCsvZDM8NWFDTWwrI0xrWnE9TG9GJkA1XSsuVF5Ec0RLMW8+UTpXbmcrcnMkSDZ0OEQ9SFFXbS1uQ1RCRF1ea1ZWY0JbbjVnP2UkZDxQbWxodTJHZk9DXjY1PFNvNSMkWEsyQTl1WWRxJkxvKUVvJmIjaHQrITZCQkVzPTdTZ0lKbjEvZCEsL0NbXDU3OnVMVC5BcktlSFYqVTIiVlQ9IjoyaDQ5aiMkPGAtaUk/N2dDO3NvYiRuIidLLCdJVW49ZmJBaHMiPTZxRy1UVzU5MlBrM1ghUTshJ0xgVFlWRSwkciouOyVvXD9nZShZZUNPJVAzL1tcPlt1XGsnNGBVWD1EM3FGU0BFKGQ2SXVjVnRkIVQxY2RyQUYtQzpmVysvXEAkOCNeTSdyWTdgJ0s3cSppKW5pZDtnZWVpO1ZvPW4lWEcybypscHBhSSlqYzNsXGtwZm9DaUojI1NrZ10rKkU8Y0RKVyhBZm5NUEZgXGg3bmshWD9qYTJgXWBuazBpa15FQShrP1YiVjNvJEIqOTQuRjRiT2c4QF42YCVucEhCKVhbXWRBJ2AxN2R0SixPTjExI2lSLSQjUEVhcEg/ZmVGTFoodGlqcFMpI1Qka0c2cyclajsxaj1BbWlOQC1KJy1LVHMmLC80US9LYGRCS0sjQGpXLjEwaD1YWFxvO3RpKEYxSGFmbVhJOWhTdEJwY2IjbiUkIlRiXE1JZStxdS1lSWZaJSRzbmFsLTdLTCs4VClGaHIocUcyXGUjbz51ck9QcVteJzRRO3BISFU6b3E5KUJSJidrRjVicVRsTWlHWiNZWlxcL2xfIWcuKyshOTY7ZjZxYVI6UicwPWInKmlpTlFrOEtFMzhnUztWSlFrSFpKYT1jZjEqPD1xKTVCI0RoLWAzT2hyJFdVYD1RT3JNaCJKcCdwV0dmX10yTS43YmBiNEdWTms8UHBiOkk5WCNUL0k5TlEjOmpKIV47TChlZTY/c3RHVFtVLz4mUlloZScpRFFNRlY+W1NnNmJSQDUzRGFMOjReRUtqaCU6LU01OlI2Wz5qMk9HaFQhSEVqNyRdKlBtIW1QTEI0QmhrXCMnRTtZKWhxSWY1cm08MTtvVVdYX2ZqM2M3YSlGbUAkTk9wOSFqMihJQkUqU2dpMGZCJiQvSz5taVgtPTxcK3UiaiRocFlLdWY3NT9mPE1CVXM5WEZlWDVtb3BvWDlbcXMwZE83R0BTTGY9KThpUD5hbkhLZ2BBc05vQk1dPUg5WEs+Lk0pSmxZWEc8bUxmJz4xUXJpSVpOSHRgRFFhc29ATCVDL1AmK182QT8udT5dKVR1cjMtV1o4QkpMWENGTGVKUTNNO3MiJCJiLWc1QjFdKytob144QTcyV2JPR28mc1UnYj40VUo9a3RcMkA7WE9wb2E3NVJocUM2b15xLURRLzg5UmZHNGtEPE08dUxJRDpIUkhfLkVZVGZFXkJtYC11QldlXSEvakNhZEp0Y2hTWGpeIVkoX29jRFpYZ1RRT00yMEYtJXBDWkwuSClyVk9DIzZWUF0ncmNMTUwzJGBcJ0ZnTGlOZSpqY2RmJSEsMWhDTW4jRWgtVztLbG1gJU9qYSFRdVRdQmB+PmVuZHN0cmVhbQplbmRvYmoKMjYgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzA5NQo+PgpzdHJlYW0KR2IhO2Y/I1NJVyg0Rk40aTZ1KEcoP0xARVUpcWRCVltdKGRLJVJcbj8xXlJqaltRa2ZBXVJLdXI7NDIoaThtdSpgNkxVUFtMTFJmVnJIZ084KiZkalltJCdEOCRtY2w9LGFoYlovPk5sOUxxJ0cxODI2alpSW3IlU2FmNiRUamwkOmAnbC5hPmhDSEpSVDNfP2VoR1NbYEptb1VSRGElXilwPiY7OG0/LjhRKktHUzBPPyYnPU40aj1CU2Fzby07WmU8U1BsYydSRjB1SEo7UU5MLEJ0SyFRLTtoPWdSLDtecXRdc0ppbVZHWGNFR1F0clxfQlpya2A6SUBDJz0xVG9fSjlwck1IW2FCSFBmLUkyYSNoIylGWlI5ZSpVbWIkcF9ib2A5UlA6PSxSXFhtZHIiWkhrdTprbHJwS1gmV3JQPWhMaC1HaEpkXFcoKTJcJE8oMlxvU1dYQTNCKklpXXJvZkQrP0xpVGUoRGJHbyZNPT5ZOm4yPS5cZnQyQSc+KUNpcTtlP08lbUcyU2JfUFw3bzw0RUlzKj5DOjYwZTAmZm5ZOFxiXEskcytvJlF1aVdOOGk7RVpnbC5zdV9KTmZ1UyJDaS5bQyohQlluL18sUSM+L0MrJEdZPUhsQWcsIUtoWksnc1pjQkJeVlpSL21xM1Y3T0xhISIyc2FJayN0VF9ZNl5uNWVbcDRSY1E6QmMyPyEqOytJUiNfTkldVlQ9QFM3Uk4qLCIxLVg2c1AmXWNSOy1ONFRaYGByaG49QWFuQlg1O3M9Qjo1anI1YHAobF5vTGllanEyUFJwWm06PG8tSSZgL2YmSDldKmtiJSYvJkdVYD1wZWhfPXB0J05QLiFbWmA+WExCQTVKSmtiXkpoXy1ZbWUzMTVvYSxkOVwqZmwjQTBePFlBLG0nYl1eSGViajtYQThAcjMyX0gmVWdYNSZwKC0yIysjJDMtOXE1LXIvbi0tPVZLbUIyMGsjOmhmLGw+bGRVJDIiSTstXzUkMTVzOV41JTAnRSM8TzFJP3I7Pl5XNSt0Q20ubGNeOSRXRUhVRVhBXFJvYTNaKi1oQVI6XEg+OSdgQHNbYjV0dSpTRks+ViErLlwqKGNhO1JyN3E4Z24vPjtfJmU2Sm1oNF5gLUtDSzZNLnJSMGMkcmxSXyJqXzRCX0g1Vyo0SnRVKj5VQDE5M2Q6K0wkL1Q0JE8mWzBGN0A4QGpRXElVIlgwcylqPmUpKCoqME5uZDFQbi81Y2ZNL1xKPm5OJ2spM2NIQT0wP01EK0NdKEtlLDNhI11AY1E+SFxdMHNbJipXO0Q6UU4hTmkwMHVDNjpPOV5gKT5bXCssJSpQaG09byQ0S09qOFJEOFk1PT1qPlJbMWdqMU5BNTEmW3IpaDBvXFJwOkgxSUBMY2NPLlNmWWglXDhZUSsrLCIpZic/IWtvMD9TZlguZyhvYlVYPVJmSCs1JFQ9UjJOJyZzOypAY1ksclI/byZnTmYnJmxGXkBoVERRbzdqV1o1LVU8OjVfPjwmOzxPJl9INERINkJmPjxjXkVrNXBEYUxkJztORV4kWzg8Z00lM0VrPm4/RDlJM3IoMlFwRm9zMVoiZ1RiK21QJEgpMnAmQilScm9uX2FTUEJBQilHV0tbInE1VVJLJjwkWWcnWj1nUHBkamU3dCNUK14xNWMrRi5mVl9GZ2VJK2syQyREY184NE1TPlhVPihqZy9RWCcuVTpjaSNUdW5jNEZfXU8jIVZIPUhKZD5BcjNXWiJFKjxhbF9qXSZRNi9oSSovR2llJCNga09AQHRkLUU+aUwmNmRkYjsvVUlZTSVFQyFbLSNkRiJLVmkpT2FEbVRgO2swOGYqO2UrWUZoP0s3KkxlVzZrR10oTmJYMEZhRSF0QyorQlFhRld0OV9OPiZCSCMsPlxBXTAlKy9gXkFsU05GUk4qTiRBWS04aixtN1xGcjBhaXJAV3MmZXVIQT9WSDpEbGVVWS88QihqW1NkSk9RPDVcIz9hUklrTWBibG1lZmxkIyVCInNcbz09UUYsN1YtZyNlJGx1PT9vUTlqXTRrR1pAbDs6XGgyKWtrUi07J2BRVUhHa1A9WTBzcEJWW0I+Q1YsM2xIbVVZNmtPUVQ8JWtXajFUSGRPVzIwY09sQiNEUCVLa2tkPkRWXSk/SD06Z19pU1kxTFVwP0Y6NkZfSEtsZ1E9V3QtLDFURk05X2xCI0QlNzNUN0dIQyhnRjIjJzgjMilKNUsxTE8/SU8+ZWQ4Y1k6YUknJ15aJCJVJXNUKHBZLDhqOGwjIz0uJGw5X3QlMGRpJ24rLEIoPDNVVVcxZEBcMXBjLl9TW1dkJ24wI182MCUqZTEwXiZVXWhGPzkvWldtcScnWiI8PE9zIz1ySigtJztaKlFtIyohTSFqV09MXEFcUDw7LWhXXlUycD0kVl1gMlpAQXMnOmYzYThoNlBxSGlRVjxdY1BxdHI4Om5gY3NkRGE0N1dINCEkdSRfaSExL080Iy8uOSpFWGBPOzdYZl0ncj0oUVJaUj5CS0s5NDAtTmVRYiRbbDIqLVo8M28xZTtgLy1wQTMzZTo1VDtsQTEjPU5gY1skaUE5Ojk2MEg7XjswcSc1THVhX0VzQyRNKUVYZicnUCVjTSsqKFdaJXJ1Pig5dWUkcXJlKE4zPW1QUkYiSmZrPStudStsPFYtXGpFS1g4OGo/PFBfKkxALjQ7UEcpZCFDREJULjlVZ3EjZGpbXF5GN2dIcG8zaVlCbFA9PywmSHQxbk5UQStNKElSQ0wmJSpjJ0o9SDUjYzcxaE4kckZfai4tamopVmlTMkF1RHJMVmBGdUA+PVU3Qjs8KW83TEYlJSRlOik+RD9LcHBeNzQmJDk5ZSlrVWI0VFRiVnQ6IlhjblJBay8nUGxEVCVAU04+UXVsM2Z0UUhALW5XJzVRJEFdWFY4bWk5MElqYSUxOz1BKHUuTGo+YVhHaEhbcUtlKls5R2slZUJtPkxgRExvSEspU0hRM0c2VC9PIj9WR0RFLlZxOmgtQGVSLixdXlgrTjo5XjEpYl9dQFdyUFFES10lMmRNNCtBWTxHKWVubTdydHQqX2kraWpITUFiPSdlbz5iVDElKDo/W1lBLTUqRDlBXVgqYExnTWFnSnE+ISUoLmptMnEpSVVncz9iLlonZGpuP2Q7KF9FRihNYyFlRm9pPmtFaylcOS4+VyJZdGg3ZmBHKlE+QUs9Ny9ZLkFJVl4vaUtATV0ySjNdSFtxcVBZYk9tJV9gRWVoNGRFQTMrYSFlXSxpQjszKi5WWlpGNW4qMjxbVTRVSDowRztDRTAiOmlsaFkmUi5SdFxmTj1MS15Cc1VzNjNNJlkzSElKIjQ/PmlMQXAiKkU3Nm0tZFUnZWBiNzYmSGg9PjAuYDYuJlhfRypIWUVRRWU9aTBOaiRLVC8qcGFOLGo2ciNMdFguVz9PVEVFSD9YV0FJMyc6PS82cHBkSS1DLyttaEJeMDIuPU5rJ3IjSjRZX2I7QVNfJUdsW1pASSgvP1VwJ0tQKWghZVpXS2VNUyhXMCUxLlEkaDlaJDxvIVFaL0lwRlBgWFU2J2E3PmRlNlNHMUlyVzglI2BTcHBYREl1cjYjRkA+dVk8MVc1dUA3MU9LP1VlV2VAYlBebUlHWUwvJ11EP2dUOm4zWVJEIytWUVo5YWExXzA4Kk9nLGMwbik9bXFGQzhiQmBvW2hKRkdxLltKOXM7T2NaYyElKmRQQC0vRiM0UiZfbyE2OTs/WWIyXltkSlNyOjcxQE1gMEVVa2RPWD9zI2M/I2FnckxuS1xVYVIpOjBaVCJjYmkqRVtHXDlyRW5GYkVxVFImY0kxLStnVT0hbVRzQjZYZ2wzN2o5VydUbzcobyVfLTtSazdBI3I1RCl0blRJb3MpSEEjWy11ZFhnNFNuTSNyRU4mbFBbcVlZSXJCVEBFVVNhXiI0NFhqc0peUVo9bTEka2BxJWRcTTQzXzEsL0YzSFA9Y1gzaihTW0lXRzouOzxnRjU5b0ZQSVQvZjZSJSpRbUsydShPVSghYzBnbkpETGU1SihVQDI7ckpfY1VRbDRCNSZXJkgxOTsrXGVKWmhpbldfaURkX3JXZy5sayI1fj5lbmRzdHJlYW0KZW5kb2JqCjI3IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDI3ODYKPj4Kc3RyZWFtCkdhdTBFZ04iNWwmcS9xRWkkSCFZLmAoKy5ebldHciczMl0mMmUiOCUuX2VnQDg9bihmX2pxW3VkR09CbkFvTm1yY3VMXlRQcURsaGtcYDRQP2QvbnAoQ3UidVt0TUN0UCgzQ24nLyVBc1E+ZjgtPWhaJHFiNjtITEVgaiFzUzdVK1xhcGtEUSw1cD4sTFNMLy5XZy9mOjQmJi8/JTIibXVBWCI/ZDlsQF9iSDBHR2pLTj5yPTg+aF5oJ1s/cktKbEgnTzlhWklCZmYlKSgnQEkucUtxcSNzRV9CYE9yVj9BaE1eOkJxM2ReSnFwI1lqPlpNWTU5SWQ8JzNJIWVCKXIubmxgMGo3MEc3LjtqcmtFZjc3Tz5nZlJZSFE5dWhIZ25qV1YzZlZxJ0tDJkNaRCJfOVlgTypFRCh0WFZRK2tVWytTP2dbMEZvJGU0bjVeRSMjUyNqUSxBKkJyS1NdJUAhJlUjVi00SGRFQFBpQkRoLnJGOGdhLWQ9akpULzAnVkwsZ1BEZkZzMWc5TEJnT00kYEtmJC5SIy8zVVA5V21gKSxdby4xbyhYSjhPVUBgaVB1T0ZWJ2ZsNlFNTV4saVI8T1Y2J0YuQ2Q4LVNLcS9mayhFMTY/ZiNganM3alFhazEwWGBdJCZiK1gsclhYLjk5NDlcb1tTOVhJUEVQbyE8P2FPY04kZCw+TDVpKE8yOFg4NnEoWklLbWJePXJVbi8qbygocm9fQmFDM3BRMi9ncXM0JEhbMHUtSU1kdThaJFRyUTJkL01lcylQaFpCbWBFaDdVdExuI0k4Li9OcmY7QFZvX3MmUytOPSwyISlvIjVuNytrdUtrXUlRcGRKa2hDaWclXGtzWXJYcDU0OVtcPCgiY3JuOlRSaWpZQVhHLHQ9RlcmSEVrcWRKaTtPKS5BQSRtVyEpaGxRLXBYT19lWWkqNHMhZ1pDanQyR0lQXjgkX1FrcWcqJ3RCX1cpO3BlXl8wbWBzXmVsLGhURl1qbjNwcUszbz4mKi0rMGhKWzElUUZRNFxEQi5DbD9NMjhqPys5Ym9LXURqbVhzUSpkVml0YEBoO1ghSWgnYlwtPVRkWFYpZmVsZGg4ZEJIbCJLcSNBKUR1RTg2TENmaHEtV0ZJUzdcWG1fJ3BrNWFpamFpQksnNEljdFpOckVWUkZfJDVDYV1ARUswUnNJIk9bblhRMGA/WT0jP19DQylHXFgnRU1UJ2VjOixzVSMxUExoaGhhKUxGa0xxT0ppX1RFLDlOVloyLjghWWdAaVNwWFtJXiQ9R11maCchaWBnZmAoLFAlVls8aEFVKFczSjcqTGBEZ2E+RkA3JHBdKWFMWCZfQGRWJDNUKFs1SiQoMCpTTSU1MjJkTDBUbyFPPD1yUyhhMVRJJU1yUGhZR04mMGEvUVlxWE5wNUNuY1JhaUFLJnU6ZUZOa2s1TCo/ZVVOVj9Gaz88Kk1nZF5eKjNWUCcnPmRaZSImNE1pPU5ZcDksaVNWanE7YTNwblNaMS5WQEdQNTZsNSRiPEMzJG8mUFUhMGBRJipbRTJHK3Q+OUslWyk9bEhhUm8iRGRBZ2g5cmpXVmRUUTg0MU9TLjE6cVxoR3NNK0otR00tJlIiNFdLOzR1T0JIZ1piVS5SOyZQSFhgVExmJi00OWBmV1k+Lj11WSMnZmBgZko2KVpQTilhbExUKlg9dTI8byIjbzFaK2RDPz9SJGZTJEFCVjc9LCUuMi5YdCYqS0kiQUVkLEkxOGFBRmsqWz46Y089MyozPTEsRGR1YTZCRy1mW0lVJUlrND0tLj5HPykoJDIxLGY3Z2ZzNmNBIVtpMl8jNVI1dHBCbWdlbi87J1opWF1SZkhTJ2JBOFcjR2IkNkY/aHFLPS1YX2lEQW5paz1aL3MjRDVFTlhCKzhUIUQpYnVXJEtMNHVDXVNiXi5BbWpWVVUvRjRGLztSYzQyKSEoJ084MXQ3USMpUiRFcy09JFIrKWtAV0UiK1tKT0hwbGFAUGBrP05zQDZQRmElYyxpSnMlTighPjAtNyEsbTloY0pdZkdTM2w/U3MkXiljRjIrQkJdUlRnWWNZZj1AJjheN0NrbkdSNFxhJDNXV00zbzgtRjJVISVeOzUqNUJJN0Z1TidaOk1lXHBGNGw/TlQpOHU9VVxsZmpiZyxyZVctJlwubltgLytFSV5ISj1OblRxPGs6TW1hJlUhT048W2kpMy1FNDxYMkouJzo5JVtAbiMmVF9tJDUwLUhVam1YTCJgMCI3OHFUS2ptL1NaTFtcQFJPI05HQWRjOE0pOVldJlRaSSRaNCVJPkJZPjJuSlprRFNmYCssWzdVJkhVKjxTQ0NBIkFOMUAvQ0gmcyxzSDgxVWYnPztXQDEuZihRV2c4ZyFkNmNuVy1ndDVvJUxDX3NfJDI4WS5NcWFISGBFMXBDWFlWRmBPTydkY1w3Z2UjJEdVVFo+R2FiNT5LUEdKUWVqY2tCI1hZWmdnPCooUW1jRzQ1ciJPMGJUOE9hb2NVWW0rLTpdNUE6TltUUCpYbihPKDNWJzJSNUdENlRvMGE5aTxLS0E/QGQtOCMvKCUtcmdBZSgoLCJCKzNwIihVLlEiIVtwM3JARFxxIU5qLm1iWVhJQihkU1NBdERIK0djZF9wW2tORklQaC5yVy9eSFU+cixXYCZDM1xnXHBvaSRXPWlcSDtIJWFCOStkQ2RTcCQuVDRwTWd1c0NkM1RdaDBSVG1tSzRrbC1YNmsiVy9SYlNTZ2VNQk1FTVVtI2JCLFlUc1QmUiovRy84YSo2KGhBNFM0PiJnWChSI1txOC4pO2xKOVYoXEpKZF0nQl44PjJzUD8kWy1CTVUsNj1BIyZhUidNRzxWJ2hiRU8xLSRwWGNVXVBPKTJqZHI5O1sqLSxYI0svV0xxVXJsI1o7VS9QWy5qTFgwYz5LaVktQE8rb2JOL1U4c2xBLGU1XSg3Y2ZUQj9kZlJedSZLX0RdWUVLPkhjYi9NSTkjXjVTTUg8YCVSZ3VuWEdWYzJfbHNrXiptKlVUYXNHaWBEZUltbFg9SjwqUCYuYl5CU0ViW2YxVytxZmVQLDIkK0UsZnJvOzZFcXBCZ1cmXEpVSmJYcDlyRjJwJlV0SUc1KE0kPERfPWlPTmhGXUtAKVBbWClAcGlsSlRZIVVVTF5MM2pca0BmQGNeY1FMYzU4VjM6dEpVTGJ0KEcjTG08J1gtZSEpcjheR0lvNjooP1ZCajUnOjNgMTQ7blVbbD04VTBLdEhIVzUnbzwyYV5kaURLWTg5XSI+YWx0RVRQZXFrbWUwPW5CbDBkXk8/ZzoiZm1QZ3FtY1hhIUNbZTRPLmIwYllBPG9aLTtKLC9kSEloI3Q0NTdXcVVmXEYxN2JKX04uWWEwc0VHS2wuaXFnSShXcEgvJEk/VlooL3InNHBhOGNGQVhqQS9sZ1oyYCxdP01XRSohaig4X2xCOykvRDREOU4sWDJGK0tALUojLmxqXjdNcjllPVI5MSJyYGFyVUZjWmgzQjMoWm46MW5jJUFaRXUzZ0diJDZHaHRYdWctUkhOcFFnbiFLVDJzLTYhLmFcaiEkTD88NmlcLWNZUl8kSD9bciJbQCFFYj5WTTQwNTxTdUVxcElPb3FqU05RRHEjO2VBMnBJLjZKQWY0cVhLRkxIXV5ENyJwISxMLzU0UFEwLSVuTyI7YlEsNmBXI3IiRkFsXX4+ZW5kc3RyZWFtCmVuZG9iagoyOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAzMjY2Cj4+CnN0cmVhbQpHYXUwRj8kImFZKDRGZjxec2QyVGFeQnNEP3RdMFY/XnBGLjoiJSVQOjFzLEE5PTJxUS9VQmlHWTVlR0FPOUJOKi0nIk06b2g2U1AkUSZQRFNvWk9iNkVnZV1AZWZ1Z1AtTG80bGxaNkM5THM+SWBlPEtDU1wvUGY6KTpMajhncWApJ211aFpqMitqQkNVUUI1Q2JYP0hgSm1vVVI6Kk9IYFxRZWhkVDBTXFhrREJnKHBBTipRPm46KUwzO3BZVGpkalFWLjs0KGtqc0htYFQzTCNdVFVFMGssJSdpYycoZm9raFkhK1k/bWEnLVo+VGhybzxyUW1zZV5tcygqUUJgaEA+bjVLVTRAX20zPG5wIl0hNChOOCEtKE91QV5wPUpLb2pjYW5cUnQtdXEhc0UlUjpyOmsoZCQsLkxaOWBeXi0rRC8rMmJZLWdGbWduW2FFU1AjYC91YjRtJFIoLiRZP2stbk9fcjtcPEw7U1kjO0RpLSVfKzppJCQlWjFebVksTWh1InFGJiQtcDdVLlJBJ2FPbHVhQi9nREYjWldDQmNVOT9NXidmVDYhOSdKREJ1bCEvSUxWVCRqOEI9YipfOVYuKVVwYistOmkxNnRAQVBaNkkiMFhCY1o+YmtSaDxRQlJINSc0Z1k3W1BGLnJEKC5BMzwzMyFycFtiZHI+ViY+czZPSEFvTkBZJj1OIUchWkA5YWpZSjNLSj4qPClwb0YzZFUxSE1gSFVCbik1bVlzVU1HQU8wJ2RhPTtLWm1oLTxTTShJKU0nRDZDWFxtVy1ySGVHYVttZVpCW2RxLiMmYy90Tz1mL3FRI2FSb0w6bGwhLyJaJTBIYixQWCdwSjs4bmZqbVhBUCIsVHM+Nm5VUG5fTGpndFBZRSFwTm9HOyRFO0l0I19xWkAiZ1JFKW0jLmFXUV9sZGQlW2JSdDtXazVwREdLbTtGJU9rViJRTC9QSG9ULlsiYydpZGdmZW1EOl1rNG03KU0+MltXKiVmVlE3X0U6VzlcPGwuRiw5UzAkaGgzJ3R0UVxoa2pkJ1B0PzooPjQxPWltV3VLUlJrRDlvaDxybzVrIS1bJTpWNUdjWGtCbWBHS0pPYWguQ2xZaFBSaElGbVxqNSVDX0pNaGQzUyFoX2diRD8vOVNxXVNZK1MlX2ZSP1thVEdUTjFYWi82cmdLJk80cyQhaFFoWDlISig3UCEpTClJYyxVPlpFOlJPZ185WkU7XG5LOSVjJVhUTiVOI21IajImQmU1cEk5VidwYDUzKy9IYDplaENOYixzXkNVQk1fb2JUUEMwcyhecVxycyNMamtAYkg/XzY+MEVeOkMqcCMpJ18jM042THE7ZWRGN0Q1XGBSWFsmJGszLVg0bi9uKVw7YSFNZ0BrNU5QS2ciQl5fQjEiRzwwNTw+YCg9QkxvcSRBMSQ+TjwxNktSLl8zVmBdPmpvMSstR2JJdCJLOWZXJnQjNS45dE5vOnJbWT5aVFMnOCxbbGtQKiZNWUs4bHVBRDksbElAUVZfZFAzLFBiREMrUklhV0krOk5mNlBGTFYkM00/cDgwWkUta1lVVjI4c3QwZlpkc2U5QzhkTDUnJGRibUlwXVwoJ2whQzAvTT4yPTVmTD5EYVA4UiM1MDNZN1daI2piTXVaZlZSTlsrPm9KbmJWOkI9P25GJy9iO2IpZjBlc0BJYiUtPDIudTwzZW0xZzxdPVEiMEpjazhrdSxncm8rPkBCc3AuZSNCRE9IOjRJMWgjYzxgQkw6Ol8kWjtPaXJ0ZWlKPkU8QUleVHJbVSsqTkxgO0ApO0Q6Z2deMiE/JWtMXU1cV1FWJjxwMVVNI2soZjg6X1I+VTdLN0A8XVBGNVNSbGIsYy9zTiRpOUotZWk0XTUlW1Uib2FTTE9UOl0+cCZuUkdcZVdaOWxKWCcpQFJCTmxjTkQ/KCovWmNdUF0wKGcpVywzNDktJm5xYSwyYFFnN2ApKVwmbG9pVThhXVBPPjxyXGxlc2AhYC5aXDNlakBnTVthPUFLbDM6SzVFYXEvUDxLU2ghXzwjYzJwLFl1dSFQJ2lxbjhBN3VJVWtqcCQnX1FwaE5bXiUzRVI4VSluNTo8NSpnQFs1KnJrSy1ITTA7aycjLztPaGJXYW9cPlozUT1PZ2VEXmtFPFpkV28odHJxLFgjMGYxXG1YQ08xXV5wayw8WzFgLE1eQlBRUUlvMjVHU2Q0QDY8RExQaUVcYHNWRG0xXDwlTi1VTGBcbiZwMjUyKU4qP0xcSDwmcjtgI1xSKzZOXjxBbVcsLD0rN1lsKD83WzArQWJsO0xtK05Ya19TRXQjYVlwbERWNFttJlZZSXFWQ2NZRjVWKHRqJ2NqVls+VC5sZmRcRVYtdCNVV0IuUmA5PS5PbkEpP0ZSTiRXLklwSFonWVJrQjQyMSw5Z0kic0pVRUc8MFIpOTBXK0csQzRPOy5WI1NuQ3B1S01POykvVy1IL29CJC5vbDchTi1QYi02RklART0kLkNSRFd0cC1dYylUdW9uQzxDWGg0XlFXZWw5S2w5YSxbW04rO0ZKS01NTCVLb2EmR01qITQkbyVxU0Y0WClPKUs4WSMhYD9xVGcxL2hLQFNuL0BWI0RwQ3NdRStaZi8vaW1DY11MbFNPYDVyUm04IkVdVG82N3FNTUQsSDd0MF5kXmkxQzloRjhRXUNiMllDS2wjbW5DN1dyME1yQC5UPWtoK1RRV0Ekb2JzOzJkZz4lb2phMDhJLzxpX1Bnb1Y8ZDo3PCc0Z1piLlY8XmQkPidYQ2ZNMyVJa05baz0wTUtGcGZKT0YtSTw8LyFBaXNqUFwqUjhSW2BlJ3NSaFIjQyVabF4rUG0zMzRSKUEtIlpXWW1db2QxYUxOU1dcdWdRZ0dDO0xDaWEmTEs3a2JmI1l1LltHYCZkTDI7blRaQiUyYUdQPSkvRWREO24/ZGtAYVtPcUldZElqOlZIWUptTGcxUVpqY1Y7SVFcNispLWdMbydJJVlMT14vRFk/TGwxaj5vbVhXOGZqSCkoWG5DPElgNmdMcTFRSGowOCdxQDBYRXJmJzAtKjFHOSw7JFxcQEtAPG04cicpQz1kUXNBI1AsVVVAdSVqSEU7TVQqRUhUViUsS3NJNm5BV2c+Ik1PO11GTG1HZDReKG9ALWM8OS5iSFFDQzo6ZjdmTks0X3FbMyZTUG5XNkIuakoiQSQpOWdZPUo+ViZTLGY7ZDZtZ1U1UT08Y0xmbGReSTAyRy5iY0daJ0prVU42aioxL0dsbVg/WGJXbkAnZEdGa2ZxW1JwZlElZFlFQlNyUDJpJWtAb3VPaWc6Xi0uXVlGUm5yX05wKmBQK2V0J0k/KCojTnJcIVwnRzdiKlUpNkBPXC5sPS9gW2lvPTdwZmw8QVBxMGBbZlZINStgXHQ8PDAnSF9eTytdRWRdcTFWS2NEOEhYYlBCREs8KEdaLmVeL0BPdUxsMWo+b21YVzguMTIoMVNDRCVjPSVELztiaW5SNz1XSCdTb1E0XkRZWDEobmZtYFI5PjsrYSlGXyRLOTxFcSNWWVFFUzFoazppSU03aEkxWVhVZ0ApX05pWlhzVCttLSIyTiM3YEVPUE5ab1U7KmsmVF42VzAnRlI5bStXWShTKlY+aFlxOSlhT3RFMS4oWXMwV0xJbSgiT2J1IlxDbVNdZC1zYT87YTIxSEFbIzU/VXJuP0JTNChTa3JAaSMvVks5c1taZ19wLV11bFdvdHEsKTokO0NALVleJCRNdFFZLE9eN2tZUzkzIzckWztXMUxmUDYsX09IclUmazp1RllYM0A2J0EyVktgLE9uMVQ/MEdwMDVbW05pYk5zUDIzQ0NWbyxpVzFuamolTzgmRDJlJmxxUHBYOzwvWDVpbixVVj1JLmgoJGQ9NnJIb1cqLEQkZ0MtQ2FQbVQvYVBLLXFAbDJwRmo5R1xiZmonbmVLMmc/SUIzKSknXXFhMTZ1ZyQuJ0kpVzEnR1tSTzlzPzswbWJccldGUTo5IS9rXikmLyhDQFViREkuJmpXVVAsYCg0W2Foci0qYUhlV0ZWQy5dclpCbS9eO0NLWTNNMDpPSiNAQGM2RV1wWl9ePmIuTzxFcEQpVCM6SkhoNWlmR1JxQlJMZSVYW2Y+L21cdTVPViU2WUtyVDIrNVk4Sm1PWzRZbEtgW2ZDOlxIOVpdIXFDUl1aPDotc15jQi4hKVs0RGxbMHBiPiNXN1s6SDJZXjAuXy0/JEQ9Ol9VSWhiZyFpMSFJQzNETGxKXVVHQT5hOWdjRT1hLWY8XEokaDYnVTBjT2pnJjNZSDtiMXFPLm5DK0VEcFRqanQiNGhdW2koQjRXS2Q0Y3N+PmVuZHN0cmVhbQplbmRvYmoKMjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMjQzMgo+PgpzdHJlYW0KR2F0PStkPD04JiZxL0E1YlkpXUtGZykhNkpFNEVqWHVII2ZDOFw9W3BbZkg/Y2tJYUY2XWlpaWchUDlJP0BYOixmOFxCckhxbDVSYUksLEJcSkkmbCw1Y0VTSiRDNUVcInBlO0srZicuPlNFMCQ5Wm1yZ1ohPUxdUTxZY1RVK0Q6NzdaP1hdOFJsS29NXS9kcj5WWyRlOExkWTQsWUY3a1I+YzlpV0FWJ14qcS45R0UocWtxPVVhYU1aJltXOi91NS9ZN1NKNHE9U1tiSUU+QWtbImY0T0BrQiIyL2R1VyxENUA1dSttRkJyJV5ZTi9PXVZhZT9CX2Y+aSglQ2BMSDAzRnROWylBXlAhIXBjcm1VUFRRVHJtamEsZWlFUU4rVi8+bEk0RW1xc2FBclRpa0FvKGpnRWAwQEEtUDBsSFJZJnNCM2NtIlopTSxkMGI2L1tUWGMoaVg2UlZMPzg9Pm5aZFRsTjlDNmQ6JFZVaDZVMzdoV183Jj8tcCVWa1JmOWNhNTguYjsrRU5tYVskPjlQNU9PXGpZT2BdV2tbcy83VlNUSEY/Zl1NPGAkOSNdKTdvLztmVCEoPHBBOkZfSm1hJmpUTUxBbTotNFA+IXVEaFBPR3FWNHVYaVJeImhJOyRpOmxaNG0+amFdOXUtSDsxNihTOEd0V2hLcldKMHUwLWI5aiJJQzJKK2RtVDxgb0xZQD1iQiRyJTErVF0iUDQhVyMnWGtUb2ksVktOTjg5cFJUblBPQT9lMCRcPHQ7NUVEVkxrTkw5KFZgX2wmVztHcikiQVReSkInUUhtJyYlTVhZSj5cRmYpanVxbSoxXz4uO2I6cVE2R2toV0kyb2hcVCduQm1WYU9AJk9GSEwqaV8zTFhwU0lMcS05UC5gSygsOFYtWHBcZzovNzFlOUFBKlp0T3FSXyNKdWsrU2s4UGReYVAyZzlPWzxmXltsZ0FJV2NeX1kxNER1LWJYPjA/MEQzZCwoWTdfPz4zQ2pQQmhzMio1Jm1HInFOMCEyYEE0TFV1Uk1lYy5mMU8zMkBmcCZCPGNsIVkwREwtW0BoYEZjP2BoNTYsbEZuZ25FLHFvKmQ2NStmcXFlXSlUTm1ucjBAcU1zUUYzbj81MytqPCpVMWtyNmR0YTUxMTBgVGRvby1NQVxbb3NvRFFDP0oyUWZTWnUrQmtsT1olWkJRR1MnSCFNNyZTQi5vL3EmOTQwYztTYCJuQ3VBdThIZ3REQitwWEU3aihra1JvQ0BgVGBjZzdZdTRfPGNxTlhvPUdpKGJYV1tYQFU3QGsnVWE2XVRWYFFvaSlVNjlJOU4sbkstdFxGcEFmXC1VXmlBazxEYDcoPT46Jz1ObTYvYEVbLyI2JW1yUTM9bExcUT5NcSMyPFBZPTpmUmhjRWBKSW9MKWhASTE+bl9pYictZiI3QmhTYW5jXycsP11bJCxVJTBzS0lnazRHY29qQSE/WSc5dWtcOXFBXkM9KVtyYFsrKEtRSEZFaVBtYG9ccE5eQl8tXSRGdE07Y2RMJzlbJDM5akZjbTZNLS0iYixfR1E7OikvN0ljLltgS1JLRDtMWy8lOidvKW1kaGJJXSJUMnE7Pkxec0cpcT5DbFUlLjFVTjhxcTlnUi9uNzcsMUliQ2VoREteZyk+X2libDYiXnFXRS4ndVc9Q1lVKlVtJ1A7dTJXL2o5YnUlanUpOHBWVGgnPityb1UhQlEzPTpnMjM9N0RCUSVSaW84QkVtaTkmWVxVY3MmUmw3SV5dV2UrYVYtdFtoXWlAIV5XU1JYNlhAby9CWChHR2ErPykoRExTND5cbW5FYWg5TU5VKDRvLGkjKnJWTCU3VFYiUilVIXE0Oiw5UEo0KlgxM0tSIS9YLDV0QGc1PCRGUkZvZCkzbFtbQ04jJj1dY0BLJyQ6JG04ZzJJTCdtJylCPCdnaiY/LD9fWHJLaC81blM1ZmNGcC9iUypWZypHQ11zYyEnNCdQTl1yOmohJUhyNipYQykna2U8YGZVM2xsWnE+bj1SUUVZUDcxYEI1UzBxWERdSFBXT0RbV3BlSWFLWytwWydPR0ozXi50Yzc2M3NBNEgkL14vKyVUWzsqOXRLbzU3c09RXFtfaF5ETElOYlhbblBZMWoiVixBO24hKE4va1o8NVNlXUZWIWdKUD5oM0ZzWTxSSS1SL3BLTEcxTldtJmpYXDovR0I0Zy8uMichWDpQRVksRT08TiZLVl1NYTBjODlCLyFKLm0kT0g9JDs4M11DJyhcJHJRZS4jLGkhcCNHImtZMDw2KElWXXFzS2RBLVpcQzcoPUk3TjJCcV9nK25tZTY9OFRZXCNHaEhEY0InP2xCLzNSa19dLTEjXFopPTRsPERuOkNiKiNgSyk8XHJHZUZoZDtcPnNidXUhNiRsKyddSy5iK11pNVZmXVM4cSJqNERpOiUhXHRMdE4mZlhmXVRMZW00bmRnM2kpIV4yRnBqOT5CUDckcVInXVQhaTcwNEZmXkAlczxINWBlIUJfRy8xcFNoRFxKaVMsRkUiYkZ1P2opRl0iN3BkKCI1QzxzNWdxJywnW1oiPjxwKFFZQlRrIyJ0ZFgwUkteImJZX2lmZmBMVj1fPk0mLS1QYXJKYyNlYz0oJWc1ak4hYSVxPTE9UjdtbiwkcTtAcjRmcWcmKmpAPGVnSmpfX18rMW1nR183Pm8pMzc/MChHdUMrMSVgRSE4ImtyIm9uY0loTHFXMl0oKl87QDQ9RzhaKmFRUyNzb2d0LGlrdSNRQVlYMkxQWk51JUc3KHVCQUEwVUFOMmYpIUhyKEdgZ1omMXBoSzxZJT1jNDFiXkVvI0w5Ql1vUVJcRD1tc0NlMlJuLykuVTlUWyl1TiVMIXVwTy8/bEc0Pi9lRVNsQ2tIbGNzUk5eTDFTNV1sSGI3PzwsJVApPDteTEhaRCgoNTw1TCZAITo4ZGtqUzRVOm5JSjNdXFQyUiQ9R0ZQKyY9bXFiLmtxczgzSCciKGNzSkZHJHMqcCFfWjBAQCFPSGIpTyI/QFNfSEZvUmo0NWM8VGRCdTk9REk8YFkyK0JUSzU3QUtHOCc9J2BERWw6OE1PI1wuOl90S2VtI3QzPWInWHIqXDtwInMlUlNJQ1VscXFJYElNXUNjVCJHPjpIWSIqUTtYY2RjS3MoU0M6LiVmVjshNGw8N21PczYkSiliMjtGNTdfPW5gWlBlKVchP3AnbSNVKlo3I1YnR2gpPW1sfj5lbmRzdHJlYW0KZW5kb2JqCjMwIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDMwMDUKPj4Kc3RyZWFtCkdhdTBFPj5zPiImVXJWRTBvdSpvNGpkczJPLWpsIWIxRkc/UCNVcnFbKThWPy5oUD5cK2hwMyhkVGRdL2ZlS1dtVlRMRzNVW0ZgUXFDMz0yaS8+a1tmL2w9VVkwITtiQjd1T1xJN29zI0p1bWpub0NbdFZKaHNQOS9aXkQyLSdZQXEpYVQ1R1dlM2VOaiY/QjJNNnJHMz10M0RnYihVSWMlJCctQiMxJT9wMS5BLG9YVDdUYkhVNzhwWmNcR0VZTCtWTEo/aVJQQUAqYnEuWiNUN1NSbnNKalEscDFaWmtTSkVyLD11ckJJSjxZJFI3YF5XPzcxcyFYNkY/VnJUVUpSaTE/TSNLbTVUMjQoOmpRYjNcYkhsN0BQdEhPR1lbIiNvMFdGRDdrcFwzXj4iRCQnT3QqVCVTZVd1N2A+YlNmRUozJmIwYmlFXVpzIkg+NE1WW2hkZWRDJWAzTTRpOmBfYzkkWUdbPTNPUkclMUkmSTZNQ01oNllZSzdhKDdzMFxSKzhQbFsqO15iLlo4bTZfJTlXX1phJTwpPGc2Z2swT2giNF83RnJYMGB1WEw8bUl1YFZQbicyT3Q3VjkvcWJyKWdDVEpjZmMlLD0scEJMZ1lybE88KStja1VKZGloUUBGPFhBQSlUbVtIRyZwRV5ac0EqQzVIPWghLSNJPUAvdDlpJT45YD1cSG5kJEo/NytQOzZaLC1yKlEiZVhZMmtkLF9bR29BWjxmRyFxNiNjKEROM2lmM0o7J0ZbM0t1KjNncFtwSSI9OztLV3FhRjQ0RjBsLl5bYUtRUjM/RlhXcjYqOHEpXWhuY0s+YVVPVUBpQV5jXUZINHI5JUA0IiQxWHBgQTUhU0M9O2BGcjBec0ciTyZWW0o5cjohNlA6PjsoTldpNzE6OCNFbjFLVjYnSkxQYGdFTj5uO2tbaXI0Sl5FYExNUyRvPE4tVzMqLDlqP0dcTmY7LnUuL0RNWnFrOmJIKUUxWzZkaydwYSlWdDAsaTkkYCVnXkxrQ3I7XiRAIzM8WXFnT0BkVDtxI3NccDtMam9AbDlHSmtWZVssbWldPT9bZD4wK0RCImpwI0pobSMvNEMnSClncVU2aVlJUmhlR09oV0FJPkZQPkY+OmElOkBwWmBvYiREYmQvL15ETChWTVdkblI8MUlsLlUtJk49LSE1Xl4sYF5oMkgiWydwLU9eS25rOD8lW144MU9eUD8kTl4oVz1tWGJZUUBEPThDLlVmLHRwVVo9SnVAKlAjPz9SK2FqclJrRThnV2JFYlhpTFxJazRLYCw+OHFMQ0VackthSE5tc0BAQzQkQlM5aFolXEVnWEpEKiM0Y2JvUkFxUTcnNzpeclZCMidMXjRiRVshM1RMXVApRjU8cl4zaGFXal8/YUgzZGJyaXVadVBEO2ZbciJRWyE1U21NPCIuXiEtbFM0czxsPGBvJFI5clksITpmWGpaSS1pQEo9Uz9XIzBVcTwraVtJSUE4QzMuRktNVHM9Mys+ZzwvUVAqYihEK2YmYC9zKEhkYyguYmFDXEU7ZmZWQHBFLVZmT1M1bTJ1V25EUE9ZRW9fWTRgMCRKWCtlakpZMWolViYoVSVNaj9ebz8vTF9QJVBOVkFxYl0sPThKbm0mXVVAZUNcK1FgZms4cXRlSyExOjY/LTR1RVosVT1rV1p1SmYjPCpyJDRRVytZO0NQcklxL1Jtb242LjRgUk5fIUFSNCNhPmhpQD1FW2gqTV1hamRUdF8yWFZHSSVvcDVjYCdKISVIMXNKW11HYDBnVSJRZyJvbUZhOFU3MixSYmEhYnEkPkxQbVkjSz9qQUlycDNwYWxsMVMvRHBfPnJuNmE4V2toQW9PNztfUW0hVT8mOilKdF9cQ1o8JlBRTkxPUUFkVmlWZWQtPzwkNzRdNkpbQnAlTm9LMlthYjBwVEFENig/Z0c0bFNuRSNaNUssIS8rPj9dOztldEsyWiVLR0lOQzk0cUlHdXBhTEwrLmYyKDonYz09NGRCaEs7YHAhUm0scVZBaVNSTCtraGkncGNXcCJiUEQ3TipbbWkhZ1lhZFJfRyFKSik5LTloVChwJU9NPTQ5ZzA5bywicCdMZCJmSUJlZWI/UjdRRS0wVHBjOztHUz5cRy09UCFkK1IvQkVgc1xCNGVvVT5JXj5IZidwUyMwKkw9WWtjZ1xvY0hEQi9XLUdNRG5JNCVJaEojQDJZR1RHRzEpQjdRclRrRTdDPyZaP0FmSVhGLywkSGVrXGklXWYqX0YjPTk+LGBCPi0xNjBmXyQkVzZNNCxcPSw9KkN1OnIxKE1DPUkkcUpyLVBoPUM0SE1KSXQ4OCM+J15GNCFLNVFEK3BcKENPaStucCtUTiM0UGBGJUhuZz9pVDE+b0xocVAkLzNhV2NfO1tcZldSJ1FdLWpzMTdZWGUxcXIjcWZiOUlVKlBWIj4yNnVFK0RgSyEjJDBwLFkhcmFOJURPb0QkJ0UzWHUpa0leaENcSWNMWmoiZyoyaWJOZmptVEchc29VPG1US0dKQkU1clsvR1phbWE9NlRtUDNkKyU0RCJDbzxsdUBqSXBNZDQjXDhVSGllRkRrRExrNVhFW0pXMmNQWUlvaU5YTUUlcF4qJCxNayY7aS1NWy4zaCwjLUI1cTZeQmZYWTMhM0FXWD1rY2JbIm9tS0s7P0VeKktkYi5HKCtxayUnRz8wXFUrRy4kayFsNG1VZzlDIUpYI1soNz4pNUZNbCJaRFYkODYhNEtVOEldL2s5ND1nR2ZOYG5dZUA2RDJPMzwoZlNwIWwyZ3A7Ok0hYiRRLDdfTTgjMUxHQTJsNlMyOz9saE5vSVE0T2BWcSxIRT45P0tmXkpNVT4pL05ATEVfTS9MNmwsdS8tW09QXCtuZlsyZElgSUEwVV9eQWZHQ2JDbTBHXGtvYGNHJTU/NVtjRGMtUiJQP2YmSUNELW9ZPVN1UTViSSJNQWI3MkBxI1MhWjpUXmM3N2BXVU1TNCxZJmA9JkJuRUBQdXBWQCZ1LCE7UmtbWCpqSlxPVCpWUmFaOlptXXI9VldaNVJpcHRiSVJpSE9XcUcucVxULE5zaGVuIjVLczZlNU5JTz0jRGw0czxlcl1kUFpyRWUsW2QoVSdmMyVYRltkMC4zXylYOC5EWU9xWmVac0wxJVtFY2JbJkMpNkFZPEcoXCNMJVUlKXQpW1JOczQpQyVLUlxVQ3RRcGAxSUhyQjMkQU5sQzA+XihwWjFuM2szbFVsJi9fQmw8UHVFMkE8VSRrMTojQ2tFaGZsWkRyPGtSck5tIWlANmYibDFLc3RnVXMlKiZKZSk3USVVI10pOlZJZFw1cWxtQC5zZy1QRWVsaCwqSmFUTHFOKGQ5TiVvYWU1MWkpWChLcDFvITRhZE1BV3AhT0U+YF4sT3VUIipxRkkpR0BUTV9tdWtlQDI4UG0zS2pjQzNXXS4pXW4sLyoiNExnUWNLIjYpcXApQkJOcyp0UzAoZlZZcmlzWWozR2kjdSo7bCtfYkgvJypCZSY2Nik1XFguKFtvZ1lLY2ltMVZMdT5kN1ZjI28uOEsjWSlEVDJmVUBXQDtYX1FLPSInbVxQLjxeZEYiKltEY19tdGJyc2Vdb2k2aC09Sz9ZQS86MXBMISllSSptcFBbMmw4UUkpLVlvLE9JaGxlSjpWNExtJSNBSHVVKUBiOG5UcVBcSCEuLllraldwcU1xO3MhN2c8UHRzZ3FaRDxIP2pZZ1BlSmcyal5YNSZCWTFAJGBBXFA2Km4vNmEvQSpUJDcwSG1RMWxZQz9PVGxjNyJYb0pjLDlGa3VNdS4xU2g9YUp0aSNMQlxbYTA2M25VPm5VKTRUbzlrR1xnS0U/L1dJYEA+NiU+cjRIZ1VRQFBYKklmYU1qLTImZ1s2WSpXLURsZEJMNDolZVxxUjJqLWJoITliMSJmODAjXWwhYCY/Oy9gOiM8SjVaNFowQ3M2NSZaKiYyayEjNCc0MlhsQDI4U0YlbH4+ZW5kc3RyZWFtCmVuZG9iagozMSAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAyNTkxCj4+CnN0cmVhbQpHYXRtPGdOKSgtJnEtQ1VrZE1yaCknTm4xND1Wa24uTVg/KVhzXldCLl9lNGdCTEo9V2NCOS5wOSdzW2YhQjonNlE9V11uQSU/RVQyPFs2WzM4TmU5OilVZFVzMHBoc3JOckZEP1pHKFdmIWlSNDttXyFKMEBxXz8uRVEtZS8/P29lPGxCNlMnckBYNV1CWEBCakg9NCctMFwjWDs8WE48YWVbJ1o6NG9DdCspa09lSycxJlo7KDYwa0tpQCdZSF1zJGdCPGRDIitsdTQxUl41XS8+WWxqcG8vYkpiXHA0LDcrMj5IbmUoJkE8WVEma0FvPU9JKnJJTk5hXD4rUzhZRnE7NTdDMUYqJCkoKi8/aUJXWnBHRys6U25TdUFcPCc0SVxCXy0mKSYvP0hMIWg3Ul89Rj5ZS3QjLGxXa0wkKjckKE0uN3UvPHBdWkI4LGEmJ2pJUS5mTXNXZ2pIbixVUG1XWCxMLGokTls6WEc+JXIhOSc3Yi82ajdbZGAqJlZfWGEkT1BeU0BsYVhDU21sJyxgR2BpdEFlWCwlbjNFR3EsZVwoLWtzKSgwTHFjTWI2JzpNXyZLVVFeU11XQV05bGA5M08iUDhZJzV1Wj9DciZkXmxPQCwpYTluZyhWUj8iKj90N150UFprVUlVNzlpOlkhNGVaNj00OVAlYDkhaE1JbEotV1hnSitWM2dsbGcnKi84KWFHVD5uQ11QT0UwXkFCcSJHPjRUSi9VUSJhWnM2J3NxbUVHKEk6MVFFN2hOLSwzMicoTDdxN2EkVTpbSipvb2Z1YUwvY2VYN2REMnJKbmcsRTFLRGxCOTpZPzlsKmMkXUtKRF5GOy8/KyNST1VTXSVlLyomOjxQJWE3UlpUTTpEKkhXXVYjQVp0ZzJVcVRyOHR0QTBIM1lETFUkKGQiNkBTNEQ2cFdVRCplMk01PjM8WHAmazltJF1SNnNbZGcsOSxRaEU8RnRpUmw/LkBjW0ZEJVRAYHNMVy5EX0RNbjBbV1NOPlI4X2I3ciprVU5mOjtkY2ZjWzpoJmQoPV50L0klaG1AUC9wJjBwRUxSWWBPZ050XUo5W2ZIImYkX1EzTC40Uz9HIU5WSl1SaW5PaG1mb1o+TFJbK19UUWlPMldOVT5yUmprZ3JGKUUyQiVaZXQ5NWBnX3BnUjdrLkwhLGphQXEzKTRuOTA7KmYtWzZkMGJHOGYyQUM7UFltI2g6YDIkZk1BISQqJyxwbjtSVkEiWnBpRF8qM1FabiFmLXApalR0UVZhLiRsTC44cD4lJFJjYmU1a0RGbE0uJltyLDs8QVJ0O0YjNUIwWDw6cU5makFiOGFsXjlhbVszNFVbSUAya09GRE5yTjAkTCpHbTxtNT44SWkwXD9MZDciZTJqaztIdUZXVzxWTmY1Pz5faFBQU3NlWzA8Vm5jV0hzQF1uRUg+QU46JCpRQyp0IjdcJURtOyhiV0ktSExOVytyNUJsQiw5PTAwa0puKXJIL0ZYRDc+ZC5OcmlwVD0nayIjWStqJitcLS1kRjZdOEUoNXBdZyh0VUQjW0teXm46QG4kJSU6ZUNsUDRVUTtcKEBoLydGZTQocSNjZ1ZVRUxOUmxXPy0sImgzYDZxUzE7aU1vQjlAJFhgPjRHZDBkOyFYbXNIND9jZkxBIkE9aFBvRSEqLnRYY1dONl9oNFFiSnBTMDByZEkwaW5kazhwRiVNKSFtJFREUnNcImxsNW5daycyMVBgMFc8JicuJUMkUGRyUSRLXVtQKE1lLFMkMWZLaGohbVMiUC5bUyNMUSFkYHQsXXVnM0ZMOG4qJEA1Xmc6Y1psRzctZC4lRj1wRlZGPXRiWShtMUo9Jl45c3RaNS05NkZZMTA7RltwP2xgOUdCbGJJPU8zN2MxMWkwdDQ6UjNqVHBzcVdWLU5SOiNvT1BuL2puY2lcZ0tXS20zRThRRD1eO1EucihWQydHRzEkNC8hYC5xWy8iOjFFOHJzV2NwXUpnSDRIY2pTXTk9UGpOSlJ0aTQoYzgwW0ozOyt0V0RbVkctJkI/SjhsIVsiYT8zKj9sZVI1VmpVIiMkLFw6Vk1WPGotZyxLbGhULWpeRnRJUl4rPjU4U05xcDtRJXNZclg2czFCQGotIm00T200XkkoUGNkMHFVTVBGZyhJWDM9VjZKVy5EYDZUaCdgJS1rWm1HJEtnUjgwQ0ZEcF06OS00PCRGL3AlUS5QY2Q6ZmZuaydYPlRhaEtKXzZSZExvTzkmZGxRay48RGhbb1dxOFZaS3FZUlpYdCxNKkstWy4rUFUxRVc6LkVaI20+TCQyK2Yvcz5SYU8oKSc9Qz5rKzJtSCdGQig/ND0+XVJJU3EkLj5rbWcmX3JjZDJPZmlgWjJiZ0RhIm0pTkNdRFgpXHVWak5DLzhjTUJUU2ByQ1Ukc2BKR2RpUTo6PGJfO1FWPGExUkNsZmpZXD4vVipYR05aX1kpL21nNTpPczBQWFImLUEqaCcwNExcbW5UP3BWTjldc0FNZz5HQyQoR1siJFJqXmZzUmpecCFTKW4lUj9JVHVBIUMwISpMcEtmZWRAJGQnYFNVbz8kRF04XGdWND5oJVowV29QUGJqYi9DTysrSTU8UCJJYnFXMEEzMEBGYnVlSjdoOltBOSRgTWppZXI2YkhSRVpPTCNzay0jOS5VRW0+VTRcM2htLGVnQDFhOl4iazAoQlNFNDU6LSoxQjgqKCM7QiNPVicvV0kxLGlIZTQvJEFUVCFucFAzMjddQEI0KVtAJGY/bFdvLlVgSkpLTF5jcCo0O2RwLUwoZFtRLEtIa0w5TUs9Ml1cIy1qN2dTUWM0aDcuQjMwXHBXLmZtSU9MbFcrW3JdLWxbWEw9LDEyJmM9TDhFL3VrXi5FbUNrJVNkaDhYI0ArOGBvXzI0KCdybGw5bjNdSFBPL2syQEpPPTBHJUArVWBOY2tCKTRJLj9yUG41LWk0QmtXbiZCJlA2JkgkNiJyRyE+WDwlaFlmKlNtJWJodXM+M0syRzg/PHVwYUZPdEktW2JpdT5rIjE2am1HPT8hcU1EV2NLQCs4OW1RTGkhPklISE0xc1Jea0N1KVRMTmM8UWRMXVdmZGErST1IMXA7Om1nTiVXPUxXQC06JWRgN0BtMjBWb24pRjdkZEpxbklkIzkmMEhxM2VFM25HSFtjMEp1blw7Y05KQ1YnaTNcdDdXcWdiYGsoaDBYPWlYL0QoLG8/aGEsJDBUbjtfZGUzOyZTQVw3KjNDSGNkSGxzKF8zXWRdRS5NNmRuUStZLGJea01PQW9LQlpSTidJVGBlIWF1aVtOY25tTix1b1MyMSo4TlJRb1xyNkQ1JlpNYj0ibUJIUWhzK2I5SihEcSFfTSk7RDQzals4ZFNVIV8+TmZkc0YiZXUjMF1idGQzbCVXVWZyOSJzN0opV01MXTNjViVDJVheRGJUVzV+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDMyCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNjU0IDAwMDAwIG4gCjAwMDAwMDA4NTkgMDAwMDAgbiAKMDAwMDAwMTA2NCAwMDAwMCBuIAowMDAwMDAxMjY5IDAwMDAwIG4gCjAwMDAwMDE0NzQgMDAwMDAgbiAKMDAwMDAwMTU1NyAwMDAwMCBuIAowMDAwMDAxNzYzIDAwMDAwIG4gCjAwMDAwMDE5NjkgMDAwMDAgbiAKMDAwMDAwMjE3NSAwMDAwMCBuIAowMDAwMDAyMzgxIDAwMDAwIG4gCjAwMDAwMDI1ODcgMDAwMDAgbiAKMDAwMDAwMjc5MyAwMDAwMCBuIAowMDAwMDAyOTk5IDAwMDAwIG4gCjAwMDAwMDMwNjkgMDAwMDAgbiAKMDAwMDAwMzQxNyAwMDAwMCBuIAowMDAwMDAzNTU0IDAwMDAwIG4gCjAwMDAwMDUzNDEgMDAwMDAgbiAKMDAwMDAwNzkyOSAwMDAwMCBuIAowMDAwMDEwMzYzIDAwMDAwIG4gCjAwMDAwMTMxNzEgMDAwMDAgbiAKMDAwMDAxNTczMyAwMDAwMCBuIAowMDAwMDE4MjE5IDAwMDAwIG4gCjAwMDAwMjE0MDYgMDAwMDAgbiAKMDAwMDAyNDI4NCAwMDAwMCBuIAowMDAwMDI3NjQyIDAwMDAwIG4gCjAwMDAwMzAxNjYgMDAwMDAgbiAKMDAwMDAzMzI2MyAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzw1YTA2MzNlMjVlODI1NWU3ODdjZTk4ZjljODE5Mjk5ZD48NWEwNjMzZTI1ZTgyNTVlNzg3Y2U5OGY5YzgxOTI5OWQ+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDE4IDAgUgovUm9vdCAxNyAwIFIKL1NpemUgMzIKPj4Kc3RhcnR4cmVmCjM1OTQ2CiUlRU9GCg==';
+
+function downloadSample() {
+  try {
+    const bin = atob(PDF_B64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const blob = new Blob([bytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'PocketAnalysis-Sample-Report.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch(e) {
+    alert('Download starting... if it does not begin, please try again.');
+  }
+}
+
+// ── Page routing ─────────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + id);
+  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+}
+
+function showArticle(id) {
+  showPage(id);
+  toggleNav(false);
+}
+
+function goHome() {
+  showPage('main');
+  toggleNav(false);
+  setTimeout(() => initReveal(), 100);
+}
+
+function scrollTo(id) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 150);
+}
+
+// ── Mobile nav ───────────────────────────────────────────────────────────────
+function toggleNav(force) {
+  const nl = document.getElementById('navLinks');
+  if (typeof force === 'boolean') {
+    nl.classList.toggle('open', force);
+  } else {
+    nl.classList.toggle('open');
+  }
+}
+
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+function initReveal() {
+  const reveals = document.querySelectorAll('#page-main .reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
+}
+
+// ── Nav on scroll ─────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background =
+    window.scrollY > 50 ? 'rgba(11,25,41,.98)' : 'rgba(11,25,41,.92)';
+});
+
+window.addEventListener('DOMContentLoaded', initReveal);
+</script>
+</body>
+</html>
