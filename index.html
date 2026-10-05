@@ -866,7 +866,7 @@ function submitContact(e){
   const subject = encodeURIComponent('Website enquiry from ' + name);
   const body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
   // Direct form submission via Formspree (no mailto dependency)
-    fetch('https://formspree.io/f/xdoqgowl', {
+    fetch('https://formspree.io/f/mrpegvon', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({name: name, email: email, subject: subject, message: message})
