@@ -316,6 +316,27 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);outline-offset:3px}button:disabled{opacity:.65;cursor:wait}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-actions{opacity:1!important;transform:none!important}}
 
 .home-report-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:32px}.home-report-card{background:white;border:1px solid var(--border);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px}.home-report-card h3{font:500 27px var(--font-display)}.home-report-card ul{padding-left:20px;line-height:1.8;color:var(--text-mid);font-size:15px}.home-report-card .price-btn{margin-top:auto;background:var(--navy);color:white;border:1px solid var(--navy)}.home-report-card .price-btn:hover{background:var(--teal-dark);border-color:var(--teal-dark);color:white}.home-report-card .price-btn-primary{background:var(--teal);color:var(--navy);border-color:var(--teal)}.home-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:28px}.home-step-grid h3{font-size:18px;margin-bottom:10px}.home-step-grid p{line-height:1.7;color:var(--text-mid)}@media(max-width:760px){.home-report-grid,.home-step-grid{grid-template-columns:1fr}.home-report-card{padding:24px}}
+
+/* Consistent report comparison geometry */
+.home-report-card{gap:20px;padding:30px;box-shadow:0 8px 24px rgba(11,26,40,.035)}
+.home-report-card h3{line-height:1.25;margin:0;min-height:34px}
+.home-report-price{display:flex;flex-direction:column;gap:6px;min-height:88px}
+.home-report-amount{font-family:var(--font-display);font-size:44px;line-height:1.1;font-weight:500;letter-spacing:-1px;font-variant-numeric:tabular-nums;color:var(--navy)}
+.home-report-frequency{font-size:14px;line-height:1.5;color:var(--text-mid)}
+.home-report-card>p{font-size:15px;line-height:1.65;min-height:74px;margin:0}
+.home-report-card ul{margin:0;padding-left:20px;line-height:1.65}
+.home-report-card li{margin-bottom:12px}
+.home-report-card .price-btn{display:flex;align-items:center;justify-content:center;min-height:52px;padding:14px 18px;line-height:1.4;border-radius:12px;box-sizing:border-box}
+.home-report-card>a:last-child{font-size:14px;line-height:1.5;min-height:21px;text-align:center;text-underline-offset:4px}
+.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.price-card{display:flex;flex-direction:column}
+.price-name{min-height:22px}
+.price-val{font-variant-numeric:tabular-nums;min-height:56px}
+.price-freq{min-height:22px}
+.price-desc{min-height:88px}
+.price-card .price-btn{margin-top:auto;min-height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+@media(max-width:1000px){.home-report-grid,.pricing-grid{grid-template-columns:1fr}.home-report-card>p,.price-desc{min-height:0}.home-report-card .price-btn{margin-top:8px}.price-card .price-btn{margin-top:24px}}
+
 </style>
 </head>
 <body>
@@ -601,7 +622,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 <section class="pricing" id="pricing-1">
   <div class="pricing-glow"></div>
   <div class="section-label reveal">Pricing</div>
-  <div class="section-title reveal">Simple, transparent.<br><em>No surprises.</em></div>
+  
   <p class="section-sub reveal" style="margin-bottom:0">Choose a one-off report or four reports per paid monthly cycle. Prices include tax. Delivery windows begin when your completed brief arrives; every report is personally reviewed.</p>
   <div class="pricing-grid reveal">
     <div class="price-card">
@@ -1221,9 +1242,9 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 
 
 <section id="homeReports" style="padding:64px 5%;background:var(--off-white)" aria-labelledby="homeReportsTitle"><div style="max-width:1160px;margin:auto"><div class="section-label">Choose your report</div><h2 id="homeReportsTitle" class="section-title">One clear decision.<br><em>The right level of research.</em></h2><p style="margin-top:20px;line-height:1.7;color:var(--text-mid)">Start with a one-off report, or track changes with four reports each month. All prices include applicable tax.</p><div class="home-report-grid">
-<article class="home-report-card"><h3>Snapshot</h3><p style="font-size:28px">£49 <small style="font-size:14px">one-off</small></p><p>For a focused first look before your next pricing or marketing decision.</p><ul><li>8-page reviewed PDF</li><li>Three competitor profiles</li><li>Public pricing comparison and five keyword opportunities</li><li>Within 24 hours of your completed brief</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/b/N47tJ" target="_blank" rel="noopener">Choose Snapshot — £49 →</a><a href="/snapshot.html" style="color:var(--navy);font-weight:500">Read Snapshot details →</a></article>
-<article class="home-report-card" style="border-color:var(--teal)"><h3>Deep Dive</h3><p style="font-size:28px">£79 <small style="font-size:14px">one-off</small></p><p>For a fuller assessment when you need more context for your next move.</p><ul><li>12-page reviewed PDF</li><li>Five competitor profiles</li><li>Deeper market, pricing and keyword analysis</li><li>Within 12 hours of your completed brief</li></ul><a class="price-btn price-btn-primary" href="https://payhip.com/b/YvjeX" target="_blank" rel="noopener">Choose Deep Dive — £79 →</a><a href="/deep-dive.html" style="color:var(--navy);font-weight:500">Read Deep Dive details →</a></article>
-<article class="home-report-card"><h3>Monthly Monitor</h3><p style="font-size:28px">£130 <small style="font-size:14px">per calendar month</small></p><p>For ongoing decisions: follow competitor changes and review what to do next.</p><ul><li>Four 12-page reviewed reports per paid cycle</li><li>First report within 8 hours of your completed brief</li><li>Later reports at seven-day intervals</li><li>Renews monthly; cancel future renewals anytime</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/order?link=FIXaT&amp;pricing_plan=V6B73kyvBr" target="_blank" rel="noopener">Choose Monthly — £130/month →</a><a href="/monthly-monitor.html" style="color:var(--navy);font-weight:500">Read Monthly Monitor details →</a></article></div><p style="margin-top:24px;line-height:1.7"><a href="#included" onclick="showPage('included');return false;">See the full report contents</a> · <a href="#contact" onclick="showPage('contact');return false;">Need help choosing? Ask us</a></p></div></section>
+<article class="home-report-card"><h3>Snapshot</h3><div class="home-report-price"><span class="home-report-amount">£49</span><span class="home-report-frequency">one-off</span></div><p>For a focused first look before your next pricing or marketing decision.</p><ul><li>8-page reviewed PDF</li><li>Three competitor profiles</li><li>Public pricing comparison and five keyword opportunities</li><li>Within 24 hours of your completed brief</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/b/N47tJ" target="_blank" rel="noopener">Choose Snapshot →</a><a href="/snapshot.html" style="color:var(--navy);font-weight:500">Read Snapshot details →</a></article>
+<article class="home-report-card" style="border-color:var(--teal)"><h3>Deep Dive</h3><div class="home-report-price"><span class="home-report-amount">£79</span><span class="home-report-frequency">one-off</span></div><p>For a fuller assessment when you need more context for your next move.</p><ul><li>12-page reviewed PDF</li><li>Five competitor profiles</li><li>Deeper market, pricing and keyword analysis</li><li>Within 12 hours of your completed brief</li></ul><a class="price-btn price-btn-primary" href="https://payhip.com/b/YvjeX" target="_blank" rel="noopener">Choose Deep Dive →</a><a href="/deep-dive.html" style="color:var(--navy);font-weight:500">Read Deep Dive details →</a></article>
+<article class="home-report-card"><h3>Monthly Monitor</h3><div class="home-report-price"><span class="home-report-amount">£130</span><span class="home-report-frequency">per calendar month</span></div><p>For ongoing decisions: follow competitor changes and review what to do next.</p><ul><li>Four 12-page reviewed reports per paid cycle</li><li>First report within 8 hours of your completed brief</li><li>Later reports at seven-day intervals</li><li>Renews monthly; cancel future renewals anytime</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/order?link=FIXaT&amp;pricing_plan=V6B73kyvBr" target="_blank" rel="noopener">Choose Monthly →</a><a href="/monthly-monitor.html" style="color:var(--navy);font-weight:500">Read Monthly Monitor details →</a></article></div><p style="margin-top:24px;line-height:1.7"><a href="#included" onclick="showPage('included');return false;">See the full report contents</a> · <a href="#contact" onclick="showPage('contact');return false;">Need help choosing? Ask us</a></p></div></section>
 <section style="padding:64px 5%;max-width:1160px;margin:auto" aria-labelledby="homeJourneyTitle"><h2 id="homeJourneyTitle" class="section-title">From payment<br><em>to a clearer next move.</em></h2><div class="home-step-grid"><div><h3>1. Choose and pay</h3><p>Select a report and complete secure Payhip checkout. Receive your payment receipt.</p></div><div><h3>2. Complete your brief</h3><p>Open the separate secure questionnaire email and tell us about your business and priorities.</p></div><div><h3>3. We research and review</h3><p>Public evidence is researched and the finished report is personally checked before delivery.</p></div><div><h3>4. Receive your PDF</h3><p>Your reviewed report arrives by email. Use its comparisons and action plan to inform your next decision.</p></div></div></section><!-- ── TRUST STRIP ── -->
 <div style="background:var(--navy);padding:40px 5%">
   <div class="quality-grid reveal">
@@ -1255,7 +1276,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 <div class="sample-cta reveal" id="sample-2">
   <div>
     <h2>Not sure yet? Read a<br><em>real sample report first.</em></h2>
-    <p>Explore a fictional 12-page Deep Dive example for a Leicester fitness business. It illustrates the structure and format, rather than live research or a promise of identical findings.</p>
+    <p>Explore a fictional 12-page Deep Dive example for a Nottingham cleaning business. It illustrates the structure and format, rather than live research or a promise of identical findings.</p>
   </div>
   <button class="btn-teal-outline" onclick="downloadSample()">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
