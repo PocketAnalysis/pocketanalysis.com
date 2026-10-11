@@ -314,6 +314,8 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 
 .hero{min-height:auto;padding-top:140px;padding-bottom:64px}.hero-stats{margin-top:40px;padding-top:24px}.hero-sub{margin-bottom:28px}.hero-inner{max-width:860px}a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:5px}.nav-logo{cursor:pointer}@media(max-width:600px){.hero{padding-top:110px}.hero-stats{gap:24px}.hero h1{font-size:40px}}
 input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);outline-offset:3px}button:disabled{opacity:.65;cursor:wait}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-actions{opacity:1!important;transform:none!important}}
+
+.home-report-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:32px}.home-report-card{background:white;border:1px solid var(--border);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px}.home-report-card h3{font:500 27px var(--font-display)}.home-report-card ul{padding-left:20px;line-height:1.8;color:var(--text-mid);font-size:15px}.home-report-card .price-btn{margin-top:auto}.home-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:28px}.home-step-grid h3{font-size:18px;margin-bottom:10px}.home-step-grid p{line-height:1.7;color:var(--text-mid)}@media(max-width:760px){.home-report-grid,.home-step-grid{grid-template-columns:1fr}.home-report-card{padding:24px}}
 </style>
 </head>
 <body>
@@ -656,7 +658,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 
 <div class="sample-cta reveal" id="sample-1">
   <div>
-    <h2>Not sure yet? Read a<br><em>real sample report first.</em></h2>
+    <h2>Not sure yet? Read a<br><em>sample report first.</em></h2>
     <p>Explore a fictional 12-page Deep Dive example showing the structure and presentation. Your report is researched for your business; Snapshot is a shorter 8-page package.</p>
   </div>
   <button class="btn-teal-outline" onclick="downloadSample()">
@@ -1198,7 +1200,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
     <h1>Understand your competitors.<br><em>Make your next move clearer.</em></h1>
     <p class="hero-sub">Compare publicly available competitor pricing, local market evidence and keyword opportunities in a clear PDF. Choose an 8-page Snapshot or a 12-page Deep Dive, from £49 including tax.</p>
     <div class="hero-actions">
-      <a href="#pricing" onclick="showPage('pricing'); return false;" class="btn-primary" style="cursor:pointer">Explore reports — from £49
+      <a href="#homeReports" onclick="document.getElementById('homeReports').scrollIntoView({behavior:'smooth'});return false;" class="btn-primary" style="cursor:pointer">Choose your report — from £49
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <button class="btn-ghost" onclick="downloadSample()">
@@ -1228,36 +1230,17 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 
 
 
-<!-- ── OBJECTION HANDLER ── -->
-<section style="padding:80px 5%;background:white">
-  <div class="section-label reveal">Before you order</div>
-  <div class="section-title reveal">Three questions<br><em>we get asked most.</em></div>
-  <div class="process-detail reveal" style="margin-top:36px">
-    <div class="process-card">
-      <div class="pc-num">Is it really specific to my business?</div>
-      <h3>"Yes — built from scratch every time."</h3>
-      <p>We research your actual competitors in your actual location using live data — Google Maps, Google Business Profiles, real pricing, and keyword research. Nothing is copy-pasted from a template. Your business name, industry, and location appear throughout.</p>
-    </div>
-    <div class="process-card">
-      <div class="pc-num">Will it really arrive within 24 hours?</div>
-      <h3>"Within your package’s delivery window."</h3>
-      <p>Your delivery window starts when your completed brief arrives: Snapshot within 24 hours, Deep Dive within 12 hours, and the first Monthly Monitor report within 8 hours. Every report is reviewed personally before it is emailed to you.</p>
-    </div>
-    <div class="process-card">
-      <div class="pc-num">What if the report is not useful?</div>
-      <h3>"We will correct it free of charge."</h3>
-      <p>If any data in your report is factually incorrect — a competitor that has closed, an outdated price — let us know within 7 days and we will correct it and resend at no cost. Every report is quality-checked before it is sent.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── TRUST STRIP ── -->
+<section id="homeReports" style="padding:64px 5%;background:var(--off-white)" aria-labelledby="homeReportsTitle"><div style="max-width:1160px;margin:auto"><div class="section-label">Choose your report</div><h2 id="homeReportsTitle" class="section-title">One clear decision.<br><em>The right level of research.</em></h2><p style="margin-top:20px;line-height:1.7;color:var(--text-mid)">Start with a one-off report, or track changes with four reports each month. All prices include applicable tax.</p><div class="home-report-grid">
+<article class="home-report-card"><h3>Snapshot</h3><p style="font-size:28px">£49 <small style="font-size:14px">one-off</small></p><p>For a focused first look before your next pricing or marketing decision.</p><ul><li>8-page reviewed PDF</li><li>Three competitor profiles</li><li>Public pricing comparison and five keyword opportunities</li><li>Within 24 hours of your completed brief</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/b/N47tJ" target="_blank" rel="noopener">Choose Snapshot — £49 →</a></article>
+<article class="home-report-card" style="border-color:var(--teal)"><h3>Deep Dive</h3><p style="font-size:28px">£79 <small style="font-size:14px">one-off</small></p><p>For a fuller assessment when you need more context for your next move.</p><ul><li>12-page reviewed PDF</li><li>Five competitor profiles</li><li>Deeper market, pricing and keyword analysis</li><li>Within 12 hours of your completed brief</li></ul><a class="price-btn price-btn-primary" href="https://payhip.com/b/YvjeX" target="_blank" rel="noopener">Choose Deep Dive — £79 →</a></article>
+<article class="home-report-card"><h3>Monthly Monitor</h3><p style="font-size:28px">£130 <small style="font-size:14px">per calendar month</small></p><p>For ongoing decisions: follow competitor changes and review what to do next.</p><ul><li>Four 12-page reviewed reports per paid cycle</li><li>First report within 8 hours of your completed brief</li><li>Later reports at seven-day intervals</li><li>Renews monthly; cancel future renewals anytime</li></ul><a class="price-btn price-btn-outline" href="https://payhip.com/order?link=FIXaT&amp;pricing_plan=V6B73kyvBr" target="_blank" rel="noopener">Choose Monthly — £130/month →</a></article></div><p style="margin-top:24px;line-height:1.7"><a href="#included" onclick="showPage('included');return false;">See the full report contents</a> · <a href="#contact" onclick="showPage('contact');return false;">Need help choosing? Ask us</a></p></div></section>
+<section style="padding:64px 5%;max-width:1160px;margin:auto" aria-labelledby="homeJourneyTitle"><h2 id="homeJourneyTitle" class="section-title">From payment<br><em>to a clearer next move.</em></h2><div class="home-step-grid"><div><h3>1. Choose and pay</h3><p>Select a report and complete secure Payhip checkout. Receive your payment receipt.</p></div><div><h3>2. Complete your brief</h3><p>Open the separate secure questionnaire email and tell us about your business and priorities.</p></div><div><h3>3. We research and review</h3><p>Public evidence is researched and the finished report is personally checked before delivery.</p></div><div><h3>4. Receive your PDF</h3><p>Your reviewed report arrives by email. Use its comparisons and action plan to inform your next decision.</p></div></div></section><!-- ── TRUST STRIP ── -->
 <div style="background:var(--navy);padding:40px 5%">
   <div class="quality-grid reveal">
     <div class="quality-item">
       <div class="qi-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <h4>Secure checkout</h4>
-      <p>Payments processed by Stripe — the same technology used by Amazon and Deliveroo.</p>
+      <p>Secure payment through Payhip, with card payments processed by Stripe.</p>
     </div>
     <div class="quality-item">
       <div class="qi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
@@ -1294,7 +1277,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
   <div class="reveal">
     <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;opacity:.7">Ready to get started?</div>
     <h2 style="font-family:var(--font-display);font-size:clamp(28px,4vw,46px);font-weight:300;color:var(--navy);letter-spacing:-.5px;margin-bottom:16px;line-height:1.15">Your market is changing.<br><em style="font-style:italic">Do you know how?</em></h2>
-    <p style="font-size:16px;color:var(--navy);opacity:.75;max-width:480px;margin:0 auto 32px;font-weight:300;line-height:1.65">Order your report today and know exactly where you stand — before your next pricing, marketing, or growth decision.</p>
+    <p style="font-size:16px;color:var(--navy);opacity:.75;max-width:480px;margin:0 auto 32px;font-weight:300;line-height:1.65">Compare public evidence before your next pricing, marketing or growth decision.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a href="https://payhip.com/b/YvjeX" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;font-size:15px;font-weight:500;padding:16px 32px;border-radius:50px;text-decoration:none;transition:all .2s">
         Start with Deep Dive — £79 
