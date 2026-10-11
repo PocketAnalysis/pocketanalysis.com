@@ -255,7 +255,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 .compare-table .ct-yes{color:var(--teal);font-weight:700;font-size:16px}
 .compare-table .ct-no{color:rgba(255,255,255,.25)}
 .compare-table tbody tr:last-child td{border-bottom:none}
-@media(max-width:768px){.compare-table{font-size:11px}.compare-table th,.compare-table td{padding:10px 8px}.compare-table .ct-feature{white-space:normal}}
+.comparison-hint{display:none}.comparison-scroll:focus-visible{outline:3px solid var(--teal);outline-offset:4px}@media(max-width:768px){.comparison-hint{display:block;color:rgba(255,255,255,.75);font-size:13px;margin-top:24px}.compare-table{font-size:13px;min-width:620px}.compare-table th,.compare-table td{padding:12px}.compare-table .ct-feature{white-space:normal}}
 
 /* PREMIUM CONTENT BLOCKS */
 .premium-section{padding:0 5% 80px}
@@ -846,7 +846,8 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
   <section style="padding:0 5% 96px;background:var(--navy)">
     <div class="section-label reveal" style="color:var(--teal)">Compare plans</div>
     <div class="section-title reveal" style="color:white">Side by side<br><em>so you can choose with confidence.</em></div>
-    <div class="reveal" style="overflow-x:auto;margin-top:40px;border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,.1)">
+    <p class="comparison-hint">Swipe across the table to compare all three plans.</p>
+    <div class="reveal comparison-scroll" role="region" aria-label="Report plan comparison; scroll horizontally to see all plans" tabindex="0" style="overflow-x:auto;margin-top:24px;border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,.1)">
       <table class="compare-table">
         <thead>
           <tr>
