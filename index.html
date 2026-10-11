@@ -5,31 +5,19 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X681KVY1SX"></script>
 
 <script>
-function submitContact(e){
+async function submitContact(e){
   e.preventDefault();
-  const name = document.getElementById('contactName').value;
-  const email = document.getElementById('contactEmail').value;
-  const msg = document.getElementById('contactMessage').value;
-  const subject = encodeURIComponent('Website enquiry from ' + name);
-  const body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
-  // Direct form submission via Formspree (no mailto dependency)
-    fetch('https://formspree.io/f/mrpegvon', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({name: name, email: email, subject: subject, message: message})
-    }).then(r => {
-      if (r.ok) {
-        alert('Message sent! We will reply to ' + email + ' within one business day.');
-        document.getElementById('contact-name').value = '';
-        document.getElementById('contact-email').value = '';
-        document.getElementById('contact-subject').value = '';
-        document.getElementById('contact-message').value = '';
-      } else {
-        alert('There was a problem sending your message. Please email us directly at hello@pocketanalysis.com');
-      }
-    }).catch(() => {
-      alert('There was a problem sending your message. Please email us directly at hello@pocketanalysis.com');
-    });
+  const form=e.currentTarget, button=form.querySelector('button[type="submit"]'), status=document.getElementById('contactStatus');
+  const name=document.getElementById('contactName').value.trim(), email=document.getElementById('contactEmail').value.trim(), message=document.getElementById('contactMessage').value.trim();
+  button.disabled=true; status.textContent='Sending your message…';
+  try {
+    const response=await fetch('https://formspree.io/f/mrpegvon',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,subject:'Website enquiry from '+name,message})});
+    if(!response.ok) throw new Error('Message not accepted');
+    status.textContent='Message sent. We aim to reply within one business day.'; form.reset();
+    if(typeof gtag==='function') gtag('event','contact_submit',{result:'success'});
+  } catch {
+    status.textContent='Your message could not be sent. Your text is kept here. Please email hello@pocketanalysis.com.';
+  } finally {button.disabled=false;}
   return false;
 }
 
@@ -316,12 +304,13 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 .qi-icon svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 .hero{min-height:auto;padding-top:140px;padding-bottom:64px}.hero-stats{margin-top:40px;padding-top:24px}.hero-sub{margin-bottom:28px}.hero-inner{max-width:860px}a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:5px}.nav-logo{cursor:pointer}@media(max-width:600px){.hero{padding-top:110px}.hero-stats{gap:24px}.hero h1{font-size:40px}}
+input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);outline-offset:3px}button:disabled{opacity:.65;cursor:wait}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-actions{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span>
+  <a class="nav-logo" href="#" onclick="goHome(); return false;">Pocket<span>.</span>Analysis</a>
   <div class="nav-links" id="navLinks">
     <a href="#how" onclick="showPage('how'); return false;">How it works</a>
     <a href="#included" onclick="showPage('included'); return false;">What's included</a>
@@ -329,7 +318,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
     <a href="#about" onclick="showPage('about'); return false;">About</a>
     <a href="#pricing" onclick="showPage('pricing'); return false;" class="nav-cta">Get your report</a>
   </div>
-  <button class="nav-mobile-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+  <button class="nav-mobile-toggle" onclick="toggleNav()" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -530,13 +519,13 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <div class="step-num">01</div>
       <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
       <h3>Choose &amp; pay</h3>
-      <p>Pick Snapshot, Deep Dive, or Monthly Monitor and check out securely in under a minute.</p>
+      <p>Pick Snapshot, Deep Dive, or Monthly Monitor and check out securely through Payhip.</p>
     </div>
     <div class="how-step">
       <div class="step-num">02</div>
       <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
       <h3>Tell us about your business</h3>
-      <p>Use the secure brief link in your payment confirmation email. Add your business name, industry, location and priorities.</p>
+      <p>Use the separate secure questionnaire email sent after payment. Add your business name, industry, location and priorities.</p>
     </div>
     <div class="how-step">
       <div class="step-num">03</div>
@@ -607,7 +596,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <div class="price-name">Snapshot</div>
       <div class="price-val"><sup>£</sup>49</div>
       <div class="price-freq">one-off payment</div>
-      <div class="price-desc">Perfect for businesses wanting a quick read of their market before making a decision.</div>
+      <div class="price-desc">Best for a focused first look: three competitors, five keyword opportunities and a market overview.</div>
       <div class="price-divider"></div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>8-page PDF report</div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Top 3 competitors profiled</div>
@@ -615,14 +604,14 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>5 SEO keyword gaps</div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Delivered within 24 hours</div>
       <a href="https://payhip.com/b/N47tJ" target="_blank" class="price-btn price-btn-outline">Get Snapshot report</a>
-      <p style="font-size:11px;color:var(--text-light);text-align:center;margin-top:10px;line-height:1.5">You'll receive a brief form immediately after payment. Report follows within 24 hours.</p>
+      <p style="font-size:11px;color:var(--text-light);text-align:center;margin-top:10px;line-height:1.5">After payment, check your email for your secure brief. The 24-hour delivery window starts when your completed brief arrives.</p>
     </div>
     <div class="price-card featured">
       <div class="popular-badge">More detail</div>
       <div class="price-name">Deep Dive</div>
       <div class="price-val"><sup>£</sup>79</div>
       <div class="price-freq">one-off payment</div>
-      <div class="price-desc">The full picture. Everything you need to understand your market and where to go next.</div>
+      <div class="price-desc">Best for a deeper comparison: five competitors, ten keyword opportunities and sourced market scenarios.</div>
       <div class="price-divider"></div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>12-page PDF report</div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Top 5 competitors in detail</div>
@@ -632,13 +621,13 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Branded cover with your business name</div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Delivered within 12 hours</div>
       <a href="https://payhip.com/b/YvjeX" target="_blank" class="price-btn price-btn-filled">Get Deep Dive report</a>
-      <p style="font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:10px;line-height:1.5">You'll receive a brief form immediately after payment. Report follows within 12 hours.</p>
+      <p style="font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:10px;line-height:1.5">After payment, check your email for your secure brief. The 12-hour delivery window starts when your completed brief arrives.</p>
     </div>
     <div class="price-card">
       <div class="price-name">Monthly Monitor</div>
       <div class="price-val"><sup>£</sup>130</div>
       <div class="price-freq">per month · cancel any time</div>
-      <div class="price-desc">Stay ahead permanently. Fresh intelligence every month as your market changes around you.</div>
+      <div class="price-desc">Best for ongoing monitoring: four reports per paid calendar-month cycle, using your saved brief.</div>
       <div class="price-divider"></div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>4 fresh Deep Dive reports per billing period</div>
       <div class="price-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Competitor change tracking</div>
@@ -696,7 +685,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <div class="process-card">
         <div class="pc-num">Section 5</div>
         <h3>Pricing Landscape</h3>
-        <p>The market floor, the market average, and the premium tier — all calculated from your competitors' real pricing. You'll see exactly where your business sits and whether there's room to adjust.</p>
+        <p>Compare dated, published prices for comparable services. We explain what each price includes and show ranges or averages only where the available sample supports a fair comparison.</p>
       </div>
       <div class="process-card">
         <div class="pc-num">Section 6</div>
@@ -738,8 +727,8 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       </div>
       <div class="quality-item" style="background:var(--off-white);border:1px solid var(--border)">
         <div class="qi-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-        <h4 style="color:var(--text-dark)">Coloured difficulty scoring</h4>
-        <p style="color:var(--text-mid)">SEO keyword difficulty is colour-coded — green for quick wins, amber and red for longer-term targets — so priorities are obvious at a glance.</p>
+        <h4 style="color:var(--text-dark)">Clear keyword evidence</h4>
+        <p style="color:var(--text-mid)">Keyword opportunities are presented clearly. Measured difficulty is included only where a reliable source supports it; unavailable metrics are labelled rather than estimated.</p>
       </div>
       <div class="quality-item" style="background:var(--off-white);border:1px solid var(--border)">
         <div class="qi-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
@@ -1083,24 +1072,24 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 
     <form id="contactForm" onsubmit="return submitContact(event)" style="margin-top:32px;display:flex;flex-direction:column;gap:16px;max-width:480px">
       <div>
-        <label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Your name</label>
+        <label for="contactName" style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Your name</label>
         <input type="text" required id="contactName" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;background:var(--off-white)">
       </div>
       <div>
-        <label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Your email</label>
+        <label for="contactEmail" style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Your email</label>
         <input type="email" required id="contactEmail" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;background:var(--off-white)">
       </div>
       <div>
-        <label style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Message</label>
+        <label for="contactMessage" style="display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px">Message</label>
         <textarea required id="contactMessage" rows="5" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;background:var(--off-white);resize:vertical"></textarea>
       </div>
       <button type="submit" class="btn-primary" style="border:none;width:fit-content">
         Send message
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
-    </form>
+    <p id="contactStatus" role="status" aria-live="polite"></p></form>
 
-    <div class="article-callout" style="margin-top:32px"><p>This form opens your email app with a message pre-filled and addressed to <strong>hello@pocketanalysis.com</strong> — just hit send from there. Prefer to email directly? Write to us any time at <strong>hello@pocketanalysis.com</strong>.</p></div>
+    <div class="article-callout" style="margin-top:32px"><p>This form sends your enquiry securely. Prefer to email directly? Write to <a href="mailto:hello@pocketanalysis.com">hello@pocketanalysis.com</a>.</p></div>
   </div>
 </div>
 
@@ -1172,7 +1161,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
     <p>As each report is custom-prepared for the individual business specified, we are unable to offer refunds once preparation has begun. If you believe there has been an error in your report, contact us at hello@pocketanalysis.com and we will review and correct it free of charge.</p>
 
     <h2>Monthly Monitor subscription</h2>
-    <p>The Monthly Monitor subscription provides four 12-page reports per monthly billing period. The first report is delivered within 8 hours of brief receipt; subsequent reports are scheduled at approximately +7, +14 and +21 calendar days from purchase. The subscription is billed monthly and can be cancelled at any time with no minimum commitment. Cancelling stops future billing; no partial refund is given for the current billing period. If the initial brief is not submitted within the billing period, Pocket Analysis will contact you to resolve scheduling before the next report is due.</p>
+    <p>The Monthly Monitor subscription provides four 12-page reports per monthly billing period. The first report is delivered within 8 hours of brief receipt; subsequent reports are scheduled at approximately +7, +14 and +21 calendar days from purchase. The subscription is billed monthly and can be cancelled at any time with no minimum commitment. Cancelling stops future billing and preserves the remaining reports in your already-paid cycle. Refunds are handled separately. If the initial brief is not submitted within the billing period, Pocket Analysis will contact you to resolve scheduling before the next report is due.</p>
 
     <h2>Accuracy of data</h2>
     <p>All data is compiled from publicly available sources at the time of preparation and is presented in good faith. Pocket Analysis does not guarantee the accuracy, completeness, or currency of third-party data and accepts no liability for decisions made based on it.</p>
@@ -1313,7 +1302,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 
 <footer>
   <div class="footer-top">
-    <div class="footer-brand"><span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span><p>Affordable market and competitor intelligence for UK small businesses. Real data, plain English, fast delivery.</p></div>
+    <div class="footer-brand"><a class="nav-logo" href="#" onclick="goHome(); return false;">Pocket<span>.</span>Analysis</a><p>Affordable market and competitor intelligence for UK small businesses. Real data, plain English, fast delivery.</p></div>
     <div class="footer-col"><h4>Reports</h4><a href="#pricing" onclick="showPage('pricing'); return false;">Snapshot — £49</a><a href="#pricing" onclick="showPage('pricing'); return false;">Deep Dive — £79</a><a href="#pricing" onclick="showPage('pricing'); return false;">Monthly Monitor — £130</a><a onclick="downloadSample()">Sample report</a></div>
     <div class="footer-col"><h4>Resources</h4><a href="#guides" onclick="showPage('guides'); return false;">Free guides</a><a href="#how" onclick="showPage('how'); return false;">How it works</a><a href="#included" onclick="showPage('included'); return false;">What's included</a></div>
     <div class="footer-col"><h4>Company</h4><a href="#about" onclick="showPage('about'); return false;">About</a><a href="#contact" onclick="showPage('contact'); return false;">Contact</a><a href="#privacy" onclick="showPage('privacy'); return false;">Privacy policy</a><a href="#terms" onclick="showPage('terms'); return false;">Terms of service</a></div>
@@ -1379,7 +1368,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
       <li>Ring them up — for service businesses, calling for a quote is entirely normal and gives you exact pricing</li>
     </ul>
 
-    <div class="article-callout"><p>If your pricing is more than 15% higher than the market average without a clear reason why (premium positioning, superior service, specialist expertise), customers will simply go elsewhere. If you are more than 15% lower, you may be leaving significant profit on the table.</p></div>
+    <div class="article-callout"><p>A price difference alone does not explain buying decisions. Compare scope, quality, reputation and customer needs alongside published prices before changing your offer.</p></div>
 
     <h2>Step four: read what their customers say</h2>
     <p>Your competitors' reviews are a goldmine. Not just for understanding their reputation — for understanding what customers actually value and complain about in your market. Read through the one-star reviews for every competitor. The complaints customers leave are a direct brief for what to do better. Then read the five-star reviews: what are customers raving about? If every five-star review for a competitor mentions "so quick to respond", speed of response is clearly important to your market.</p>
@@ -1426,7 +1415,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
     <h3>2. Seasonal and gift searches</h3>
     <p>Most businesses optimise their website and profiles for their core service — but completely ignore the seasonal variations of that search. A florist might rank for "florists Leicester" but be entirely absent from "Valentine's flowers Leicester" or "Mother's Day bouquet delivery LE1". These seasonal searches often have very low competition because most local businesses have not thought to target them, yet they carry buyers with high purchase intent.</p>
 
-    <div class="article-callout"><p>In our analysis of local Leicester businesses, we found that seasonal keyword variants received an average of 340% more searches in their peak month than in an average month — and that the majority of local businesses were invisible for these searches.</p></div>
+    <div class="article-callout"><p>Seasonal demand can vary. Check dated search evidence for your own location and sector before investing in seasonal content; no percentage uplift is assumed.</p></div>
 
     <h3>3. Problem-first searches</h3>
     <p>People do not always search for the solution. Often they search for the problem. A plumber might rank for "plumber Leicester" but have no presence for "boiler making noise Leicester" or "radiator not heating up LE3". These problem-first searches are searched by people in immediate need — they are your highest-converting visitors. And because most businesses do not write content targeting these terms, the competition for them is remarkably low.</p>
@@ -1472,7 +1461,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
     <p>If your cost-plus price is lower than what the market is charging, you are leaving profit on the table. Every customer who would happily have paid £85 for your service and paid £60 because that is what you charged represents £25 in unrealised revenue. Over a year, across hundreds of customers, this adds up to a significant sum.</p>
     <p>If your cost-plus price is higher than the market, you will struggle to win customers regardless of the quality of your work.</p>
 
-    <div class="article-callout"><p>In our analysis across dozens of UK small businesses, we find that roughly 40% are underpriced relative to the market average — often by 15% to 25%. That gap is almost always invisible to the business owner because they have never systematically looked at what competitors charge.</p></div>
+    <div class="article-callout"><p>Published prices can help you understand your position, but differences in scope, location and service quality matter. Compare like-for-like offers before drawing conclusions about your price.</p></div>
 
     <h2>The four pricing reference points you should know</h2>
     <p>When we compile the pricing landscape section of a Pocket Analysis report, we look at four key reference points for every market:</p>
@@ -1481,7 +1470,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
     <p>The lowest price being charged by a credible, established competitor in your area. This is the minimum you need to know about — not because you should match it, but because pricing below it sends a signal of low quality that can actually reduce conversions. Customers who see a price significantly below market average often wonder why.</p>
 
     <h3>2. The market average</h3>
-    <p>The midpoint price across your direct competitors. This is your most important reference point. Pricing within 10% above or below this figure means you are competing on factors other than price — service quality, speed, reputation, specialisation. Pricing more than 20% above it requires a clear and visible reason why you are worth the premium.</p>
+    <p>An average or median can be a useful reference when enough comparable published prices are available. We identify the sample and calculation, and avoid treating a small selection as the entire market.</p>
 
     <h3>3. The premium tier</h3>
     <p>What the highest-charging established competitor charges, and what justifies that premium in the eyes of their customers. Understanding the premium tier tells you how much headroom exists in your market and what positioning you would need to occupy that space.</p>
@@ -1494,7 +1483,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 
     <h2>How to research pricing properly</h2>
     <p>Thorough pricing research involves visiting competitor websites, reading customer reviews (which often include price mentions), requesting quotes as a prospective customer, and cross-referencing with price comparison directories relevant to your sector. It is time-consuming to do properly — but the financial impact of having accurate pricing data is significant enough to make it worthwhile.</p>
-    <p>The pricing landscape section of our reports presents the market's price distribution across all direct competitors, identifies where your business sits within it, and highlights the tier with the highest transaction volume — which is usually the most commercially attractive place to be positioned.</p>
+    <p>Our pricing landscape compares available published prices for relevant competitors and explains differences in scope. It does not infer competitors’ sales volumes or claim to cover every provider.</p>
 
     <div class="article-cta-box">
       <h3>Find out exactly where you sit in your market</h3>
@@ -1532,6 +1521,7 @@ function showPage(id, updateHistory = true) {
   if (!document.getElementById('page-' + id)) return;
   if (updateHistory) history.pushState({ page: id }, '', id === 'main' ? location.pathname : '#' + id);
   toggleNav(false);
+  if(typeof gtag==='function') gtag('event','journey_page_view',{page_name:id});
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + id);
   if (target) {
@@ -1570,8 +1560,16 @@ function toggleNav(force) {
   } else {
     nl.classList.toggle('open');
   }
+  document.querySelector('.nav-mobile-toggle').setAttribute('aria-expanded',String(nl.classList.contains('open')));
 }
 
+// Record anonymous journey events using the existing analytics connection; never include email, business names, form answers or order tokens.
+document.addEventListener('click',event=>{
+ const link=event.target.closest('a');
+ if(!link||typeof gtag!=='function') return;
+ if(link.hostname==='payhip.com') gtag('event','checkout_click',{package:link.pathname});
+});
+document.addEventListener('click',event=>{if(event.target.closest('[onclick*="downloadSample"]')&&typeof gtag==='function')gtag('event','sample_download');});
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 function initReveal() {
   const reveals = document.querySelectorAll('#page-main .reveal');
