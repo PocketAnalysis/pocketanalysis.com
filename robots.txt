@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pocketanalysis.com/sitemap.xml
