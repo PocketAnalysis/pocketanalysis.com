@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X681KVY1SX"></script>
+
 
 <script>
 async function submitContact(e){
@@ -11,20 +11,17 @@ async function submitContact(e){
   const name=document.getElementById('contactName').value.trim(), email=document.getElementById('contactEmail').value.trim(), message=document.getElementById('contactMessage').value.trim();
   button.disabled=true; status.textContent='Sending your message…';
   try {
-    const response=await fetch('https://formspree.io/f/mrpegvon',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,subject:'Website enquiry from '+name,message})});
+    const response=await fetch('https://formspree.io/f/mrpegvon',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,subject:'Website enquiry from '+name,message,...(window.paAttribution?window.paAttribution():{})})});
     if(!response.ok) throw new Error('Message not accepted');
     status.textContent='Message sent. We aim to reply within one business day.'; form.reset();
-    if(typeof gtag==='function') gtag('event','contact_submit',{result:'success'});
+    if(window.paTrack) window.paTrack('campaign_contact_submit',{result:'success'});
   } catch {
     status.textContent='Your message could not be sent. Your text is kept here. Please email hello@pocketanalysis.com.';
   } finally {button.disabled=false;}
   return false;
 }
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X681KVY1SX');
+
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -340,7 +337,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 @media(max-width:1000px){.home-report-grid,.pricing-grid{grid-template-columns:1fr}.home-report-card>p,.price-desc{min-height:0}.home-report-card .price-btn{margin-top:8px}.price-card .price-btn{margin-top:24px}}
 
 </style>
-</head>
+<script defer src="/conversion.js"></script></head>
 <body>
 
 <nav>
@@ -1132,7 +1129,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
 
     <h2>Information we collect</h2>
     <p>When you order a report, we collect the information you provide directly: your name, email address, business name, industry, location, and any details you share about your business and competitors via our order form. Payment is processed securely by our payment provider — we do not store your card details.</p>
-    <p>When you browse our website, we use Google Analytics to collect anonymised information about how visitors use the site, such as which pages are viewed and how long visitors stay. This helps us improve the site and does not identify you personally.</p>
+    <p>If you allow optional analytics, we use Google Analytics to understand page visits and campaign activity. You can browse and buy without allowing analytics. We do not include email addresses, brief answers or order tokens in our campaign events.</p>
 
     <h2>How we use your information</h2>
     <ul>
@@ -1149,7 +1146,7 @@ input:focus-visible,textarea:focus-visible{outline:3px solid var(--teal-dark);ou
     <p>Under UK GDPR, you have the right to request a copy of the personal data we hold about you, ask us to correct inaccurate data, or ask us to delete your data. To make a request, email <strong>hello@pocketanalysis.com</strong> and we will respond within 30 days.</p>
 
     <h2>Cookies</h2>
-    <p>Our website uses cookies for analytics purposes via Google Analytics. You can disable cookies through your browser settings at any time; this will not affect your ability to browse the site or order a report.</p>
+    <p>Google Analytics loads only after you allow it. You can change your choice using Analytics preferences in the footer. Optional research updates use a separate unticked consent box and require email confirmation. Read the <a href="/privacy.html">full privacy policy</a> for details.</p>
 
     <h2>Changes to this policy</h2>
     <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "last updated" date.</p>
