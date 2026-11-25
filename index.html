@@ -2009,6 +2009,12 @@ function showPage(id) {
     document.body.scrollTop = 0;
     window.scrollTo(0, 0);
     target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    // Update URL hash so the page can be bookmarked / linked directly
+    if (id === 'main') {
+      history.replaceState(null, '', window.location.pathname);
+    } else {
+      history.replaceState(null, '', '#' + id);
+    }
   }
 }
 
@@ -2060,7 +2066,17 @@ window.addEventListener('scroll', () => {
     window.scrollY > 50 ? 'rgba(11,25,41,.98)' : 'rgba(11,25,41,.92)';
 });
 
-window.addEventListener('DOMContentLoaded', initReveal);
+window.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  // ── Hash-based deep linking ─────────────────────────────────────────────
+  // Allows pocketanalysis.com/#pricing, /#about, etc. to open the right page.
+  // Also handles redirects from /pricing.html, /about.html, etc.
+  const hash = location.hash.replace('#', '').trim();
+  const validPages = ['how','included','pricing','about','contact','snapshot','deepdive','monthly','guides','privacy','terms','article1','article2','article3'];
+  if (hash && validPages.includes(hash)) {
+    showPage(hash);
+  }
+});
 </script>
 </body>
 </html>
