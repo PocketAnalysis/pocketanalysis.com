@@ -338,6 +338,7 @@
     <button class="btn-ghost" onclick="showPage('pricing')" style="cursor:pointer">
       Compare plans in detail <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
+    <p class="pricing-reassure">No subscription required. No lock-in. Errors fixed free within 7 days.</p>
   </div>
 </section>
 
@@ -679,6 +680,7 @@
           <div class="pbc-price"><sup>£</sup>49</div>
           <div class="pbc-freq">one-off payment · no subscription</div>
           <a href="https://payhip.com/b/N47tJ" target="_blank" class="price-btn price-btn-steel pbc-btn">Get Snapshot — £49</a>
+          <div class="pbc-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Accuracy guaranteed — errors fixed free within 7 days</div>
           <div class="pbc-note">You'll receive a brief form immediately after payment. Report delivered within 24 hours.</div>
           <div class="pbc-features">
             <div class="pbc-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>8-page PDF report</div>
@@ -755,6 +757,7 @@
           <div class="pbc-price"><sup>£</sup>79</div>
           <div class="pbc-freq">one-off payment · no subscription</div>
           <a href="https://payhip.com/b/YvjeX" target="_blank" class="price-btn price-btn-filled pbc-btn">Get Deep Dive — £79</a>
+          <div class="pbc-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Accuracy guaranteed — errors fixed free within 7 days</div>
           <div class="pbc-note">You'll receive a brief form immediately after payment. Report delivered within 12 hours.</div>
           <div class="pbc-features">
             <div class="pbc-feature"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>12-page PDF report</div>
@@ -832,6 +835,7 @@
           <div class="pbc-price"><sup>£</sup>130</div>
           <div class="pbc-freq">per month · cancel any time</div>
           <a href="https://payhip.com/b/FIXaT" target="_blank" class="price-btn price-btn-gold pbc-btn">Start monitoring — £130/mo</a>
+          <div class="pbc-guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Accuracy guaranteed · cancel any time</div>
           <div class="pbc-note">First report within 6 hours. Cancel any time — no contract, no minimum term.</div>
           <div class="pbc-features">
             <div class="pbc-feature pbc-feature--gold"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>New Deep Dive report monthly</div>
@@ -1326,6 +1330,23 @@ section{padding:96px 5%}
 .pbc-btn{margin-bottom:16px!important;padding-top:14px!important}
 .pbc-note{font-size:11px;color:rgba(255,255,255,.35);text-align:center;line-height:1.6;margin-bottom:20px}
 .pbc-features{display:flex;flex-direction:column;gap:8px}
+.pbc-guarantee{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:rgba(255,255,255,.4);margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);line-height:1.4}
+.pbc-guarantee svg{flex-shrink:0}
+.testimonial-rating{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:28px}
+.testimonial-rating .tr-stars{color:#F5A623;font-size:20px;letter-spacing:2px}
+.testimonial-rating .tr-label{font-size:13px;color:rgba(0,0,0,.45);letter-spacing:.01em}
+.pricing-reassure{text-align:center;font-size:13px;color:rgba(255,255,255,.4);margin-top:16px}
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(11,25,41,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.1);z-index:999;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:14px max(5%,calc(50% - 600px))}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sticky-cta-text{font-size:14px;color:rgba(255,255,255,.7);line-height:1.4}
+.sticky-cta-text strong{color:white;font-weight:600}
+.sticky-cta-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sticky-cta-btn{background:var(--teal);color:var(--navy);border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:var(--font-display);letter-spacing:-.01em}
+.sticky-cta-btn:hover{opacity:.88}
+.sticky-cta-close{background:none;border:none;color:rgba(255,255,255,.35);font-size:22px;line-height:1;cursor:pointer;padding:4px 8px}
+.sticky-cta-close:hover{color:white}
+@media(max-width:600px){.sticky-cta-text{display:none}}
 .pbc-feature{display:flex;gap:8px;align-items:center;font-size:12px;color:rgba(255,255,255,.65);font-weight:300}
 .pbc-feature svg{width:13px;height:13px;stroke:var(--teal);fill:none;stroke-width:2.5;stroke-linecap:round;flex-shrink:0}
 .pbc-feature--gold svg{stroke:#d4a429}
@@ -1641,6 +1662,10 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 <section class="testimonials">
   <div class="section-label reveal">What clients say</div>
   <h2 class="section-title reveal">Real businesses.<br><em>Real results.</em></h2>
+  <div class="testimonial-rating reveal">
+    <span class="tr-stars">★★★★★</span>
+    <span class="tr-label">5.0 · Reviewed by verified clients</span>
+  </div>
   <div class="testimonial-grid reveal">
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
@@ -2067,7 +2092,33 @@ window.addEventListener('scroll', () => {
     window.scrollY > 50 ? 'rgba(11,25,41,.98)' : 'rgba(11,25,41,.92)';
 });
 
+// ── Sticky CTA bar ────────────────────────────────────────────────────────────
+(function(){
+  var bar = document.getElementById('sticky-cta');
+  var hero = document.querySelector('.hero');
+  if(!bar || !hero) return;
+  var shown = false;
+  window.addEventListener('scroll', function(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if(heroBottom < 0 && !shown){ bar.classList.add('visible'); shown = true; }
+  }, {passive:true});
+})();
+
 window.addEventListener('DOMContentLoaded', initReveal);
 </script>
+
+<!-- ── STICKY CTA BAR ── -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Know your market.</strong> Competitor pricing, SEO gaps &amp; market size — in 24 hours, from £49.
+    </div>
+    <div class="sticky-cta-actions">
+      <button class="sticky-cta-btn" onclick="showPage('pricing')">Order your report →</button>
+      <button class="sticky-cta-close" onclick="document.getElementById('sticky-cta').style.display='none'" aria-label="Dismiss">×</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
