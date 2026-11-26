@@ -1,0 +1,440 @@
+<title>Order Confirmed | Pocket Analysis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+<style>
+  /* Layout: centred confirmation card, full-bleed header band */
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --border: #e6e2db;
+    --fg: #1a1916;
+    --fg-muted: #6b6460;
+    --accent: #2d6a4f;
+    --accent-light: #eaf4ef;
+    --accent-mid: #52a87a;
+    --step-num: #d4ebe0;
+    --radius: 12px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e0d0b;
+      --surface: #1a1916;
+      --border: #2b2825;
+      --fg: #f0ede7;
+      --fg-muted: #9b928b;
+      --accent: #52a87a;
+      --accent-light: #0c2318;
+      --accent-mid: #74c499;
+      --step-num: #0d2318;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e0d0b;
+    --surface: #1a1916;
+    --border: #2b2825;
+    --fg: #f0ede7;
+    --fg-muted: #9b928b;
+    --accent: #52a87a;
+    --accent-light: #0c2318;
+    --accent-mid: #74c499;
+    --step-num: #0d2318;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100%;
+  }
+
+  .hero {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 48px max(24px, env(safe-area-inset-left, 0px)) 56px;
+    margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+    padding-top: calc(env(safe-area-inset-top, 0px) + 48px);
+  }
+
+  .check-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 700;
+    margin: 0 0 8px;
+    text-wrap: balance;
+    letter-spacing: -0.3px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    opacity: 0.88;
+    margin: 0;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .content {
+    max-width: 580px;
+    margin: -24px auto 0;
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+    padding-bottom: 48px;
+  }
+
+  .product-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .product-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .product-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 2px;
+  }
+
+  .product-meta {
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .product-price {
+    margin-left: auto;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .delivery-box {
+    background: var(--accent-light);
+    border: 1px solid var(--accent-mid);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .delivery-box svg { flex-shrink: 0; color: var(--accent); }
+
+  .delivery-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--accent);
+    margin: 0 0 2px;
+  }
+
+  .delivery-time {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  .section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-muted);
+    margin: 0 0 12px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 28px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--step-num);
+    color: var(--accent);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-body strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .step-body p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+
+  .includes {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+
+  .includes ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .includes li::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    flex-shrink: 0;
+    margin-top: 2px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' stroke='%232d6a4f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  }
+
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .contact-box p { margin: 0 0 4px; font-size: 14px; color: var(--fg-muted); }
+  .contact-box a { color: var(--accent); font-weight: 600; text-decoration: none; font-size: 15px; }
+
+  .nav-link { display: block; text-align: center; margin-top: 20px; font-size: 13px; color: var(--fg-muted); }
+  .nav-link a { color: var(--accent); font-weight: 500; text-decoration: none; }
+
+  .monthly-note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--fg-muted);
+    box-shadow: var(--shadow);
+  }
+  .monthly-note strong { color: var(--fg); }
+</style>
+
+<div class="hero" id="hero">
+  <div class="check-circle">
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+      <path d="M6 15.5l6.5 6.5 11.5-13" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h1 id="hero-title">Order confirmed</h1>
+  <p id="hero-sub">Thank you for your order. Here's what happens next.</p>
+</div>
+
+<div class="content">
+  <div class="product-card" id="product-card">
+    <div class="product-icon">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="3" y="2" width="16" height="18" rx="2" stroke="var(--accent)" stroke-width="1.6"/>
+        <path d="M7 7h8M7 11h8M7 15h5" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="product-name" id="product-name">Report</p>
+      <p class="product-meta" id="product-meta">Pocket Analysis</p>
+    </div>
+    <div class="product-price" id="product-price"></div>
+  </div>
+
+  <div class="delivery-box">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <circle cx="11" cy="11" r="9" stroke="var(--accent)" stroke-width="1.6"/>
+      <path d="M11 7v4.5l3 2" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <p class="delivery-label">Delivery window</p>
+      <p class="delivery-time" id="delivery-time">—</p>
+    </div>
+  </div>
+
+  <div id="monthly-note" class="monthly-note" hidden>
+    <strong>Monthly Monitor:</strong> Your first report establishes your baseline. Reports 2–4 follow at 7-day intervals within your billing cycle. Your brief is saved — no questionnaire needed each week.
+  </div>
+
+  <p class="section-heading">What happens next</p>
+  <div class="steps" id="steps-list"></div>
+
+  <p class="section-heading">What your report includes</p>
+  <div class="includes">
+    <ul id="includes-list"></ul>
+  </div>
+
+  <div class="contact-box">
+    <p>Questions about your order?</p>
+    <a href="https://pocketanalysis.com/contact.html">hello@pocketanalysis.com</a>
+    <p style="margin-top:6px;font-size:12px;">We typically reply within a few hours.</p>
+  </div>
+
+  <div class="nav-link">
+    <a href="https://pocketanalysis.com">← Back to Pocket Analysis</a>
+  </div>
+</div>
+
+<script>
+  const PRODUCTS = {
+    snapshot: {
+      name: 'Snapshot', price: '£49', meta: 'One-off report · 8 pages',
+      deliveryTime: 'Within 24 hours of your completed brief',
+      heroSub: "Your Snapshot report is in progress. Here's what to expect.",
+      includes: ['Executive summary','3 competitor comparisons with public pricing','5 keyword opportunities','Competitor observations and positioning notes','Action plan for your next decision'],
+      steps: [
+        {title:'Check your email',detail:'A questionnaire link has been sent to the email address you used at checkout. Check your inbox (and spam folder just in case).'},
+        {title:'Complete your brief',detail:'Open the questionnaire and fill in your business details and research focus. The more context you give, the sharper your report.'},
+        {title:'We research and review',detail:'Once your completed brief arrives, your 24-hour delivery window starts. Every report is personally reviewed before it's sent.'},
+        {title:'Receive your PDF',detail:'Your 8-page Snapshot report is emailed directly to you as a PDF, ready to open and act on.'},
+      ],
+    },
+    deepdive: {
+      name: 'Deep Dive', price: '£79', meta: 'One-off report · 12 pages',
+      deliveryTime: 'Within 12 hours of your completed brief',
+      heroSub: "Your Deep Dive report is in progress. Here's what to expect.",
+      includes: ['Executive summary with wider market context','5 competitor profiles with dated evidence','10 keyword opportunities','Comparable public pricing analysis','Scenario planning with explicit assumptions','Full prioritised action plan'],
+      steps: [
+        {title:'Check your email',detail:'A questionnaire link has been sent to your checkout email address. Check your inbox (and spam folder just in case).'},
+        {title:'Complete your brief',detail:'Open the questionnaire and fill in your business details and research priorities. Your brief shapes the depth of the report.'},
+        {title:'We research and review',detail:'Your 12-hour delivery window begins the moment your completed brief arrives. Every report is personally reviewed — no automated output.'},
+        {title:'Receive your PDF',detail:'Your 12-page Deep Dive report arrives by email as a PDF, with sources and dates throughout.'},
+      ],
+    },
+    monthly: {
+      name: 'Monthly Monitor', price: '£130/mo', meta: 'Ongoing subscription · 4 reports per month',
+      deliveryTime: 'First report within 8 hours · Then weekly for 3 more reports',
+      heroSub: "Your Monthly Monitor subscription is active. Here's what to expect.",
+      showMonthlyNote: true,
+      includes: ['Four 12-page reports per billing month','First report within 8 hours of your completed brief','Reports 2–4 delivered at 7-day intervals','Saved brief — no repeat questionnaire each week','Ongoing change tracking vs previous reports','Dated market evidence throughout'],
+      steps: [
+        {title:'Check your email',detail:'A questionnaire link has been sent to your checkout email. This is a one-time brief — your answers are saved for future reports.'},
+        {title:'Complete your brief',detail:'Fill in your business details and research focus. This establishes your baseline and shapes every report in your cycle.'},
+        {title:'First report within 8 hours',detail:'Once your completed brief arrives, your first 12-page report is personally researched, reviewed and emailed to you.'},
+        {title:'Weekly reports follow automatically',detail:'Reports 2, 3 and 4 are scheduled at 7-day intervals within your paid billing cycle — no further action needed from you.'},
+        {title:'Ongoing subscription',detail:'Your subscription renews monthly. Cancel any time — reports already paid for are still delivered. hello@pocketanalysis.com for any questions.'},
+      ],
+    },
+  };
+  const aliases = {'deep-dive':'deepdive','deep_dive':'deepdive','monitor':'monthly','monthly-monitor':'monthly'};
+  function getProduct() {
+    const p = new URLSearchParams(window.location.search);
+    const k = (p.get('product')||'').toLowerCase().trim();
+    return PRODUCTS[aliases[k]||k]||null;
+  }
+  function render() {
+    const product = getProduct();
+    if (!product) {
+      document.getElementById('product-card').hidden = true;
+      document.getElementById('delivery-time').textContent = 'As stated on your product page';
+      renderSteps([{title:'Check your email',detail:'A questionnaire link has been sent to your checkout email address.'},{title:'Complete your brief',detail:'Fill in your business details and research focus.'},{title:'Receive your PDF',detail:'Your report is emailed once research and personal review is complete.'}]);
+      renderIncludes(['Competitor and market research','Action plan','Personally reviewed PDF report']);
+      return;
+    }
+    document.getElementById('hero-title').textContent = product.name+' confirmed';
+    document.getElementById('hero-sub').textContent = product.heroSub;
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-meta').textContent = product.meta;
+    document.getElementById('product-price').textContent = product.price;
+    document.getElementById('delivery-time').textContent = product.deliveryTime;
+    if (product.showMonthlyNote) document.getElementById('monthly-note').hidden = false;
+    renderSteps(product.steps);
+    renderIncludes(product.includes);
+    if (typeof gtag==='function') {
+      const p = new URLSearchParams(window.location.search);
+      gtag('event','purchase',{transaction_id:p.get('order_id')||Date.now().toString(),value:parseFloat(product.price.replace(/[^0-9.]/g,''))||0,currency:'GBP',items:[{item_name:product.name,price:parseFloat(product.price.replace(/[^0-9.]/g,''))||0,quantity:1}]});
+    }
+  }
+  function renderSteps(steps) {
+    document.getElementById('steps-list').innerHTML = steps.map((s,i)=>`<div class="step"><div class="step-num">${i+1}</div><div class="step-body"><strong>${s.title}</strong><p>${s.detail}</p></div></div>`).join('');
+  }
+  function renderIncludes(items) {
+    document.getElementById('includes-list').innerHTML = items.map(i=>`<li>${i}</li>`).join('');
+  }
+  render();
+</script>
