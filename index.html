@@ -944,7 +944,7 @@
 
   <div class="sample-cta reveal" style="margin:0 5% 80px">
     <div>
-      <h2>Want the full analysis for your own business?<br><em>Order your report today.</em></h2>
+      <h2>Want the full analysis for your own business?<br><em>See pricing and order today.</em></h2>
     </div>
     <button class="btn-teal-outline" onclick="showPage('pricing')">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1162,7 +1162,6 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font-body);color:var(--text-dark);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(11,25,41,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-logo{font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--white);letter-spacing:-.3px;text-decoration:none;cursor:pointer}
-.nav-logo span{color:var(--teal)}
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{font-size:14px;font-weight:400;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;cursor:pointer}
 .nav-links a:hover{color:var(--white)}
@@ -1517,13 +1516,13 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 <body>
 
 <nav>
-  <span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span>
+  <span class="nav-logo" onclick="goHome()">Pocket Analysis</span>
   <div class="nav-links" id="navLinks">
-    <a onclick="showPage('how')">How it works</a>
-    <a onclick="showPage('included')">What's included</a>
-    <a onclick="showPage('pricing')">Pricing</a>
-    <a onclick="showPage('about')">About</a>
-    <a onclick="showPage('pricing')" class="nav-cta">Get your report</a>
+    <a href="javascript:void(0)" onclick="showPage('how')">How it works</a>
+    <a href="javascript:void(0)" onclick="showPage('included')">What's included</a>
+    <a href="javascript:void(0)" onclick="showPage('pricing')">Pricing</a>
+    <a href="javascript:void(0)" onclick="showPage('about')">About</a>
+    <a href="javascript:void(0)" onclick="showPage('pricing')" class="nav-cta">Get your report</a>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleNav()" aria-label="Toggle menu">
     <span></span><span></span><span></span>
@@ -1537,11 +1536,11 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">UK small business market intelligence</div>
+    <div class="hero-eyebrow">For UK small business owners</div>
     <h1>Know your market.<br><em>Outprice your rivals.</em></h1>
-    <p class="hero-sub">Find out exactly what your competitors charge, which search terms they rank for on Google, and how big your local market really is — delivered as a branded PDF report in 24 hours, from £49.</p>
+    <p class="hero-sub">Most small businesses are pricing on gut feeling while their competitors win customers they don't even know they're losing. A Pocket Analysis report shows you exactly what the market charges, which keywords your rivals rank for, and where your real growth gaps are — delivered as a 12-page PDF in 24 hours, from £49.</p>
     <div class="hero-actions">
-      <a onclick="showPage('pricing')" class="btn-primary" style="cursor:pointer">Order your report
+      <a onclick="showPage('pricing')" class="btn-primary" style="cursor:pointer">See pricing and order
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <button class="btn-ghost" onclick="downloadSample()">
@@ -1821,7 +1820,7 @@ footer{background:var(--navy);padding:64px 5% 40px;color:rgba(255,255,255,.5)}
 
 <footer>
   <div class="footer-top">
-    <div class="footer-brand"><span class="nav-logo" onclick="goHome()">Pocket<span>.</span>Analysis</span><p>Affordable market and competitor intelligence for UK small businesses. Real data, plain English, fast delivery.</p></div>
+    <div class="footer-brand"><span class="nav-logo" onclick="goHome()">Pocket Analysis</span><p>Affordable market and competitor intelligence for UK small businesses. Real data, plain English, fast delivery.</p></div>
     <div class="footer-col"><h4>Reports</h4><a onclick="showPage('pricing')">Snapshot — £49</a><a onclick="showPage('pricing')">Deep Dive — £79</a><a onclick="showPage('pricing')">Monthly Monitor — £130</a><a onclick="downloadSample()">Sample report</a></div>
     <div class="footer-col"><h4>Resources</h4><a onclick="showPage('guides')">Free guides</a><a onclick="showPage('how')">How it works</a><a onclick="showPage('included')">What's included</a></div>
     <div class="footer-col"><h4>Company</h4><a onclick="showPage('about')">About</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('privacy')">Privacy policy</a><a onclick="showPage('terms')">Terms of service</a></div>
